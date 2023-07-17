@@ -26,15 +26,6 @@
       "logoutUrls": [
         "http://localhost:3000/"
       ]
-    },
-    "dev2": {
-      "domain": "dev2-azure-saml-test",
-      "callbackUrls": [
-        "http://localhost:3000/"
-      ],
-      "logoutUrls": [
-        "http://localhost:3000/"
-      ]
     }
   }
 }
