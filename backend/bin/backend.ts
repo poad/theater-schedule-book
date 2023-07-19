@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { BackendStack } from '../lib/backend-stack';
+import {BackendStack} from '../lib/backend-stack';
 
 interface EnvProps {
   domain: string;
@@ -18,5 +18,5 @@ const identityProviderMetadataURL = app.node.tryGetContext('metaURL') as
 new BackendStack(app, 'theater-schedule-book-backend-stack', {
   environment: env,
   ...context,
-  identityProviderMetadataURL,
+  identityProviderMetadataURL
 });
