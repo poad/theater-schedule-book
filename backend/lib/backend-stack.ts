@@ -242,24 +242,15 @@ export class BackendStack extends cdk.Stack {
       },
     );
 
-    const conditions = {
-      'StringEquals': {
-        'cognito-identity.amazonaws.com:aud': identityPool.ref,
-      },
-      'ForAnyValue:StringLike': {
-        'cognito-identity.amazonaws.com:amr': 'authenticated',
-      },
-    };
-    
     new ssm.StringParameter(this, 'CognitoDomainUrl', {
       parameterName: `/${environment}/theater-schedule-book/CognitoDomainUrl`,
       stringValue: `https://${domain}.auth.${this.region}.amazoncognito.com`,
-    })
+    });
     
     new ssm.StringParameter(this, 'CognitoAppClientIdl', {
       parameterName: `/${environment}/theater-schedule-book/CognitoAppClientId`,
       stringValue: client.userPoolClientId,
-    })
+    });
     
   }
 }
