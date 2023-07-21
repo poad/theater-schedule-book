@@ -14,12 +14,12 @@ jobs:
 
       - uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
           config: .github/dependabot-auto-merge.yml
 
       - name: Slack Notification (not success)
         uses: lazy-actions/slatify@v3.0.0
-        if: "! success()"
+        if: ${{ ! success() }}
         continue-on-error: true
         with:
           job_name: '*auto-merge*'
