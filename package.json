@@ -6,7 +6,8 @@
     "build": "pnpm -r build",
     "lint-fix": "pnpm -r lint-fix",
     "prelint-fix": "pnpm -r install",
-    "prebuild": "pnpm -r install"
+    "prebuild": "pnpm -r install",
+    "generate": "pnpm -r generate"
   },
   "keywords": [],
   "author": "",

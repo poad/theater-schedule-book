@@ -1,0 +1,56 @@
+scalar DateTime
+scalar Date
+scalar URL
+
+interface Node {
+  id: ID!
+}
+
+type Cast implements Node {
+  id: ID!
+  name: String!
+  roleName: String!
+}
+
+type Show implements Node {
+  id: ID!
+  showDate: DateTime!
+  casts: [Cast!]
+  theater: String!
+}
+
+type Title implements Node {
+  id: ID!
+  name: String!
+  url: URL!
+  shows: [Show!]
+}
+
+"""
+The query root of GraphQL interface.
+"""
+type Query {
+  titles: [Title!]!
+  theaters: [String!]!
+}
+
+input CastInput {
+  name: String!
+  roleName: String!
+}
+
+input ShowInput {
+  showDate: DateTime!
+  casts: [CastInput!]
+  theater: String!
+}
+
+input TitleInput {
+  name: String!
+  url: URL!
+  shows: [ShowInput!]
+}
+
+type Mutation {
+  putTitle(title: TitleInput!): Title!
+}
