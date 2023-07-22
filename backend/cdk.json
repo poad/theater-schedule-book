@@ -20,6 +20,7 @@
   "context": {
     "dev": {
       "domain": "theater-schedule-book",
+      "tableName": "theater-schedule-book",
       "callbackUrls": [
         "http://localhost:3000/"
       ],

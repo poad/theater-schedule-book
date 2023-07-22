@@ -1,6 +1,6 @@
 # theater-schedule-book
 
-[![Deploy Next.js site to Pages](https://github.com/poad/theater-schedule-book/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/poad/theater-schedule-book/actions/workflows/gh-pages.yml)
+[![Deploy Next.js site to Pages](https://github.com/poad/theater-schedule-book/actions/workflows/deploy.yml/badge.svg)](https://github.com/poad/theater-schedule-book/actions/workflows/deploy.yml)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
