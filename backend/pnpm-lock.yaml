@@ -2899,7 +2899,7 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       '@smithy/types': 1.1.1
-      '@smithy/util-config-provider': 1.0.2
+      '@smithy/util-config-provider': 1.1.0
       '@smithy/util-middleware': 1.0.2
       tslib: 2.6.0
     dev: true
@@ -3141,8 +3141,8 @@ packages:
       tslib: 2.6.0
     dev: true
 
-  /@smithy/util-config-provider@1.0.2:
-    resolution: {integrity: sha512-HOdmDm+3HUbuYPBABLLHtn8ittuRyy+BSjKOA169H+EMc+IozipvXDydf+gKBRAxUa4dtKQkLraypwppzi+PRw==}
+  /@smithy/util-config-provider@1.1.0:
+    resolution: {integrity: sha512-rQ47YpNmF6Is4I9GiE3T3+0xQ+r7RKRKbmHYyGSbyep/0cSf9kteKcI0ssJTvveJ1K4QvwrxXj1tEFp/G2UqxQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       tslib: 2.6.0
