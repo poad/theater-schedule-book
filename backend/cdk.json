@@ -21,11 +21,6 @@
     "config": {
       "tableName": "theater-schedule-book",
       "domain": "theater-schedule-book",
-      "oidc": {
-        "clientId": "xxxx",
-        "clientSecret": "XXXXX",
-        "issuerUrl": "https://login.microsoftonline.com/consumers/v2.0/"
-      },
       "callbackUrls": [
         "http://localhost:3000"
       ],
