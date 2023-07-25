@@ -1,26 +1,17 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import {BackendStack} from '../lib/backend-stack';
-
-interface EnvProps {
-  domain: string;
-  tableName: string;
-}
+import {BackendStack, Config} from '../lib/backend-stack';
 
 const app = new cdk.App();
 
-const env = app.node.tryGetContext('env') as string;
-const context = app.node.tryGetContext(env) as EnvProps;
-const identityProviderMetadataURL = app.node.tryGetContext('metaURL') as
-  | string
-  | undefined;
+const debug = app.node.tryGetContext('debug') === 'true';
+const context = app.node.tryGetContext('config') as Config;
 const disableAuthorizer =
   app.node.tryGetContext('disable-authorizer') === 'true';
 
 new BackendStack(app, 'theater-schedule-book-backend-stack', {
-  environment: env,
   ...context,
   disableAuthorizer,
-  identityProviderMetadataURL
+  debug
 });

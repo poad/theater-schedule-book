@@ -18,14 +18,19 @@
   },
   "requireApproval": "never",
   "context": {
-    "dev": {
-      "domain": "theater-schedule-book",
+    "config": {
       "tableName": "theater-schedule-book",
+      "domain": "theater-schedule-book",
+      "oidc": {
+        "clientId": "xxxx",
+        "clientSecret": "XXXXX",
+        "issuerUrl": "https://login.microsoftonline.com/consumers/v2.0/"
+      },
       "callbackUrls": [
-        "http://localhost:3000/"
+        "http://localhost:3000"
       ],
       "logoutUrls": [
-        "http://localhost:3000/"
+        "http://localhost:3000"
       ]
     }
   }
