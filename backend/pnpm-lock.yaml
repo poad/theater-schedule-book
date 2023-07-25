@@ -498,7 +498,7 @@ packages:
       '@smithy/types': 1.1.1
       '@smithy/url-parser': 1.0.2
       '@smithy/util-base64': 1.0.2
-      '@smithy/util-body-length-browser': 1.0.2
+      '@smithy/util-body-length-browser': 1.1.0
       '@smithy/util-body-length-node': 1.0.2
       '@smithy/util-defaults-mode-browser': 1.0.2
       '@smithy/util-defaults-mode-node': 1.0.2
@@ -539,7 +539,7 @@ packages:
       '@smithy/types': 1.1.1
       '@smithy/url-parser': 1.0.2
       '@smithy/util-base64': 1.0.2
-      '@smithy/util-body-length-browser': 1.0.2
+      '@smithy/util-body-length-browser': 1.1.0
       '@smithy/util-body-length-node': 1.0.2
       '@smithy/util-defaults-mode-browser': 1.0.2
       '@smithy/util-defaults-mode-node': 1.0.2
@@ -580,7 +580,7 @@ packages:
       '@smithy/types': 1.1.1
       '@smithy/url-parser': 1.0.2
       '@smithy/util-base64': 1.0.2
-      '@smithy/util-body-length-browser': 1.0.2
+      '@smithy/util-body-length-browser': 1.1.0
       '@smithy/util-body-length-node': 1.0.2
       '@smithy/util-defaults-mode-browser': 1.0.2
       '@smithy/util-defaults-mode-node': 1.0.2
@@ -624,7 +624,7 @@ packages:
       '@smithy/types': 1.1.1
       '@smithy/url-parser': 1.0.2
       '@smithy/util-base64': 1.0.2
-      '@smithy/util-body-length-browser': 1.0.2
+      '@smithy/util-body-length-browser': 1.1.0
       '@smithy/util-body-length-node': 1.0.2
       '@smithy/util-defaults-mode-browser': 1.0.2
       '@smithy/util-defaults-mode-node': 1.0.2
@@ -3120,8 +3120,8 @@ packages:
       tslib: 2.6.0
     dev: true
 
-  /@smithy/util-body-length-browser@1.0.2:
-    resolution: {integrity: sha512-Xh8L06H2anF5BHjSYTg8hx+Itcbf4SQZnVMl4PIkCOsKtneMJoGjPRLy17lEzfoh/GOaa0QxgCP6lRMQWzNl4w==}
+  /@smithy/util-body-length-browser@1.1.0:
+    resolution: {integrity: sha512-cep3ioRxzRZ2Jbp3Kly7gy6iNVefYXiT6ETt8W01RQr3uwi1YMkrbU1p3lMR4KhX/91Nrk6UOgX1RH+oIt48RQ==}
     dependencies:
       tslib: 2.6.0
     dev: true
