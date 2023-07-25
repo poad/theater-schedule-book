@@ -11,14 +11,21 @@ import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as apigatewayv2 from '@aws-cdk/aws-apigatewayv2-alpha';
 import * as apigatewayv2lambda from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 
-interface BackendStackProps extends cdk.StackProps {
-  environment: string;
-  domain: string;
+export interface Config {
   tableName: string;
-  disableAuthorizer: boolean;
-  identityProviderMetadataURL?: string;
+  domain: string;
+  oidc?: {
+    clientId: string;
+    clientSecret: string;
+    issuerUrl: string;
+  },
   callbackUrls?: string[];
   logoutUrls?: string[];
+}
+
+interface BackendStackProps extends Config, cdk.StackProps {
+  disableAuthorizer: boolean;
+  debug: boolean;
 }
 
 export class BackendStack extends cdk.Stack {
@@ -26,17 +33,17 @@ export class BackendStack extends cdk.Stack {
     super(scope, id, props);
 
     const {
-      environment,
-      domain,
       tableName,
       disableAuthorizer,
-      identityProviderMetadataURL,
+      domain,
+      oidc,
       callbackUrls,
       logoutUrls,
+      debug,
     } = props;
 
     const userPool = new cognito.UserPool(this, "CognitoUserPool", {
-      userPoolName: `${environment}-theater-schedule-book-user-pool`,
+      userPoolName: `theater-schedule-book-user-pool`,
       signInAliases: {
         username: false,
         email: true,
@@ -71,51 +78,52 @@ export class BackendStack extends cdk.Stack {
       },
     });
 
-    const idpName = identityProviderMetadataURL
-      ? new cognito.CfnUserPoolIdentityProvider(
-        this,
-        'CfnCognitoIdPAzureAD',
-        {
-          providerName: 'AzureAD',
-          providerDetails: {
-            MetadataURL: identityProviderMetadataURL,
-          },
-          providerType: 'SAML',
-          attributeMapping: {
-            'email':
-              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
-            'email_verified':
-              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email_verified',
-            'family_name':
-              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname',
-            'given_name':
-              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname',
-            'name':
-              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
-            'username':
-              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
-            'preferredUsername':
-              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
-          },
-          userPoolId: userPool.userPoolId,
-        },
-      ).providerName
-      : undefined;
-
-    if (idpName) {
-      userPool.registerIdentityProvider(
-        cognito.UserPoolIdentityProvider.fromProviderName(
+    const identityProviderConfig = (() => {
+      if (oidc) {
+        const providerName = 'AzureAD';
+        const provider = new cognito.CfnUserPoolIdentityProvider(
           this,
-          'CognitoIdPAzureAD',
-          idpName,
-        ),
-      );
-      cognito.UserPoolClientIdentityProvider.custom(idpName);
-    }
+          'CfnCognitoIdPAzureAD',
+          {
+            providerName,
+            providerDetails: {
+              client_id: oidc.clientId,
+              client_secret: oidc.clientSecret,
+              oidc_issuer: oidc.issuerUrl,
+              authorize_scopes: 'openid email',
+              attributes_request_method: 'GET'
+            },
+            providerType: 'OIDC',
+            attributeMapping: {
+              'email': 'email',
+              'email_verified': 'email_verified',
+              'family_name': 'surname',
+              'given_name': 'givenname',
+              'name': 'name',
+              'preferredUsername': 'name',
+            },
+            userPoolId: userPool.userPoolId,
+          },
+        );
+
+        userPool.registerIdentityProvider(
+          cognito.UserPoolIdentityProvider.fromProviderName(
+            this,
+            'CognitoIdPAzureAD',
+            providerName,
+          ),
+        );
+        return {
+          provider,
+          supportedIdentityProviders: [cognito.UserPoolClientIdentityProvider.custom(providerName)]
+        };
+      }
+      return undefined;
+    })();
 
     const client = new cognito.UserPoolClient(this, 'CognitoAppClient', {
       userPool: userPool,
-      userPoolClientName: `${environment}-theater-schedule-book`,
+      userPoolClientName: 'theater-schedule-book',
       authFlows: {
         adminUserPassword: true,
         userSrp: true,
@@ -152,7 +160,11 @@ export class BackendStack extends cdk.Stack {
         preferredUsername: true,
         profilePage: true,
       }),
+      supportedIdentityProviders: identityProviderConfig?.supportedIdentityProviders,
     });
+    if (identityProviderConfig) {
+      client.node.addDependency(identityProviderConfig.provider);
+    }
 
     const identityPoolProvider = {
       clientId: client.userPoolClientId,
@@ -165,7 +177,7 @@ export class BackendStack extends cdk.Stack {
         allowUnauthenticatedIdentities: false,
         allowClassicFlow: true,
         cognitoIdentityProviders: [identityPoolProvider],
-        identityPoolName: `${environment} Azure AD`,
+        identityPoolName: 'theater-schedule-book',
       },
     );
 
@@ -173,7 +185,7 @@ export class BackendStack extends cdk.Stack {
       this,
       'CognitoDefaultUnauthenticatedRole',
       {
-        roleName: `${environment}-console-unauth-role`,
+        roleName: 'theater-schedule-book-unauth-role',
         assumedBy: new iam.FederatedPrincipal(
           'cognito-identity.amazonaws.com',
           {
@@ -214,7 +226,7 @@ export class BackendStack extends cdk.Stack {
       this,
       'CognitoDefaultAuthenticatedRole',
       {
-        roleName: `${environment}-console-auth-role`,
+        roleName: 'theater-schedule-book-auth-role',
         assumedBy: new iam.FederatedPrincipal(
           'cognito-identity.amazonaws.com',
           {
@@ -263,26 +275,6 @@ export class BackendStack extends cdk.Stack {
       },
     );
 
-    const api = new apigateway.RestApi(this, 'RestApi', {
-      restApiName: `Theater Schedule Book GraphQL API`,
-      deployOptions: {
-        stageName: 'default',
-      },
-      endpointConfiguration: {
-        types: [
-          apigateway.EndpointType.REGIONAL,
-        ],
-      },
-      defaultCorsPreflightOptions: {
-        allowOrigins: apigateway.Cors.ALL_ORIGINS,
-        allowMethods: apigateway.Cors.ALL_METHODS,
-        allowHeaders: apigateway.Cors.DEFAULT_HEADERS,
-        allowCredentials: true,
-        disableCache: true,
-        statusCode: 204,
-      },
-    });
-    api.deploymentStage.urlForPath('/');
 
     const functionName = 'theater-schedule-book';
     const functionLogs = new awslogs.LogGroup(this, 'LambdaFunctionLogGroup', {
@@ -293,11 +285,21 @@ export class BackendStack extends cdk.Stack {
 
     const roleName = `${functionName}-role`;
 
-    const lambdaFunction = new lambdaNodeJs.NodejsFunction(this, 'LambdaFunction', {
-      runtime: lambda.Runtime.NODEJS_18_X,
-      entry: './lambda/index.ts',
-      functionName,
-      retryAttempts: 0,
+    const commandHooks = {
+      beforeInstall(): string[] {
+        return [''];
+      },
+      beforeBundling(): string[] {
+        return [''];
+      },
+      afterBundling(inputDir: string, outputDir: string): string[] {
+        return [
+          // スキーマ定義を追加
+          `cp ${inputDir}/../schema.gql ${outputDir}`,
+        ];
+      },
+    };
+    const lambdaOptions = debug ? {
       environment: {
         NODE_OPTIONS: '--enable-source-maps',
       },
@@ -307,21 +309,22 @@ export class BackendStack extends cdk.Stack {
         sourceMapMode: lambdaNodeJs.SourceMapMode.BOTH,
         sourcesContent: true,
         keepNames: true,
-        commandHooks: {
-          beforeInstall(): string[] {
-            return [''];
-          },
-          beforeBundling(): string[] {
-            return [''];
-          },
-          afterBundling(inputDir: string, outputDir: string): string[] {
-            return [
-              // スキーマ定義を追加
-              `cp ${inputDir}/../schema.gql ${outputDir}`,
-            ];
-          },
-        },
+        commandHooks,
       },
+    } : {
+      bundling: {
+        minify: true,
+        keepNames: true,
+        commandHooks,
+      },
+    };
+    const lambdaFunction = new lambdaNodeJs.NodejsFunction(this, 'LambdaFunction', {
+      runtime: lambda.Runtime.NODEJS_18_X,
+      entry: './lambda/index.ts',
+      functionName,
+      retryAttempts: 0,
+      timeout: cdk.Duration.seconds(30),
+      ...lambdaOptions,
       role: new iam.Role(this, 'LambdaFunctionExecutionRole', {
         roleName,
         assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
@@ -354,6 +357,26 @@ export class BackendStack extends cdk.Stack {
       }),
     });
 
+    const api = new apigateway.RestApi(this, 'RestApi', {
+      restApiName: `Theater Schedule Book GraphQL API`,
+      deployOptions: {
+        stageName: 'default',
+      },
+      endpointConfiguration: {
+        types: [
+          apigateway.EndpointType.REGIONAL,
+        ],
+      },
+      defaultCorsPreflightOptions: {
+        allowOrigins: apigateway.Cors.ALL_ORIGINS,
+        allowMethods: apigateway.Cors.ALL_METHODS,
+        allowHeaders: apigateway.Cors.DEFAULT_HEADERS,
+        allowCredentials: true,
+        disableCache: true,
+        statusCode: 204,
+      },
+    });
+    api.deploymentStage.urlForPath('/');
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const methodOptions = () => {
       if (disableAuthorizer) {
@@ -361,7 +384,7 @@ export class BackendStack extends cdk.Stack {
           authorizerName: 'Authorizer',
           cognitoUserPools: [userPool],
         });
-  
+
         return {
           authorizer,
         };
@@ -405,7 +428,7 @@ export class BackendStack extends cdk.Stack {
     });
 
     new apigatewayv2.WebSocketApi(this, 'WebSocketApi', {
-      apiName: `AuthorizerExample Server Lambda WebSocket API (${environment})`,
+      apiName: 'Theater Schedule Book Lambda WebSocket API',
     }).addRoute('$connect', {
       integration: new apigatewayv2lambda.WebSocketLambdaIntegration(
         'scheme-handler',
@@ -423,14 +446,13 @@ export class BackendStack extends cdk.Stack {
     });
 
     new ssm.StringParameter(this, 'CognitoDomainUrl', {
-      parameterName: `/${environment}/theater-schedule-book/CognitoDomainUrl`,
+      parameterName: `/theater-schedule-book/CognitoDomainUrl`,
       stringValue: `https://${domain}.auth.${this.region}.amazoncognito.com`,
     });
 
     new ssm.StringParameter(this, 'CognitoAppClientIdl', {
-      parameterName: `/${environment}/theater-schedule-book/CognitoAppClientId`,
+      parameterName: `/theater-schedule-book/CognitoAppClientId`,
       stringValue: client.userPoolClientId,
     });
-
   }
 }
