@@ -12,8 +12,8 @@ dependencies:
     specifier: ^5.7.0
     version: 5.7.0(encoding@0.1.13)(react-native@0.72.3)
   '@aws-amplify/ui':
-    specifier: ^5.6.7
-    version: 5.6.7(aws-amplify@5.3.5)(xstate@4.38.1)
+    specifier: ^5.6.8
+    version: 5.6.8(aws-amplify@5.3.5)
   '@aws-amplify/ui-react':
     specifier: ^5.0.5
     version: 5.0.5(@types/react@18.2.15)(aws-amplify@5.3.5)(react-dom@18.2.0)(react@18.2.0)
@@ -479,6 +479,22 @@ packages:
       style-dictionary: 3.7.1
       tslib: 2.4.1
       xstate: 4.38.1
+    dev: false
+
+  /@aws-amplify/ui@5.6.8(aws-amplify@5.3.5):
+    resolution: {integrity: sha512-cxp1fs2A09pj84bloLuxiOol0O5ByJC1XYZGnqIcQP/Kce/K1NgSbjSteyUzOC+/5EPqrq/CMOZMy9/GBtQq0Q==}
+    peerDependencies:
+      aws-amplify: '>= 5.0.1'
+      xstate: ^4.33.6
+    peerDependenciesMeta:
+      xstate:
+        optional: true
+    dependencies:
+      aws-amplify: 5.3.5(aws-crt@1.15.22)(encoding@0.1.13)(react-native@0.72.3)
+      csstype: 3.1.2
+      lodash: 4.17.21
+      style-dictionary: 3.7.1
+      tslib: 2.4.1
     dev: false
 
   /@aws-crypto/crc32@1.2.2:
