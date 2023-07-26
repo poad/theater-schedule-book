@@ -29,8 +29,8 @@ devDependencies:
     specifier: ^4.8.1
     version: 4.8.1(graphql@16.7.1)
   '@as-integrations/aws-lambda':
-    specifier: ^2.0.1
-    version: 2.0.1(@apollo/server@4.8.1)
+    specifier: ^3.0.0
+    version: 3.0.0(@apollo/server@4.8.1)
   '@aws-sdk/client-cognito-identity-provider':
     specifier: ^3.377.0
     version: 3.377.0
@@ -373,9 +373,9 @@ packages:
       - encoding
     dev: true
 
-  /@as-integrations/aws-lambda@2.0.1(@apollo/server@4.8.1):
-    resolution: {integrity: sha512-zp4X2bMnjP9jQx8hbmKBimdGPU9YjnWk0Gi+9nHKPK95y1F1IFw2oR2IJvGN9rpcD4q1ycNcP7eMlPx8EcPIXw==}
-    engines: {node: '>=14.0'}
+  /@as-integrations/aws-lambda@3.0.0(@apollo/server@4.8.1):
+    resolution: {integrity: sha512-KFrx2XeQJDXL1tYa5dPva2IcCsG6ul2+vNwaG8ZV2DAkYZ0UYv48gpJu+eIN/JF9vEPIFaVVpm/cihzxoFUZHA==}
+    engines: {node: '>=16.0'}
     peerDependencies:
       '@apollo/server': ^4.0.0
     dependencies:
