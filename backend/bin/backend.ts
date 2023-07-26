@@ -18,7 +18,7 @@ new BackendStack(app, 'theater-schedule-book-backend-stack', {
   oidc: {
     clientId,
     clientSecret,
-    issuerUrl,
+    issuerUrl
   },
   disableAuthorizer,
   debug
