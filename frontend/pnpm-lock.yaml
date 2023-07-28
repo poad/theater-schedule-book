@@ -58,10 +58,10 @@ dependencies:
     version: 10.4.14(postcss@8.4.27)
   aws-amplify:
     specifier: ^5.3.5
-    version: 5.3.5(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3)
+    version: 5.3.5(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3)
   aws-crt:
-    specifier: ^1.16.0
-    version: 1.16.0
+    specifier: ^1.17.0
+    version: 1.17.0
   encoding:
     specifier: ^0.1.13
     version: 0.1.13
@@ -316,11 +316,11 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/geo@2.2.0(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3):
+  /@aws-amplify/geo@2.2.0(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3):
     resolution: {integrity: sha512-9aXHQzebdHucp+XfJgMO+boys757M9EdGlylASSSjgWO3MsX4RhN0NUvpZ1L8VwbqPSeUBpTdJFv6YgtXCVxJQ==}
     dependencies:
       '@aws-amplify/core': 5.7.0(encoding@0.1.13)(react-native@0.72.3)
-      '@aws-sdk/client-location': 3.186.3(aws-crt@1.16.0)
+      '@aws-sdk/client-location': 3.186.3(aws-crt@1.17.0)
       '@turf/boolean-clockwise': 6.5.0
       camelcase-keys: 6.2.2
       tslib: 1.14.1
@@ -330,12 +330,12 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/interactions@5.2.5(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3):
+  /@aws-amplify/interactions@5.2.5(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3):
     resolution: {integrity: sha512-iWgeO0Jy8CfLjTCSXWstAd5ZfYrn72r5db96DpFPU89VvK96vXeRDsPRh1DHnLa+DuCu6/m1698NpmaY1kiwUg==}
     dependencies:
       '@aws-amplify/core': 5.7.0(encoding@0.1.13)(react-native@0.72.3)
-      '@aws-sdk/client-lex-runtime-service': 3.186.3(aws-crt@1.16.0)
-      '@aws-sdk/client-lex-runtime-v2': 3.186.3(aws-crt@1.16.0)
+      '@aws-sdk/client-lex-runtime-service': 3.186.3(aws-crt@1.17.0)
+      '@aws-sdk/client-lex-runtime-v2': 3.186.3(aws-crt@1.17.0)
       base-64: 1.0.0
       fflate: 0.7.3
       pako: 2.0.4
@@ -422,7 +422,7 @@ packages:
     dependencies:
       '@aws-amplify/ui': 5.6.8(aws-amplify@5.3.5)(xstate@4.38.2)
       '@xstate/react': 3.0.1(@types/react@18.2.17)(react@18.2.0)(xstate@4.38.2)
-      aws-amplify: 5.3.5(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3)
+      aws-amplify: 5.3.5(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3)
       lodash: 4.17.21
       react: 18.2.0
       xstate: 4.38.2
@@ -449,7 +449,7 @@ packages:
       '@radix-ui/react-slider': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-tabs': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@xstate/react': 3.0.0(@types/react@18.2.17)(react@18.2.0)
-      aws-amplify: 5.3.5(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3)
+      aws-amplify: 5.3.5(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3)
       classnames: 2.3.1
       deepmerge: 4.2.2
       lodash: 4.17.21
@@ -473,7 +473,7 @@ packages:
       xstate:
         optional: true
     dependencies:
-      aws-amplify: 5.3.5(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3)
+      aws-amplify: 5.3.5(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3)
       csstype: 3.1.2
       lodash: 4.17.21
       style-dictionary: 3.7.1
@@ -530,7 +530,7 @@ packages:
       '@aws-crypto/util': 2.0.2
       '@aws-sdk/types': 3.186.0
       '@aws-sdk/util-locate-window': 3.310.0
-      '@aws-sdk/util-utf8-browser': 3.186.0
+      '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
     dev: false
 
@@ -574,7 +574,7 @@ packages:
     resolution: {integrity: sha512-Lgu5v/0e/BcrZ5m/IWqzPUf3UYFTy/PpeED+uc9SWUR1iZQL8XXbGQg10UfllwwBryO3hFF5dizK+78aoXC1eA==}
     dependencies:
       '@aws-sdk/types': 3.186.0
-      '@aws-sdk/util-utf8-browser': 3.186.0
+      '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
     dev: false
 
@@ -755,15 +755,15 @@ packages:
       - react-native
     dev: false
 
-  /@aws-sdk/client-lex-runtime-service@3.186.3(aws-crt@1.16.0):
+  /@aws-sdk/client-lex-runtime-service@3.186.3(aws-crt@1.17.0):
     resolution: {integrity: sha512-YP+GDY9OxyW4rJDqjreaNpiDBvH1uzO3ShJKl57hT92Kw2auDQxttcMf//J8dQXvrVkW/fVXCLI9TmtxS7XJOQ==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@aws-crypto/sha256-browser': 2.0.0
       '@aws-crypto/sha256-js': 2.0.0
-      '@aws-sdk/client-sts': 3.186.3(aws-crt@1.16.0)
+      '@aws-sdk/client-sts': 3.186.3(aws-crt@1.17.0)
       '@aws-sdk/config-resolver': 3.186.0
-      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/fetch-http-handler': 3.186.0
       '@aws-sdk/hash-node': 3.186.0
       '@aws-sdk/invalid-dependency': 3.186.0
@@ -789,7 +789,7 @@ packages:
       '@aws-sdk/util-defaults-mode-browser': 3.186.0
       '@aws-sdk/util-defaults-mode-node': 3.186.0
       '@aws-sdk/util-user-agent-browser': 3.186.0
-      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/util-utf8-browser': 3.186.0
       '@aws-sdk/util-utf8-node': 3.186.0
       tslib: 2.6.1
@@ -797,15 +797,15 @@ packages:
       - aws-crt
     dev: false
 
-  /@aws-sdk/client-lex-runtime-v2@3.186.3(aws-crt@1.16.0):
+  /@aws-sdk/client-lex-runtime-v2@3.186.3(aws-crt@1.17.0):
     resolution: {integrity: sha512-4MJfSnb+qM8BYW4ToCvg7sDWN0NcEqK738hCZUV89cjp7pIHZ6osJuS/PsmZEommVj+71GviZ4buu5KUCfCGFQ==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@aws-crypto/sha256-browser': 2.0.0
       '@aws-crypto/sha256-js': 2.0.0
-      '@aws-sdk/client-sts': 3.186.3(aws-crt@1.16.0)
+      '@aws-sdk/client-sts': 3.186.3(aws-crt@1.17.0)
       '@aws-sdk/config-resolver': 3.186.0
-      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/eventstream-handler-node': 3.186.0
       '@aws-sdk/eventstream-serde-browser': 3.186.0
       '@aws-sdk/eventstream-serde-config-resolver': 3.186.0
@@ -836,7 +836,7 @@ packages:
       '@aws-sdk/util-defaults-mode-browser': 3.186.0
       '@aws-sdk/util-defaults-mode-node': 3.186.0
       '@aws-sdk/util-user-agent-browser': 3.186.0
-      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/util-utf8-browser': 3.186.0
       '@aws-sdk/util-utf8-node': 3.186.0
       tslib: 2.6.1
@@ -844,15 +844,15 @@ packages:
       - aws-crt
     dev: false
 
-  /@aws-sdk/client-location@3.186.3(aws-crt@1.16.0):
+  /@aws-sdk/client-location@3.186.3(aws-crt@1.17.0):
     resolution: {integrity: sha512-LCMFgoWfvKBnZhhtl93RLhrsHCalM7huaxErHSKoqWDBUDP0i7rOX73qW8E25j/vQ4emEkT0d6ts1rDu4EnlNw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@aws-crypto/sha256-browser': 2.0.0
       '@aws-crypto/sha256-js': 2.0.0
-      '@aws-sdk/client-sts': 3.186.3(aws-crt@1.16.0)
+      '@aws-sdk/client-sts': 3.186.3(aws-crt@1.17.0)
       '@aws-sdk/config-resolver': 3.186.0
-      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/fetch-http-handler': 3.186.0
       '@aws-sdk/hash-node': 3.186.0
       '@aws-sdk/invalid-dependency': 3.186.0
@@ -878,7 +878,7 @@ packages:
       '@aws-sdk/util-defaults-mode-browser': 3.186.0
       '@aws-sdk/util-defaults-mode-node': 3.186.0
       '@aws-sdk/util-user-agent-browser': 3.186.0
-      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/util-utf8-browser': 3.186.0
       '@aws-sdk/util-utf8-node': 3.186.0
       tslib: 2.6.1
@@ -1004,7 +1004,7 @@ packages:
       - react-native
     dev: false
 
-  /@aws-sdk/client-sso@3.186.0(aws-crt@1.16.0):
+  /@aws-sdk/client-sso@3.186.0(aws-crt@1.17.0):
     resolution: {integrity: sha512-qwLPomqq+fjvp42izzEpBEtGL2+dIlWH5pUCteV55hTEwHgo+m9LJPIrMWkPeoMBzqbNiu5n6+zihnwYlCIlEA==}
     engines: {node: '>=12.0.0'}
     dependencies:
@@ -1035,7 +1035,7 @@ packages:
       '@aws-sdk/util-defaults-mode-browser': 3.186.0
       '@aws-sdk/util-defaults-mode-node': 3.186.0
       '@aws-sdk/util-user-agent-browser': 3.186.0
-      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/util-utf8-browser': 3.186.0
       '@aws-sdk/util-utf8-node': 3.186.0
       tslib: 2.6.1
@@ -1043,14 +1043,14 @@ packages:
       - aws-crt
     dev: false
 
-  /@aws-sdk/client-sts@3.186.3(aws-crt@1.16.0):
+  /@aws-sdk/client-sts@3.186.3(aws-crt@1.17.0):
     resolution: {integrity: sha512-mnttdyYBtqO+FkDtOT3F1FGi8qD11fF5/3zYLaNuFFULqKneaIwW2YIsjFlgvPGpmoyo/tNplnZwhQ9xQtT3Sw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@aws-crypto/sha256-browser': 2.0.0
       '@aws-crypto/sha256-js': 2.0.0
       '@aws-sdk/config-resolver': 3.186.0
-      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/credential-provider-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/fetch-http-handler': 3.186.0
       '@aws-sdk/hash-node': 3.186.0
       '@aws-sdk/invalid-dependency': 3.186.0
@@ -1077,7 +1077,7 @@ packages:
       '@aws-sdk/util-defaults-mode-browser': 3.186.0
       '@aws-sdk/util-defaults-mode-node': 3.186.0
       '@aws-sdk/util-user-agent-browser': 3.186.0
-      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/util-user-agent-node': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/util-utf8-browser': 3.186.0
       '@aws-sdk/util-utf8-node': 3.186.0
       entities: 2.2.0
@@ -1224,13 +1224,13 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/credential-provider-ini@3.186.0(aws-crt@1.16.0):
+  /@aws-sdk/credential-provider-ini@3.186.0(aws-crt@1.17.0):
     resolution: {integrity: sha512-ecrFh3MoZhAj5P2k/HXo/hMJQ3sfmvlommzXuZ/D1Bj2yMcyWuBhF1A83Fwd2gtYrWRrllsK3IOMM5Jr8UIVZA==}
     engines: {node: '>= 12.0.0'}
     dependencies:
       '@aws-sdk/credential-provider-env': 3.186.0
       '@aws-sdk/credential-provider-imds': 3.186.0
-      '@aws-sdk/credential-provider-sso': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/credential-provider-sso': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/credential-provider-web-identity': 3.186.0
       '@aws-sdk/property-provider': 3.186.0
       '@aws-sdk/shared-ini-file-loader': 3.186.0
@@ -1250,15 +1250,15 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/credential-provider-node@3.186.0(aws-crt@1.16.0):
+  /@aws-sdk/credential-provider-node@3.186.0(aws-crt@1.17.0):
     resolution: {integrity: sha512-HIt2XhSRhEvVgRxTveLCzIkd/SzEBQfkQ6xMJhkBtfJw1o3+jeCk+VysXM0idqmXytctL0O3g9cvvTHOsUgxOA==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@aws-sdk/credential-provider-env': 3.186.0
       '@aws-sdk/credential-provider-imds': 3.186.0
-      '@aws-sdk/credential-provider-ini': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/credential-provider-ini': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/credential-provider-process': 3.186.0
-      '@aws-sdk/credential-provider-sso': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/credential-provider-sso': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/credential-provider-web-identity': 3.186.0
       '@aws-sdk/property-provider': 3.186.0
       '@aws-sdk/shared-ini-file-loader': 3.186.0
@@ -1303,11 +1303,11 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/credential-provider-sso@3.186.0(aws-crt@1.16.0):
+  /@aws-sdk/credential-provider-sso@3.186.0(aws-crt@1.17.0):
     resolution: {integrity: sha512-mJ+IZljgXPx99HCmuLgBVDPLepHrwqnEEC/0wigrLCx6uz3SrAWmGZsNbxSEtb2CFSAaczlTHcU/kIl7XZIyeQ==}
     engines: {node: '>= 12.0.0'}
     dependencies:
-      '@aws-sdk/client-sso': 3.186.0(aws-crt@1.16.0)
+      '@aws-sdk/client-sso': 3.186.0(aws-crt@1.17.0)
       '@aws-sdk/property-provider': 3.186.0
       '@aws-sdk/shared-ini-file-loader': 3.186.0
       '@aws-sdk/types': 3.186.0
@@ -2043,7 +2043,7 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/util-user-agent-node@3.186.0(aws-crt@1.16.0):
+  /@aws-sdk/util-user-agent-node@3.186.0(aws-crt@1.17.0):
     resolution: {integrity: sha512-oWZR7hN6NtOgnT6fUvHaafgbipQc2xJCRB93XHiF9aZGptGNLJzznIOP7uURdn0bTnF73ejbUXWLQIm8/6ue6w==}
     engines: {node: '>= 12.0.0'}
     peerDependencies:
@@ -2054,7 +2054,7 @@ packages:
     dependencies:
       '@aws-sdk/node-config-provider': 3.186.0
       '@aws-sdk/types': 3.186.0
-      aws-crt: 1.16.0
+      aws-crt: 1.17.0
       tslib: 2.6.1
     dev: false
 
@@ -3975,7 +3975,7 @@ packages:
     dependencies:
       graphql: 16.7.1
       lodash.sortby: 4.7.0
-      tslib: 2.5.3
+      tslib: 2.6.1
     dev: false
 
   /@graphql-tools/executor-graphql-ws@1.1.0(graphql@16.7.1):
@@ -4169,7 +4169,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.7.1
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /@graphql-tools/optimize@2.0.0(graphql@16.7.1):
@@ -4179,7 +4179,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.7.1
-      tslib: 2.5.3
+      tslib: 2.6.1
     dev: false
 
   /@graphql-tools/prisma-loader@8.0.1(@types/node@20.4.5)(encoding@0.1.13)(graphql@16.7.1):
@@ -4223,7 +4223,7 @@ packages:
       '@ardatan/relay-compiler': 12.0.0(encoding@0.1.13)(graphql@16.7.1)
       '@graphql-tools/utils': 9.2.1(graphql@16.7.1)
       graphql: 16.7.1
-      tslib: 2.4.1
+      tslib: 2.6.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -4238,7 +4238,7 @@ packages:
       '@ardatan/relay-compiler': 12.0.0(encoding@0.1.13)(graphql@16.7.1)
       '@graphql-tools/utils': 10.0.4(graphql@16.7.1)
       graphql: 16.7.1
-      tslib: 2.5.3
+      tslib: 2.6.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -4302,7 +4302,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.7.1
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /@graphql-tools/utils@9.2.1(graphql@16.7.1):
@@ -4312,7 +4312,7 @@ packages:
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.7.1)
       graphql: 16.7.1
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /@graphql-tools/wrap@10.0.0(graphql@16.7.1):
@@ -5797,7 +5797,7 @@ packages:
     resolution: {integrity: sha512-xcLxITLe2HYa1cnYnwCjkOO1PqUHQpozB8x9AR0OgWN2woOBi5kSDVxKfd0b7sb1hw5qFeJhXm9H1nu3xSfLeQ==}
     engines: {node: '>=10'}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /aria-query@5.3.0:
@@ -5943,7 +5943,7 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /aws-amplify@5.3.5(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3):
+  /aws-amplify@5.3.5(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3):
     resolution: {integrity: sha512-3xUJqHdQMoyOYDlq6K1z1kXQnlsOx0cN/R4WpfcbGBeiixsxEpxTk+OGQijOQwE1CIOJ4OXPCNz5m2yRofTTyw==}
     dependencies:
       '@aws-amplify/analytics': 6.4.1(encoding@0.1.13)(react-native@0.72.3)
@@ -5952,8 +5952,8 @@ packages:
       '@aws-amplify/cache': 5.1.5(encoding@0.1.13)(react-native@0.72.3)
       '@aws-amplify/core': 5.7.0(encoding@0.1.13)(react-native@0.72.3)
       '@aws-amplify/datastore': 4.6.5(encoding@0.1.13)(react-native@0.72.3)
-      '@aws-amplify/geo': 2.2.0(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3)
-      '@aws-amplify/interactions': 5.2.5(aws-crt@1.16.0)(encoding@0.1.13)(react-native@0.72.3)
+      '@aws-amplify/geo': 2.2.0(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3)
+      '@aws-amplify/interactions': 5.2.5(aws-crt@1.17.0)(encoding@0.1.13)(react-native@0.72.3)
       '@aws-amplify/notifications': 1.5.0(encoding@0.1.13)(react-native@0.72.3)
       '@aws-amplify/predictions': 5.4.5(encoding@0.1.13)(react-native@0.72.3)
       '@aws-amplify/pubsub': 5.4.1(encoding@0.1.13)(react-native@0.72.3)
@@ -5966,8 +5966,8 @@ packages:
       - react-native
     dev: false
 
-  /aws-crt@1.16.0:
-    resolution: {integrity: sha512-64NQkT51I2etwJQsZ9eA1dMV/qU5YqAEtYTWa6f8HimA9xS2PhOCP+gQ3Uhjq9s2WqFroDl9BnZWt4hcvdntWA==}
+  /aws-crt@1.17.0:
+    resolution: {integrity: sha512-DP7xySX/3oxhXw1mH7HAnudylk31CFXEWeKplmWpIzei0eE9tvw1fnJuBcRZjKTi7/tt+MFbhdHi3glWk+TSfg==}
     requiresBuild: true
     dependencies:
       '@aws-sdk/util-utf8-browser': 3.259.0
@@ -6293,7 +6293,7 @@ packages:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /camelcase-css@2.0.1:
@@ -6333,7 +6333,7 @@ packages:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
       upper-case-first: 2.0.2
     dev: false
 
@@ -6404,7 +6404,7 @@ packages:
       path-case: 3.0.4
       sentence-case: 3.0.4
       snake-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /chardet@0.7.0:
@@ -6682,7 +6682,7 @@ packages:
     resolution: {integrity: sha512-I2hSBi7Vvs7BEuJDr5dDHfzb/Ruj3FyvFyh7KLilAjNQw3Be+xgqUBA2W6scVEcL0hL1dwPRtIqEPVUCKkSsyQ==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
       upper-case: 2.0.2
     dev: false
 
@@ -6954,7 +6954,7 @@ packages:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /dotenv@16.3.1:
@@ -6970,7 +6970,7 @@ packages:
   /duplexer2@0.1.4:
     resolution: {integrity: sha512-asLFVfWWtJ90ZyOUHMqk7/S2w2guQKxUI2itj3d92ADHhxUSbCMGi1f1cBcJ7xM1To+pE/Khbwo1yuNbMEPKeA==}
     dependencies:
-      readable-stream: 2.1.5
+      readable-stream: 2.3.8
     dev: false
 
   /duplexify@3.7.1:
@@ -8097,7 +8097,7 @@ packages:
     resolution: {integrity: sha512-H/vuk5TEEVZwrR0lp2zed9OCo1uAILMlx0JEMgC26rzyJJ3N1v6XkwHHXJQdR2doSjcGPM6OKPYoJgf0plJ11Q==}
     dependencies:
       capital-case: 1.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /help-me@3.0.0:
@@ -8431,7 +8431,7 @@ packages:
   /is-lower-case@2.0.2:
     resolution: {integrity: sha512-bVcMJy4X5Og6VZfdOZstSexlEy20Sr0k/p/b2IlQJlfdKAQuMpiv5w2Ccxb8sKdRUNAG1PnHVHjFSdRDVS6NlQ==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /is-negative-zero@2.0.2:
@@ -8530,7 +8530,7 @@ packages:
   /is-upper-case@2.0.2:
     resolution: {integrity: sha512-44pxmxAvnnAOwBg4tHPnkfvgjPwbc5QIsSstNU+YcJ1ovxVzCWpSGosPJOZh/a1tdl81fbgnLc9LLv+x2ywbPQ==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /is-weakref@1.0.2:
@@ -9031,13 +9031,13 @@ packages:
   /lower-case-first@2.0.2:
     resolution: {integrity: sha512-EVm/rR94FJTZi3zefZ82fLWab+GX14LJN4HrWBcuo6Evmsl9hEfnqxgcHCKb9q+mNf6EVdsjx/qucYFIIB84pg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /lru-cache@5.1.1:
@@ -9648,7 +9648,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /nocache@3.0.4:
@@ -9975,7 +9975,7 @@ packages:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /parent-module@1.0.1:
@@ -10021,14 +10021,14 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /path-case@3.0.4:
     resolution: {integrity: sha512-qO4qCFjXqVTrcbPt/hQfhTQ+VhFsqNKOPtytgNKkKxSoEp3XPUQ8ObFuePylOIok5gjn69ry8XiULxCwot3Wfg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /path-exists@3.0.0:
@@ -10485,7 +10485,7 @@ packages:
       '@types/react': 18.2.17
       react: 18.2.0
       react-style-singleton: 2.2.1(@types/react@18.2.17)(react@18.2.0)
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /react-remove-scroll@2.5.4(@types/react@18.2.17)(react@18.2.0):
@@ -10502,7 +10502,7 @@ packages:
       react: 18.2.0
       react-remove-scroll-bar: 2.3.4(@types/react@18.2.17)(react@18.2.0)
       react-style-singleton: 2.2.1(@types/react@18.2.17)(react@18.2.0)
-      tslib: 2.4.1
+      tslib: 2.6.1
       use-callback-ref: 1.3.0(@types/react@18.2.17)(react@18.2.0)
       use-sidecar: 1.1.2(@types/react@18.2.17)(react@18.2.0)
     dev: false
@@ -10531,7 +10531,7 @@ packages:
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.2.0
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /react@18.2.0:
@@ -10887,7 +10887,7 @@ packages:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
       upper-case-first: 2.0.2
     dev: false
 
@@ -11004,7 +11004,7 @@ packages:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /source-map-js@1.0.2:
@@ -11047,7 +11047,7 @@ packages:
   /sponge-case@1.0.1:
     resolution: {integrity: sha512-dblb9Et4DAtiZ5YSUZHLl4XhH4uK80GhAZrVXdN4O2P4gQ40Wa5UIOPUHlA/nFd2PLblBZWUioLMMAVrgpoYcA==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /sprintf-js@1.0.3:
@@ -11298,7 +11298,7 @@ packages:
   /swap-case@2.0.2:
     resolution: {integrity: sha512-kc6S2YS/2yXbtkSMunBtKdah4VFETZ8Oh6ONSmSd9bRxhqTrtARUCBUiWXH3xVPpvR7tz2CSnkuXVE42EcGnMw==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /symbol-observable@4.0.0:
@@ -11432,7 +11432,7 @@ packages:
   /title-case@3.0.3:
     resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /titleize@3.0.0:
@@ -11729,13 +11729,13 @@ packages:
   /upper-case-first@2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /upper-case@2.0.2:
     resolution: {integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /uri-js@4.4.1:
@@ -11782,7 +11782,7 @@ packages:
     dependencies:
       '@types/react': 18.2.17
       react: 18.2.0
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /use-isomorphic-layout-effect@1.1.2(@types/react@18.2.17)(react@18.2.0):
@@ -11811,7 +11811,7 @@ packages:
       '@types/react': 18.2.17
       detect-node-es: 1.1.0
       react: 18.2.0
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: false
 
   /use-sync-external-store@1.2.0(react@18.2.0):
