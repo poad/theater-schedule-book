@@ -31,7 +31,7 @@
     "amazon-cognito-identity-js": "^6.3.1",
     "autoprefixer": "10.4.14",
     "aws-amplify": "^5.3.5",
-    "aws-crt": "^1.16.0",
+    "aws-crt": "^1.17.0",
     "encoding": "^0.1.13",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
