@@ -20,7 +20,7 @@
     "preformat-check": "pnpm generate"
   },
   "devDependencies": {
-    "@apollo/server": "^4.8.1",
+    "@apollo/server": "^4.9.0",
     "@as-integrations/aws-lambda": "^3.0.0",
     "@aws-sdk/client-cognito-identity-provider": "^3.378.0",
     "@graphql-codegen/cli": "^5.0.0",
