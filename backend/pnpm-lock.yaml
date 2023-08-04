@@ -2350,7 +2350,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.7.1
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: true
 
   /@graphql-tools/optimize@2.0.0(graphql@16.7.1):
@@ -2360,7 +2360,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.7.1
-      tslib: 2.5.3
+      tslib: 2.6.1
     dev: true
 
   /@graphql-tools/prisma-loader@8.0.1(@types/node@20.4.6)(graphql@16.7.1):
@@ -2404,7 +2404,7 @@ packages:
       '@ardatan/relay-compiler': 12.0.0(graphql@16.7.1)
       '@graphql-tools/utils': 9.2.1(graphql@16.7.1)
       graphql: 16.7.1
-      tslib: 2.4.1
+      tslib: 2.6.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -2419,7 +2419,7 @@ packages:
       '@ardatan/relay-compiler': 12.0.0(graphql@16.7.1)
       '@graphql-tools/utils': 10.0.4(graphql@16.7.1)
       graphql: 16.7.1
-      tslib: 2.5.3
+      tslib: 2.6.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -2521,7 +2521,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.7.1
-      tslib: 2.4.1
+      tslib: 2.6.1
     dev: true
 
   /@graphql-tools/utils@9.2.1(graphql@16.7.1):
@@ -3538,8 +3538,8 @@ packages:
       tslib: 2.6.1
     dev: true
 
-  /@whatwg-node/server@0.9.6:
-    resolution: {integrity: sha512-JijJzNP/a6H9lDdkDWzwh5CxpRvyPpikGDy7KOc4z+ZrSM/HAZmhf+Y+o8NTFZEi9yulPi8aeBO52R3FYJn0Gg==}
+  /@whatwg-node/server@0.9.7:
+    resolution: {integrity: sha512-QVYQKVFxywLO9yblfDw7IEk6oP5axXAEqcabvfLGbTqrF8HP0sPgtfQjf1+wC4QlfYnooVwhqmNUIzaEY6ZZ7Q==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@whatwg-node/fetch': 0.9.9
@@ -5344,7 +5344,7 @@ packages:
       graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       graphql: 16.7.1
-      tslib: 2.5.3
+      tslib: 2.6.1
     dev: true
 
   /graphql-ws@5.12.1(graphql@16.7.1):
@@ -5378,7 +5378,7 @@ packages:
       '@graphql-yoga/logger': 1.0.0
       '@graphql-yoga/subscription': 4.0.0
       '@whatwg-node/fetch': 0.9.9
-      '@whatwg-node/server': 0.9.6
+      '@whatwg-node/server': 0.9.7
       dset: 3.1.2
       graphql: 16.7.1
       lru-cache: 10.0.0
