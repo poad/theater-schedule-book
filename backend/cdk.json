@@ -22,10 +22,12 @@
       "tableName": "theater-schedule-book",
       "domain": "theater-schedule-book",
       "callbackUrls": [
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://theater-schedule-book.pages.dev"
       ],
       "logoutUrls": [
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://theater-schedule-book.pages.dev"
       ]
     }
   }

@@ -63,6 +63,28 @@ jobs:
             -c client-secret=${{ secrets.AZURE_AD_CLIENT_SECRET }} \
             -c issuer-url=${{ secrets.AZURE_AD_ISSUER_URL }}
 
+      - name: Prepare build
+        working-directory: frontend
+        env:
+          NEXT_PUBLIC_AWS_REGION: us-west-2
+          NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID: ${{ secrets.NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID }}
+          NEXT_PUBLIC_AWS_WEB_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_AWS_WEB_CLIENT_ID }}
+          NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID: ${{ secrets.NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID }}
+          NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN }}
+          NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNIN: https://theater-schedule-book.pages.dev
+          NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNOUT: https://theater-schedule-book.pages.dev
+          NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL }}
+        run: |
+          touch .env.local
+          echo "NEXT_PUBLIC_AWS_REGION=${NEXT_PUBLIC_AWS_REGION}" >> .env.local
+          echo "NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID=${NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID}" >> .env.local
+          echo "NEXT_PUBLIC_AWS_WEB_CLIENT_ID=${NEXT_PUBLIC_AWS_WEB_CLIENT_ID}" >> .env.local
+          echo "NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID=${NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID}" >> .env.local
+          echo "NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN=${NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN}" >> .env.local
+          echo "NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNIN=${NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNIN}" >> .env.local
+          echo "NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNOUT=${NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNOUT}" >> .env.local
+          echo "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL=${NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL}" >> .env.local
+
       - name: Build with Next.js
         working-directory: frontend
         run: pnpm build
