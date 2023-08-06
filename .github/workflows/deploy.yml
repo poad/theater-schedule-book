@@ -46,46 +46,25 @@ jobs:
           run_install: |
             - recursive: true
               args: [--no-frozen-lockfile]
-            - args: [--global, aws-cdk]
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
           check-latest: true
 
-      - name: Deploy backend
-        working-directory: backend
-        run: |
-          cdk deploy \
-            -c client-id=${{ secrets.AZURE_AD_CLIENT_ID }} \
-            -c client-secret=${{ secrets.AZURE_AD_CLIENT_SECRET }} \
-            -c issuer-url=${{ secrets.AZURE_AD_ISSUER_URL }}
-
       - name: Prepare build
-        working-directory: frontend
         env:
-          NEXT_PUBLIC_AWS_REGION: us-west-2
-          NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID: ${{ secrets.NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID }}
-          NEXT_PUBLIC_AWS_WEB_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_AWS_WEB_CLIENT_ID }}
-          NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID: ${{ secrets.NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID }}
-          NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN }}
-          NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNIN: https://theater-schedule-book.pages.dev
-          NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNOUT: https://theater-schedule-book.pages.dev
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
           NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL }}
         run: |
           touch .env.local
-          echo "NEXT_PUBLIC_AWS_REGION=${NEXT_PUBLIC_AWS_REGION}" >> .env.local
-          echo "NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID=${NEXT_PUBLIC_AWS_COGNITO_USER_POOL_ID}" >> .env.local
-          echo "NEXT_PUBLIC_AWS_WEB_CLIENT_ID=${NEXT_PUBLIC_AWS_WEB_CLIENT_ID}" >> .env.local
-          echo "NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID=${NEXT_PUBLIC_AWS_COGNITO_ID_POOL_ID}" >> .env.local
-          echo "NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN=${NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN}" >> .env.local
-          echo "NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNIN=${NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNIN}" >> .env.local
-          echo "NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNOUT=${NEXT_PUBLIC_AWS_COGNITO_OAUTH_REDIRECT_SIGNOUT}" >> .env.local
+          echo "NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}" >> .env.local
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}" >> .env.local
           echo "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL=${NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL}" >> .env.local
 
       - name: Build with Next.js
-        working-directory: frontend
         run: pnpm build
 
       - name: Publish to Cloudflare Pages
@@ -101,6 +80,6 @@ jobs:
           # By default this will be the branch which triggered this workflow
           branch: main
           # Optional: Change the working directory
-          workingDirectory: ./frontend
+          workingDirectory: ./
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
           wranglerVersion: '3'
