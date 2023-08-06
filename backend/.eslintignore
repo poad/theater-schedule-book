@@ -1,6 +1,0 @@
-dist/
-node_modules/
-jest.config.js
-__tests__
-*.d.ts
-lambda/types/generated
