@@ -1,25 +1,27 @@
 import { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js';
+import { AmplifyUser } from '@aws-amplify/ui';
 
 function useAuth() {
-  const [session, setSession] = useState<CognitoUserSession>();
-  const [user, setUser] = useState<any>();
+  const [jwt, setJwt] = useState<string>();
+  const [user, setUser] = useState<AmplifyUser>();
   const [authenticated, setAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
     Auth.currentAuthenticatedUser()
-      .then((user: CognitoUser) => {
+      .then((user: AmplifyUser) => {
         setUser(user);
-        setSession(user.getSignInUserSession() || undefined);
+        setJwt((user.getSignInUserSession() ?? undefined)?.getAccessToken().getJwtToken());
         setAuthenticated(true);
       })
-      .catch((error) => setAuthenticated(false));
+      .catch(() => {
+        setAuthenticated(false)
+      });
   }, []);
 
   return {
     user,
-    session,
+    jwt,
     authenticated,
   };
 }

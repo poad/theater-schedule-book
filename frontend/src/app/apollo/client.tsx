@@ -16,8 +16,7 @@ Amplify.configure(awsconfig);
 const entpoint = process.env.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL;
 
 export function useApolloClient() {
-  const { session } = useAuth();
-  const token = session?.getAccessToken().getJwtToken();
+  const { jwt: token } = useAuth();
 
   const httpLink = createHttpLink({
     uri: entpoint,
