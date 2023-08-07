@@ -1,5 +1,4 @@
-import { type SupabaseClient } from '@supabase/supabase-js';
-import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import {
   createContext,
   useState,
@@ -20,7 +19,12 @@ export function SupabaseProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [supabase] = useState(() => createPagesBrowserClient());
+  const [supabase] = useState(() =>
+    createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '',
+    ),
+  );
   const router = useRouter();
 
   useEffect(() => {
