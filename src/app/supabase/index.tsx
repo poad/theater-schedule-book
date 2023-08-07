@@ -50,4 +50,4 @@ export function useSupabase(): SupabaseClient<any, 'public', any> {
   }
 
   return context.supabase;
-};
+}
