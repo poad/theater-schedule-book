@@ -30,7 +30,11 @@ export default function Index(): JSX.Element {
                 supabaseClient={supabase}
                 appearance={{ theme: ThemeSupa }}
                 onlyThirdPartyProviders
-                redirectTo={window.location.origin}
+                redirectTo={
+                  typeof window !== 'undefined'
+                    ? window.location.origin
+                    : undefined
+                }
                 providers={['azure']}
               />
             )}
