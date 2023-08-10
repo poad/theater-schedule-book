@@ -20,3 +20,45 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      nextjs:
+        patterns:
+          - 'next'
+          - '@next/*'
+          - 'eslint-config-next'
+      eslint-prettier:
+        patterns:
+          - '@typescript-eslint/*'
+          - 'eslint'
+          - 'eslint-*'
+          - 'prettier'
+        exclude-patterns:
+          - 'eslint-config-next'
+      supabase:
+        patterns:
+          - '@supabase/*'
+      react:
+        patterns:
+          - '@types/react*'
+          - 'react*'
+      tailwindcss:
+        patterns:
+          - 'autoprefixer'
+          - 'postcss'
+          - 'tailwindcss'
+      misc:
+        patterns:
+          - '*'
+        exclude-patterns:
+          - 'next'
+          - '@next/*'
+          - '@typescript-eslint/*'
+          - 'eslint'
+          - 'eslint-*'
+          - 'prettier'
+          - '@supabase/*'
+          - '@types/react*'
+          - 'react*'
+          - 'autoprefixer'
+          - 'postcss'
+          - 'tailwindcss'
