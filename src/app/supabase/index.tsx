@@ -9,6 +9,7 @@ import {
 import { useRouter } from 'next/navigation';
 
 interface SupabaseContext {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   supabase: SupabaseClient<any, 'public', any>;
 }
 
@@ -46,6 +47,7 @@ export function SupabaseProvider({
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useSupabase(): SupabaseClient<any, 'public', any> {
   const context = useContext(Context);
 
