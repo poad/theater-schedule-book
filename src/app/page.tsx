@@ -1,10 +1,11 @@
 'use client';
-import LogoutButton from '../components/LogoutButton';
+import SignOutButton from '../components/SignOutButton';
 import { type User } from '@supabase/supabase-js';
 import { useState } from 'react';
 import { useSupabase } from './supabase';
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
+// import { Auth } from '@supabase/auth-ui-react';
+// import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { SignInButton } from '../components/SignInButton';
 
 export default function Index(): JSX.Element {
   const [user, setUser] = useState<User>();
@@ -23,20 +24,21 @@ export default function Index(): JSX.Element {
             {user != null ? (
               <div className="flex items-center gap-4">
                 Hey, {user.email}!
-                <LogoutButton />
+                <SignOutButton />
               </div>
             ) : (
-              <Auth
-                supabaseClient={supabase}
-                appearance={{ theme: ThemeSupa }}
-                onlyThirdPartyProviders
-                redirectTo={
-                  typeof window !== 'undefined'
-                    ? window.location.origin
-                    : undefined
-                }
-                providers={['azure']}
-              />
+              <SignInButton />
+              // <Auth
+              //   supabaseClient={supabase}
+              //   appearance={{ theme: ThemeSupa }}
+              //   onlyThirdPartyProviders
+              //   redirectTo={
+              //     typeof window !== 'undefined'
+              //       ? window.location.origin
+              //       : undefined
+              //   }
+              //   providers={['azure']}
+              // />
             )}
           </div>
         </div>

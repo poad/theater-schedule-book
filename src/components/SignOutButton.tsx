@@ -1,8 +1,9 @@
 'use client';
 
 import { useSupabase } from '../app/supabase';
+import { Button } from '@supabase/ui';
 
-export default function LogoutButton(): JSX.Element {
+export default function SignOutButton(): JSX.Element {
   const supabase = useSupabase();
 
   function handleClick(): void {
@@ -11,14 +12,14 @@ export default function LogoutButton(): JSX.Element {
 
   return (
     <div>
-      <button
+      <Button
         onClick={() => {
           handleClick();
         }}
         className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
       >
-        Logout
-      </button>
+        Sign out
+      </Button>
     </div>
   );
 }
