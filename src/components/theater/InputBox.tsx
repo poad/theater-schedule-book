@@ -3,8 +3,12 @@ import { useState } from 'react';
 import { Input, Button } from '@supabase/ui';
 
 export function InputBox({
+  label,
+  placeholder,
   onClick,
 }: {
+  label: string;
+  placeholder: string;
   onClick: (value: string) => Promise<Error | undefined>;
 }): JSX.Element {
   const [name, setName] = useState<string>('');
@@ -22,8 +26,8 @@ export function InputBox({
 
   return (
     <Input
-      label="Teater name"
-      placeholder="name of theater to add"
+      label={label}
+      placeholder={placeholder}
       key="name-input"
       onChange={(event) => setName(event.target.value)}
       value={name}

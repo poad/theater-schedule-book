@@ -6,13 +6,13 @@ create extension if not exists "uuid-ossp";
 create table if not exists
   theaters (
     id uuid default gen_random_uuid () primary key,
-    name text not null,
+    name text not null unique,
     user_id uuid references auth.users default auth.uid ()
   );
 
 create table if not exists
   casts (
-    id uuid primary key,
+    id uuid  default gen_random_uuid () primary key,
     name text not null,
     role text not null,
     user_id uuid references auth.users default auth.uid ()
@@ -20,15 +20,19 @@ create table if not exists
 
 create table if not exists
   shows (
-    id uuid primary key,
-    showDate timestamptz,
+    id uuid  default gen_random_uuid () primary key,
+    showDate timestamptz not null,
+    theater_id uuid not null references theaters on delete cascade,
     user_id uuid references auth.users default auth.uid ()
   );
 
 create table if not exists
   titles (
-    id uuid primary key,
-    name text,
+    id uuid  default gen_random_uuid () primary key,
+    name text not null,
+    year smallint not null,
+    url text,
+    constraint titles_unique_key unique (name, year),
     user_id uuid references auth.users default auth.uid ()
   );
 
@@ -39,7 +43,7 @@ create table if not exists
     show_id uuid not null references shows,
     user_id uuid references auth.users default auth.uid (),
     -- both foreign keys must be part of a composite primary key
-    primary key (title_id, show_id)
+    primary key (title_id, show_id),
   );
 
 create table if not exists
@@ -92,3 +96,6 @@ select
 create policy "Authenticated users can insert their own casts" on casts for insert to authenticated
 with
   check (auth.uid () = user_id);
+
+alter table titles_shows enable row level security;
+alter table shows_casts enable row level security;

@@ -1,29 +1,20 @@
 'use client';
 
-import { Session, type User } from '@supabase/supabase-js';
+import { type User } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
-import { useSupabase } from './supabase';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Typography } from '@supabase/ui';
 import SignOutButton from '@/components/SignOutButton';
+import { useSession } from '@supabase/auth-helpers-react';
+import { useSupabase } from './supabase';
+import { useTitles } from './titles/titles';
 
 export default function Index(): JSX.Element {
   const [user, setUser] = useState<User>();
-  const [session, setSession] = useState<Session>();
+  const session = useSession();
   const supabase = useSupabase();
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session ?? undefined);
-    });
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session ?? undefined);
-    });
-    return () => subscription.unsubscribe();
-  }, [supabase.auth]);
+  const { titles } = useTitles();
 
   useEffect(() => {
     if (session) {
@@ -42,10 +33,13 @@ export default function Index(): JSX.Element {
             {session ? (
               <div className="flex items-center gap-4">
                 {user && `Hey, ${user.email}!`}
-                <SignOutButton />
                 <Typography.Link target="_self" href="/theaters">
                   Theaters
                 </Typography.Link>
+                <Typography.Link target="_self" href="/titles">
+                  Add title
+                </Typography.Link>
+                <SignOutButton />
               </div>
             ) : (
               <Auth
@@ -64,10 +58,58 @@ export default function Index(): JSX.Element {
         </div>
       </nav>
 
-      <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 text-foreground">
-        <div className="flex justify-center text-center text-xs">
-          {session ? <></> : <></>}
-        </div>
+      <div className="w-1/2 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
+        {session ? (
+          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 mb-8">
+              <div className="overflow-hidden">
+                <table className="min-w-full text-left text-sm font-light">
+                  <thead className="border-b font-medium dark:border-neutral-500">
+                    <tr>
+                      <th>Name</th>
+                      <th>Year</th>
+                      <th>Official web site</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {titles?.map((title) => (
+                      <tr
+                        key={`${title.id}`}
+                        className="border-b dark:border-neutral-500"
+                      >
+                        <td
+                          key={`${title.id}-name`}
+                          className="whitespace-nowrap px-6 py-4"
+                        >
+                          {title.name}
+                        </td>
+                        <td
+                          key={`${title.id}-year`}
+                          className="whitespace-nowrap px-6 py-4"
+                        >
+                          {title.year}
+                        </td>
+                        <td
+                          key={`${title.id}-link`}
+                          className="whitespace-nowrap px-6 py-4"
+                        >
+                          <Typography.Link
+                            target="_self"
+                            href={title.url.toString()}
+                          >
+                            link
+                          </Typography.Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
