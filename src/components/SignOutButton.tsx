@@ -1,13 +1,33 @@
 'use client';
 
-import { useSupabase } from '../app/supabase';
-import { Button } from '@supabase/ui';
+import { useState } from 'react';
+import { useSupabase } from '@/app/supabase';
+import { Button, Alert } from '@supabase/ui';
 
 export default function SignOutButton(): JSX.Element {
   const supabase = useSupabase();
+  const [errors, setErrors] = useState<Error>();
 
-  function handleClick(): void {
-    void supabase.auth.signOut();
+  async function handleClick() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      setErrors(error);
+    }
+  }
+
+  function ErrorAlert({ error }: { error?: Error }) {
+    if (error) {
+      return (
+        <Alert
+          variant="danger"
+          closable={true}
+          title="Failed to Sign In"
+          withIcon
+        >
+          {error.message}
+        </Alert>
+      );
+    }
   }
 
   return (
@@ -20,6 +40,7 @@ export default function SignOutButton(): JSX.Element {
       >
         Sign out
       </Button>
+      <ErrorAlert error={errors} />
     </div>
   );
 }
