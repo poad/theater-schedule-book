@@ -1,4 +1,6 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { type SupabaseClient } from '@supabase/supabase-js';
+import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
+import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 import {
   createContext,
   useState,
@@ -16,20 +18,17 @@ interface SupabaseContext {
 const Context = createContext<SupabaseContext | undefined>(undefined);
 
 export function SupabaseProvider({
+  initialSession,
   children,
 }: {
+  initialSession: Session;
   children: ReactNode;
 }): JSX.Element {
   const [supabase] = useState(() =>
-    createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '',
-      {
-        auth: {
-          persistSession: false,
-        },
-      },
-    ),
+    createPagesBrowserClient({
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '',
+    }),
   );
   const router = useRouter();
 
@@ -47,7 +46,12 @@ export function SupabaseProvider({
 
   return (
     <Context.Provider value={{ supabase }}>
-      <>{children}</>
+      <SessionContextProvider
+        supabaseClient={supabase}
+        initialSession={initialSession}
+      >
+        <>{children}</>
+      </SessionContextProvider>
     </Context.Provider>
   );
 }

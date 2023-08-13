@@ -1,13 +1,15 @@
 'use client';
 
-import { Button } from '@supabase/ui';
-import { useSupabase } from '../app/supabase';
+import { useState } from 'react';
+import { Button, Alert } from '@supabase/ui';
+import { useSupabase } from '@/app/supabase';
 
 export function SignInButton(): JSX.Element {
   const supabase = useSupabase();
+  const [errors, setErrors] = useState<Error>();
 
   async function signInWithAzure() {
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'azure',
       options: {
         scopes: 'email offline_access',
@@ -15,7 +17,30 @@ export function SignInButton(): JSX.Element {
           typeof window !== 'undefined' ? window.location.origin : undefined,
       },
     });
+    if (error) {
+      setErrors(error);
+    }
   }
 
-  return <Button onClick={() => void signInWithAzure()}>Sign in</Button>;
+  function ErrorAlert({ error }: { error?: Error }) {
+    if (error) {
+      return (
+        <Alert
+          variant="danger"
+          closable={true}
+          title="Failed to Sign In"
+          withIcon
+        >
+          {error.message}
+        </Alert>
+      );
+    }
+  }
+
+  return (
+    <>
+      <Button onClick={() => void signInWithAzure()}>Sign in</Button>
+      <ErrorAlert error={errors} />
+    </>
+  );
 }

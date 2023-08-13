@@ -1,52 +1,49 @@
 'use client';
-import { useState } from 'react';
-import { useSupabase } from '../supabase';
-import { Input, Button } from '@supabase/ui';
 
-export interface Theater {
-  id: string;
-  name: string;
-}
+import { TheaterItem } from '@/components/theater/TheaterItem';
+import { useTheaters } from './theaters';
+import { InputBox } from '@/components/theater/InputBox';
+import { FadeLoader } from 'react-spinners';
+import { Typography } from '@supabase/ui';
 
 export default function Index(): JSX.Element {
-  const supabase = useSupabase();
-  const [name, setName] = useState<string>();
-  const [theaters, setTheaters] = useState<{ id: string; name: string }[]>();
-  const [error, setError] = useState<string>();
+  const { theaters, add } = useTheaters();
 
-  void supabase
-    .from('theaters')
-    .select<'*', { id: string; name: string }>()
-    .then(({ data }) => setTheaters(data ?? []));
-
-  function handleClick() {
-    if (!name || name.length === 0) {
-      setError('Input to theater name');
-      return;
+  async function handleClick(name: string): Promise<Error | undefined> {
+    if (name.length === 0) {
+      return new Error('Input to theater name');
     }
-    void supabase
-      .from('theaters')
-      .insert(name)
-      .select<'*', { id: string; name: string }>()
-      .then(({ data }) => setTheaters(data ?? []));
+
+    if (theaters?.find((theater) => theater.name === name)) {
+      return new Error('Always exists');
+    }
+
+    await add(name);
+  }
+
+  if (!theaters) {
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <FadeLoader color="#aaaaaa" radius={4} />
+      </div>
+    );
   }
 
   return (
-    <>
-      <div>
-        <ul className="my-auto">
-          {theaters?.map((theater) => <li key={theater.id}>{theater.name}</li>)}
+    <div className="w-screen items-center p-4">
+      <div className="mb-2">
+        <ul>
+          {theaters?.map((theater) => (
+            <TheaterItem key={theater.id} theater={theater} />
+          ))}
         </ul>
       </div>
-      <div>
-        <Input
-          label="Teater name"
-          placeholder="name of theater to add"
-          onChange={(event) => setName(event.target.value)}
-          error={error}
-        />
-        <Button onClick={() => handleClick()}>Save</Button>
+      <div className="mb-2">
+        <InputBox onClick={async (name: string) => await handleClick(name)} />
       </div>
-    </>
+      <Typography.Link href="/" target="_self">
+        Top
+      </Typography.Link>
+    </div>
   );
 }
