@@ -94,7 +94,7 @@ export default function Index(): JSX.Element {
                           className="whitespace-nowrap px-6 py-4"
                         >
                           <Typography.Link
-                            target="_self"
+                            target="_blank"
                             href={title.url.toString()}
                           >
                             link
