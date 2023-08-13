@@ -1,7 +1,7 @@
 'use client';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Title } from '@/types';
 import { useEffect, useState, useCallback } from 'react';
+import { Title } from '../../types';
 
 export function useTitles() {
   const supabase = useSupabaseClient<Title>();
@@ -10,19 +10,22 @@ export function useTitles() {
   const [error, setError] = useState<Error>();
 
   const add = useCallback(
-    async (name: string) => {
+    async (name: string, year: number, url?: string) => {
       if (!titles) {
         setError(new Error('uninitialized'));
         return;
       }
       return await supabase
         .from('titles')
-        .insert([{ name }])
-        .select<'id, name, url, shows (showDate, casts (name, role), theater (name) )', Title>()
+        .insert([{ name, year, url }])
+        .select<
+          'id, name, url, year, shows (showDate, casts (name, role), theater (name) )',
+          Title
+        >()
         .single()
         .then(({ data, error }) => {
           if (error) {
-            setError(new Error(error.message, { cause: error }));
+            setError(new Error(error.message));
             return;
           }
 
@@ -37,10 +40,13 @@ export function useTitles() {
   useEffect(() => {
     void supabase
       .from('titles')
-      .select<'id, name, url, shows (showDate, casts (name, role), theater (name) )', Title>()
+      .select<
+          'id, name, url, year, shows (showDate, casts (name, role), theater (name) )',
+        Title
+      >()
       .then(({ data, error }) => {
         if (error) {
-          setError(new Error(error.message, { cause: error }));
+          setError(new Error(error.message));
         } else {
           setTitles(data ?? []);
         }

@@ -5,20 +5,21 @@ export interface Theater {
 
 export interface Cast {
   id: string;
-  name: String;
-  role: String;
+  name: string;
+  role: string;
 }
 
 export interface Show {
   id: string;
   showDate: Date;
   casts: Cast[];
-  theater: Theater
+  theater: Theater;
 }
 
 export interface Title {
   id: string;
   name: string;
+  year: number;
   url: URL;
-  shows: Show[]
+  shows: Show[];
 }

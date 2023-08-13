@@ -22,7 +22,7 @@ export function useTheaters() {
         .single()
         .then(({ data, error }) => {
           if (error) {
-            setError(new Error(error.message, { cause: error }));
+            setError(new Error(error.message));
             return;
           }
 
@@ -40,7 +40,7 @@ export function useTheaters() {
       .select<'id, name', Theater>()
       .then(({ data, error }) => {
         if (error) {
-          setError(new Error(error.message, { cause: error }));
+          setError(new Error(error.message));
         } else {
           setTheaters(data ?? []);
         }

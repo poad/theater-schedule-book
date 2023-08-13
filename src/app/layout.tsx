@@ -1,5 +1,5 @@
 'use client';
-import { SupabaseProvider } from '@/app/supabase';
+import { SupabaseProvider } from './supabase';
 import '@/app/globals.css';
 import { Session } from '@supabase/auth-helpers-react';
 

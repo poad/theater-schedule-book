@@ -2,26 +2,33 @@
 
 import { FadeLoader } from 'react-spinners';
 import { Typography } from '@supabase/ui';
-import { useTheaters } from './theaters';
-import { TheaterItem } from '@/components/theater';
-import { InputBox } from '@/components/theater/InputBox';
+import { useTitles } from './titles';
+import { InputBox } from '@/components/title';
 
 export default function Index(): JSX.Element {
-  const { theaters, add } = useTheaters();
+  const { titles, add } = useTitles();
 
-  async function handleClick(name: string): Promise<Error | undefined> {
+  async function handleClick({
+    name,
+    year,
+    url,
+  }: {
+    name: string;
+    year: number;
+    url?: string;
+  }): Promise<{ name?: Error; url?: Error } | undefined> {
     if (name.length === 0) {
-      return new Error('Input to theater name');
+      return { name: new Error('Input to title name') };
     }
 
-    if (theaters?.find((theater) => theater.name === name)) {
-      return new Error('Always exists');
+    if (titles?.find((title) => title.name === name)) {
+      return { name: new Error('Always exists') };
     }
 
-    await add(name);
+    await add(name, year, url);
   }
 
-  if (!theaters) {
+  if (!titles) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <FadeLoader color="#aaaaaa" radius={4} />
@@ -43,18 +50,17 @@ export default function Index(): JSX.Element {
       </nav>
 
       <div className="w-1/2 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
-        <div className="mb-8">
-          <ul>
-            {theaters?.map((theater) => (
-              <TheaterItem key={theater.id} theater={theater} />
-            ))}
-          </ul>
-        </div>
         <div>
           <InputBox
-            label="Teater name"
-            placeholder="name of theater to add"
-            onClick={async (name: string) => await handleClick(name)}
+            labelName="Title name"
+            placeholderName="name of title to add"
+            labelUrl="Title URL"
+            placeholderUrl="URL of title to add"
+            onClick={async (data: {
+              name: string;
+              year: number;
+              url?: string;
+            }) => await handleClick(data)}
           />
         </div>
       </div>
