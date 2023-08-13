@@ -41,7 +41,7 @@ export function useTitles() {
     void supabase
       .from('titles')
       .select<
-          'id, name, url, year, shows (showDate, casts (name, role), theater (name) )',
+        'id, name, url, year, shows (showDate, casts (name, role), theater (name) )',
         Title
       >()
       .then(({ data, error }) => {

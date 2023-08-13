@@ -1,6 +1,7 @@
 'use client';
+
 import { useState } from 'react';
-import { Input, InputNumber, Button, Select } from '@supabase/ui';
+import { Input, InputNumber, Button } from '@supabase/ui';
 
 export function InputBox({
   labelName,
@@ -46,7 +47,7 @@ export function InputBox({
         onChange={(event) => setName(event.target.value)}
         value={name}
         error={nameError}
-        className='mb-8'
+        className="mb-8"
       />
       <Input
         label={labelUrl}
@@ -55,17 +56,17 @@ export function InputBox({
         onChange={(event) => setUrl(event.target.value)}
         value={url}
         error={urlError}
-        className='mb-8'
+        className="mb-8"
       />
       <InputNumber
-        label='Year'
-        placeholder='title begin year'
-        key='year-input'
+        label="Year"
+        placeholder="title begin year"
+        key="year-input"
         onChange={(event) => setYear(event.target.valueAsNumber)}
         value={year}
         min={2016}
         max={9999}
-        className='mb-8'
+        className="mb-8"
       />
       <Button key="save" onClick={() => void handleClick()}>
         Save
