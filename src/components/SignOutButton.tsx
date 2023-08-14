@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useSupabase } from '@/app/supabase';
 import { Button, Alert } from '@supabase/ui';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export default function SignOutButton(): JSX.Element {
-  const supabase = useSupabase();
+  const supabase = useSupabaseClient();
   const [errors, setErrors] = useState<Error>();
 
   async function handleClick() {

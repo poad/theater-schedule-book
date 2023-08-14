@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { Alert, Button, Select } from '@supabase/ui';
 import { Theater } from '@/types';
-// import DatetimePicker from 'react-tailwind-datetime-picker';
-// import { PublicDateRange } from 'react-tailwind-datetime-picker/dist/types';
 import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
