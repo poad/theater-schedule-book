@@ -8,6 +8,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   cleanDistDir: true,
+  trailingSlash: true,
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
