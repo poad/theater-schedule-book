@@ -9,6 +9,20 @@ export function useTitles() {
   const [titles, setTitles] = useState<Title[]>();
   const [error, setError] = useState<Error>();
 
+  useEffect(() => {
+    void supabase
+      .from('titles')
+      .select()
+      .returns<Title[]>()
+      .then(({ data, error }) => {
+        if (error) {
+          setError(new Error(error.message));
+        } else {
+          setTitles(data ?? []);
+        }
+      });
+  }, [supabase, session]);
+
   const add = useCallback(
     async (name: string, year: number, url?: string) => {
       if (!titles) {
@@ -18,11 +32,8 @@ export function useTitles() {
       return await supabase
         .from('titles')
         .insert([{ name, year, url }])
-        .select<
-          'id, name, url, year, shows (showDate, casts (name, role), theater (name) )',
-          Title
-        >()
-        .single()
+        .select()
+        .single<Title>()
         .then(({ data, error }) => {
           if (error) {
             setError(new Error(error.message));
@@ -36,22 +47,6 @@ export function useTitles() {
     },
     [supabase, titles],
   );
-
-  useEffect(() => {
-    void supabase
-      .from('titles')
-      .select<
-        'id, name, url, year, shows (showDate, casts (name, role), theater (name) )',
-        Title
-      >()
-      .then(({ data, error }) => {
-        if (error) {
-          setError(new Error(error.message));
-        } else {
-          setTitles(data ?? []);
-        }
-      });
-  }, [supabase, session]);
 
   return {
     titles,

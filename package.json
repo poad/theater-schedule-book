@@ -23,12 +23,15 @@
     "@supabase/supabase-js": "^2.32.0",
     "@supabase/ui": "^0.36.5",
     "autoprefixer": "^10.4.15",
+    "dayjs": "^1.11.9",
     "next": "^13.4.13",
     "postcss": "^8.4.27",
     "react": "^18.2.0",
+    "react-datetime-picker": "^5.5.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-spinners": "^0.13.8",
+    "react-tailwind-datetime-picker": "^1.2.6",
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {

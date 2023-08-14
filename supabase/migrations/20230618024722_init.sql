@@ -21,7 +21,7 @@ create table if not exists
 create table if not exists
   shows (
     id uuid  default gen_random_uuid () primary key,
-    showDate timestamptz not null,
+    show_date bigint not null unique,
     theater_id uuid not null references theaters on delete cascade,
     user_id uuid references auth.users default auth.uid ()
   );
@@ -77,6 +77,15 @@ create policy "Authenticated users can insert their own titles" on titles for in
 with
   check (auth.uid () = user_id);
 
+create policy "Authenticated users can update titles" on titles for
+update
+  to authenticated using (true);
+
+create policy "Authenticated users can delete titles" on titles for
+delete
+  to authenticated using (true);
+
+
 alter table shows enable row level security;
 
 create policy "Authenticated users can select shows" on shows for
@@ -86,6 +95,14 @@ select
 create policy "Authenticated users can insert their own shows" on shows for insert to authenticated
 with
   check (auth.uid () = user_id);
+
+create policy "Authenticated users can update shows" on shows for
+update
+  to authenticated using (true);
+
+create policy "Authenticated users can delete shows" on shows for
+delete
+  to authenticated using (true);
 
 alter table casts enable row level security;
 
@@ -97,5 +114,37 @@ create policy "Authenticated users can insert their own casts" on casts for inse
 with
   check (auth.uid () = user_id);
 
+create policy "Authenticated users can update casts" on casts for
+update
+  to authenticated using (true);
+
+create policy "Authenticated users can delete casts" on casts for
+delete
+  to authenticated using (true);
+
+
 alter table titles_shows enable row level security;
+create policy "Authenticated users can select titles_shows" on titles_shows for
+select
+  to authenticated using (true);
+
+create policy "Authenticated users can insert their own titles_shows" on titles_shows for insert to authenticated
+with
+  check (auth.uid () = user_id);
+
+create policy "Authenticated users can update titles_shows" on titles_shows for
+update
+  to authenticated using (true);
+
+create policy "Authenticated users can delete titles_shows" on titles_shows for
+delete
+  to authenticated using (true);
+
 alter table shows_casts enable row level security;
+create policy "Authenticated users can select shows_casts" on shows_casts for
+select
+  to authenticated using (true);
+
+create policy "Authenticated users can insert their own shows_casts" on shows_casts for insert to authenticated
+with
+  check (auth.uid () = user_id);
