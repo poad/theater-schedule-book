@@ -18,8 +18,8 @@ export function useTheaters() {
       return await supabase
         .from('theaters')
         .insert([{ name }])
-        .select<'id, name', Theater>()
-        .single()
+        .select()
+        .single<Theater>()
         .then(({ data, error }) => {
           if (error) {
             setError(new Error(error.message));
@@ -37,7 +37,8 @@ export function useTheaters() {
   useEffect(() => {
     void supabase
       .from('theaters')
-      .select<'id, name', Theater>()
+      .select()
+      .returns<Theater[]>()
       .then(({ data, error }) => {
         if (error) {
           setError(new Error(error.message));

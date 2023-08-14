@@ -81,7 +81,12 @@ export default function Index(): JSX.Element {
                           key={`${title.id}-name`}
                           className="whitespace-nowrap px-6 py-4"
                         >
-                          {title.name}
+                          <Typography.Link
+                            target="_self"
+                            href={`/titles/${title.id}`}
+                          >
+                            {title.name}
+                          </Typography.Link>
                         </td>
                         <td
                           key={`${title.id}-year`}
