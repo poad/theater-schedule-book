@@ -1,25 +1,18 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
-#
-# To get started with Next.js see: https://nextjs.org/docs/getting-started
-#
-name: CI
+name: CI and Preview
 
 on:
   pull_request_target:
     branches:
       - main
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -53,3 +46,20 @@ jobs:
 
       - name: Build with Next.js
         run: pnpm build
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 189f193d40c08d2618ee4b94de81d79e
+          projectName: ${{ github.event.repository.name }}
+          directory: ./out
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # Optional: Switch what branch you are publishing to.
+          # By default this will be the branch which triggered this workflow
+          branch: ${{ github.head_ref }}
+          # Optional: Change the working directory
+          workingDirectory: ./
+          # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
+          wranglerVersion: '3'
