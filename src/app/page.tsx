@@ -1,14 +1,15 @@
 'use client';
 
-import { type User } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
+import { type User } from '@supabase/supabase-js';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Typography } from '@supabase/ui';
-import SignOutButton from '@/components/SignOutButton';
 import { useSession } from '@supabase/auth-helpers-react';
+import SignOutButton from '@/components/SignOutButton';
 import { useSupabase } from './supabase';
 import { useTitles } from './titles/titles';
+import Link from 'next/link';
 
 export default function Index(): JSX.Element {
   const [user, setUser] = useState<User>();
@@ -81,12 +82,12 @@ export default function Index(): JSX.Element {
                           key={`${title.id}-name`}
                           className="whitespace-nowrap px-6 py-4"
                         >
-                          <Typography.Link
+                          <Link
                             target="_self"
-                            href={`/titles/${title.id}`}
+                            href={`/titles/${title.id}/`}
                           >
                             {title.name}
-                          </Typography.Link>
+                          </Link>
                         </td>
                         <td
                           key={`${title.id}-year`}
