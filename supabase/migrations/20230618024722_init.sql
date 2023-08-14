@@ -148,3 +148,11 @@ select
 create policy "Authenticated users can insert their own shows_casts" on shows_casts for insert to authenticated
 with
   check (auth.uid () = user_id);
+
+create policy "Authenticated users can update casts" on shows_casts for
+update
+  to authenticated using (true);
+
+create policy "Authenticated users can delete casts" on shows_casts for
+delete
+  to authenticated using (true);

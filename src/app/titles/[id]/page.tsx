@@ -7,6 +7,7 @@ import { InputBox } from '@/components/show';
 import { useTheaters } from '@/app/theaters/theaters';
 import { Theater } from '@/types';
 import { RiDeleteBin2Line } from 'react-icons/ri';
+import { useTitle } from '../titles';
 
 export default function Index({
   params: { id },
@@ -15,6 +16,7 @@ export default function Index({
 }): JSX.Element {
   const { shows, error, add, del } = useShows(id);
   const { theaters } = useTheaters();
+  const { title, error: titleLoadError } = useTitle(id);
 
   async function handleClick({
     showDate,
@@ -34,6 +36,14 @@ export default function Index({
     await add(showDate, theater.id);
   }
 
+  if (titleLoadError) {
+    return (
+      <Alert variant="danger" title="fetch error">
+        {titleLoadError.message}
+      </Alert>
+    );
+  }
+
   if (error) {
     return (
       <Alert variant="danger" title="fetch error">
@@ -42,7 +52,7 @@ export default function Index({
     );
   }
 
-  if (!shows || !theaters) {
+  if (!shows || !theaters || !title) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <FadeLoader color="#aaaaaa" radius={4} />
@@ -54,7 +64,7 @@ export default function Index({
     <div className="w-full flex flex-col items-center">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
-          <div />
+          <div>{title.name}</div>
           <div>
             <Typography.Link href="/" target="_self">
               Top
