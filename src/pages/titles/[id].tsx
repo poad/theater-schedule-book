@@ -1,22 +1,29 @@
 'use client';
 
+import { useRouter } from 'next/router';
 import { FadeLoader } from 'react-spinners';
 import { Alert, Typography } from '@supabase/ui';
-import { useShows } from './title-shows';
 import { InputBox } from '@/components/show';
-import { useTheaters } from '@/app/theaters/theaters';
+import { useTheaters } from '@/theaters';
 import { Theater } from '@/types';
 import { RiDeleteBin2Line } from 'react-icons/ri';
-import { useTitle } from '../titles';
+import { useTitle } from '@/titles';
+import { useSession } from '@supabase/auth-helpers-react';
+import { useMutation } from '@/mutation';
+import { useState } from 'react';
 
-export default function Index({
-  params: { id },
-}: {
-  params: { id: string };
-}): JSX.Element {
-  const { shows, error, add, del } = useShows(id);
-  const { theaters } = useTheaters();
-  const { title, error: titleLoadError } = useTitle(id);
+export default function Shows(): JSX.Element {
+  const {
+    query: { id },
+  } = useRouter();
+  const session = useSession();
+  const { theaters, error: errorTheater } = useTheaters(session);
+  const { addShow, delShow } = useMutation(session);
+  const { title, error, refetch } = useTitle({
+    id: id as string,
+    session,
+  });
+  const [errorMessage, setErrorMessage] = useState<string>();
 
   async function handleClick({
     showDate,
@@ -29,19 +36,28 @@ export default function Index({
       return new Error('Please select date');
     }
 
-    if (shows?.find((it) => it.show_date.getTime() === showDate.getTime())) {
+    if (title?.shows?.find((it) => it.show_date === showDate.getTime())) {
       return new Error('Already exists');
     }
 
-    await add(showDate, theater.id);
+    const { error } = await addShow({
+      titleId: id as string,
+      showDate,
+      theaterId: theater.id,
+      onSuccess: () => {
+        void refetch();
+      },
+    });
+    setErrorMessage(error?.message);
   }
 
-  if (titleLoadError) {
-    return (
-      <Alert variant="danger" title="fetch error">
-        {titleLoadError.message}
-      </Alert>
-    );
+  async function handleDelete(id: string) {
+    void delShow({
+      id,
+      onSuccess: () => {
+        void refetch();
+      },
+    });
   }
 
   if (error) {
@@ -52,7 +68,23 @@ export default function Index({
     );
   }
 
-  if (!shows || !theaters || !title) {
+  if (errorTheater) {
+    return (
+      <Alert variant="danger" title="fetch error">
+        {errorTheater.message}
+      </Alert>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <Alert variant="danger" title="fetch error">
+        {errorMessage}
+      </Alert>
+    );
+  }
+
+  if (!title?.shows || !theaters || !title) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <FadeLoader color="#aaaaaa" radius={4} />
@@ -86,7 +118,7 @@ export default function Index({
                   </tr>
                 </thead>
                 <tbody>
-                  {shows?.map((show) => (
+                  {title?.shows?.map((show) => (
                     <tr
                       key={`${show.id}`}
                       className="border-b dark:border-neutral-500"
@@ -95,19 +127,21 @@ export default function Index({
                         key={`${show.id}-datetime`}
                         className="whitespace-nowrap px-6 py-4"
                       >
-                        {show.show_date.toLocaleString()}
+                        {new Date(show.show_date).toLocaleString()}
                       </td>
                       <td
                         key={`${show.id}-theater`}
                         className="whitespace-nowrap px-6 py-4"
                       >
-                        {show.theater?.name}
+                        {show.theaters[0].name}
                       </td>
                       <td
                         key={`${show.id}-delete`}
                         className="whitespace-nowrap px-6 py-4"
                       >
-                        <RiDeleteBin2Line onClick={() => void del(show.id)} />
+                        <RiDeleteBin2Line
+                          onClick={() => void handleDelete(show.id)}
+                        />
                       </td>
                     </tr>
                   ))}

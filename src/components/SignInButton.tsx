@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { Button, Alert } from '@supabase/ui';
-import { useSupabase } from '@/app/supabase';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export function SignInButton(): JSX.Element {
-  const supabase = useSupabase();
+  const supabase = useSupabaseClient();
   const [errors, setErrors] = useState<Error>();
 
   async function signInWithAzure() {

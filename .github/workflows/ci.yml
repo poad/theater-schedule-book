@@ -1,7 +1,7 @@
 name: CI and Preview
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
 
@@ -11,6 +11,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  deployments: write
 
 jobs:
   build:
@@ -54,12 +55,7 @@ jobs:
           accountId: 189f193d40c08d2618ee4b94de81d79e
           projectName: ${{ github.event.repository.name }}
           directory: ./out
-          # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # Optional: Switch what branch you are publishing to.
-          # By default this will be the branch which triggered this workflow
-          branch: ${{ github.head_ref }}
-          # Optional: Change the working directory
+          branch: preview
           workingDirectory: ./
-          # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
           wranglerVersion: '3'
