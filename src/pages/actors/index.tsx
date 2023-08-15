@@ -2,29 +2,29 @@
 
 import { FadeLoader } from 'react-spinners';
 import { Alert, Typography } from '@supabase/ui';
-import { useTheaters } from '@/theaters';
-import { TheaterItem } from '@/components/theater';
-import { InputBox } from '@/components/theater/InputBox';
+import { useActors } from '@/actors';
+import { ActorItem } from '@/components/actor';
+import { InputBox } from '@/components/actor/InputBox';
 import { useSession } from '@supabase/auth-helpers-react';
 import { useMutation } from '@/mutation';
 import { useState } from 'react';
 
 export default function Index(): JSX.Element {
   const session = useSession();
-  const { theaters, error, refetch } = useTheaters(session);
-  const { addTheater } = useMutation(session);
+  const { actors, error, refetch } = useActors(session);
+  const { addActor } = useMutation(session);
   const [errorMessage, setErrorMessage] = useState<string>();
 
   async function handleClick(name: string): Promise<Error | undefined> {
     if (name.length === 0) {
-      return new Error('Input to theater name');
+      return new Error('Input to actor name');
     }
 
-    if (theaters?.find((theater) => theater.name === name)) {
+    if (actors?.find((actor) => actor.name === name)) {
       return new Error('Always exists');
     }
 
-    const { error } = await addTheater({
+    const { error } = await addActor({
       name,
       onSuccess: () => void refetch(),
     });
@@ -47,7 +47,7 @@ export default function Index(): JSX.Element {
     );
   }
 
-  if (!theaters) {
+  if (!actors) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <FadeLoader color="#aaaaaa" radius={4} />
@@ -71,16 +71,14 @@ export default function Index(): JSX.Element {
       <div className="w-1/2 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
         <div className="mb-4">
           <InputBox
-            label="Teater name"
-            placeholder="name of theater to add"
+            label="Actor name"
+            placeholder="name of actor to add"
             onClick={async (name: string) => await handleClick(name)}
           />
         </div>
         <div>
           <ul>
-            {theaters?.map((theater) => (
-              <TheaterItem key={theater.id} theater={theater} />
-            ))}
+            {actors?.map((actor) => <ActorItem key={actor.id} actor={actor} />)}
           </ul>
         </div>
       </div>

@@ -1,27 +1,27 @@
-import { Theater } from '@/types';
+import { Actor } from '@/types';
 import { RiEdit2Line, RiDeleteBin2Line } from 'react-icons/ri';
 
-export function TheaterItem({
-  theater,
+export function ActorItem({
+  actor,
   onDelete,
   onUpdate,
 }: {
-  theater: Theater;
-  onDelete?: (theater: Theater) => void;
-  onUpdate?: (theater: Theater) => void;
+  actor: Actor;
+  onDelete?: (actor: Actor) => void;
+  onUpdate?: (actor: Actor) => void;
 }): JSX.Element {
   function handleDeleteClick(): void {
-    onDelete?.(theater);
+    onDelete?.(actor);
   }
 
   function handleEditClick(): void {
-    onUpdate?.(theater);
+    onUpdate?.(actor);
   }
 
   return (
-    <li key={theater.id} className="m-1 ml-3">
+    <li key={actor.id} className="m-1 ml-3">
       <span>
-        {theater.name}
+        {actor.name}
         {onUpdate ? (
           <RiEdit2Line
             style={{ display: 'inline' }}

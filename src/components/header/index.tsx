@@ -25,6 +25,9 @@ function Menu(): JSX.Element {
         <Typography.Link target="_self" href="/titles">
           Add title
         </Typography.Link>
+        <Typography.Link target="_self" href="/actors">
+          Actors
+        </Typography.Link>
         <SignOutButton />
       </div>
     );

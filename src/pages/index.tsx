@@ -1,8 +1,8 @@
 'use client';
 
 import { useSession } from '@supabase/auth-helpers-react';
-import { Titles } from '~/components/titles';
-import { Header } from '~/components/Header';
+import { Titles } from '@/components/titles';
+import { Header } from '@/components/header';
 
 export default function Index(): JSX.Element {
   const session = useSession();

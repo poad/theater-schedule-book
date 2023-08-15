@@ -11,10 +11,9 @@ create table if not exists
   );
 
 create table if not exists
-  casts (
+  actors (
     id uuid  default gen_random_uuid () primary key,
     name text not null,
-    role text not null,
     user_id uuid references auth.users default auth.uid ()
   );
 
@@ -22,6 +21,9 @@ create table if not exists
   shows (
     id uuid  default gen_random_uuid () primary key,
     show_date bigint not null unique,
+    viewed boolean  not null default false,
+    canceled boolean  not null default false,
+    skipped boolean  not null default false,
     user_id uuid references auth.users default auth.uid ()
   );
 
@@ -33,6 +35,17 @@ create table if not exists
     url text,
     constraint titles_unique_key unique (name, year),
     user_id uuid references auth.users default auth.uid ()
+  );
+
+
+create table if not exists
+  casts (
+    role text not null,
+    show_id uuid not null references shows,
+    actor_id uuid not null references actors,
+    user_id uuid references auth.users default auth.uid (),
+    -- both foreign keys must be part of a composite primary key
+    primary key (role, show_id, actor_id)
   );
 
 -- join table
@@ -52,15 +65,6 @@ create table if not exists
     user_id uuid references auth.users default auth.uid (),
     -- both foreign keys must be part of a composite primary key
     primary key (show_id, theater_id)
-  );
-
-create table if not exists
-  shows_casts (
-    show_id uuid not null references shows,
-    cast_id uuid not null references casts,
-    user_id uuid references auth.users default auth.uid (),
-    -- both foreign keys must be part of a composite primary key
-    primary key (show_id, cast_id)
   );
 
 -- Set up Row Level Security (RLS)
@@ -130,6 +134,24 @@ create policy "Authenticated users can delete casts" on casts for
 delete
   to authenticated using (true);
 
+alter table actors enable row level security;
+
+create policy "Authenticated users can select actors" on actors for
+select
+  to authenticated using (true);
+
+create policy "Authenticated users can insert their own actors" on actors for insert to authenticated
+with
+  check (auth.uid () = user_id);
+
+create policy "Authenticated users can update actors" on actors for
+update
+  to authenticated using (true);
+
+create policy "Authenticated users can delete actors" on actors for
+delete
+  to authenticated using (true);
+
 
 alter table titles_shows enable row level security;
 create policy "Authenticated users can select titles_shows" on titles_shows for
@@ -147,24 +169,6 @@ update
 create policy "Authenticated users can delete titles_shows" on titles_shows for
 delete
   to authenticated using (true);
-
-alter table shows_casts enable row level security;
-create policy "Authenticated users can select shows_casts" on shows_casts for
-select
-  to authenticated using (true);
-
-create policy "Authenticated users can insert their own shows_casts" on shows_casts for insert to authenticated
-with
-  check (auth.uid () = user_id);
-
-create policy "Authenticated users can update casts" on shows_casts for
-update
-  to authenticated using (true);
-
-create policy "Authenticated users can delete casts" on shows_casts for
-delete
-  to authenticated using (true);
-
 
 alter table shows_theater enable row level security;
 create policy "Authenticated users can select shows_theater" on shows_theater for

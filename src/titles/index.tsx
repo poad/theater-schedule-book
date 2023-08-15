@@ -17,7 +17,9 @@ export function useTitle({
   const fetchData = useCallback(() => {
     void supabase
       .from('titles')
-      .select('id, name, shows ( id, show_date, theaters ( name ) )')
+      .select(
+        'id, name, shows ( id, show_date, viewed, canceled, skipped, theaters ( name ) )',
+      )
       .match({ id })
       .single<Title>()
       .then(({ data, error }) => {
