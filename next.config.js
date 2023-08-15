@@ -8,7 +8,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   cleanDistDir: true,
-  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  productionBrowserSourceMaps: true,
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

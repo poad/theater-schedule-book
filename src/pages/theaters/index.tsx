@@ -1,13 +1,19 @@
 'use client';
 
 import { FadeLoader } from 'react-spinners';
-import { Typography } from '@supabase/ui';
-import { useTheaters } from './theaters';
+import { Alert, Typography } from '@supabase/ui';
+import { useTheaters } from '@/theaters';
 import { TheaterItem } from '@/components/theater';
 import { InputBox } from '@/components/theater/InputBox';
+import { useSession } from '@supabase/auth-helpers-react';
+import { useMutation } from '@/mutation';
+import { useState } from 'react';
 
 export default function Index(): JSX.Element {
-  const { theaters, add } = useTheaters();
+  const session = useSession();
+  const { theaters, error, refetch } = useTheaters(session);
+  const { addTheater } = useMutation(session);
+  const [errorMessage, setErrorMessage] = useState<string>();
 
   async function handleClick(name: string): Promise<Error | undefined> {
     if (name.length === 0) {
@@ -18,7 +24,27 @@ export default function Index(): JSX.Element {
       return new Error('Always exists');
     }
 
-    await add(name);
+    const { error } = await addTheater({
+      name,
+      onSuccess: () => void refetch(),
+    });
+    setErrorMessage(error?.message);
+  }
+
+  if (error) {
+    return (
+      <Alert variant="danger" title="fetch error">
+        {error.message}
+      </Alert>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <Alert variant="danger" title="fetch error">
+        {errorMessage}
+      </Alert>
+    );
   }
 
   if (!theaters) {

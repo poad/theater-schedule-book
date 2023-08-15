@@ -11,9 +11,9 @@ export interface Cast {
 
 export interface Show {
   id: string;
-  show_date: Date;
+  show_date: number;
   casts: Cast[];
-  theater: Theater;
+  theaters: Theater[];
 }
 
 export interface Title {

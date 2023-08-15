@@ -22,7 +22,6 @@ create table if not exists
   shows (
     id uuid  default gen_random_uuid () primary key,
     show_date bigint not null unique,
-    theater_id uuid not null references theaters on delete cascade,
     user_id uuid references auth.users default auth.uid ()
   );
 
@@ -40,10 +39,19 @@ create table if not exists
 create table if not exists
   titles_shows (
     title_id uuid not null references titles,
-    show_id uuid not null references shows,
+    show_id uuid not null references shows on delete cascade,
     user_id uuid references auth.users default auth.uid (),
     -- both foreign keys must be part of a composite primary key
     primary key (title_id, show_id),
+  );
+
+create table if not exists
+  shows_theater (
+    show_id uuid not null references shows,
+    theater_id uuid not null references theaters,
+    user_id uuid references auth.users default auth.uid (),
+    -- both foreign keys must be part of a composite primary key
+    primary key (show_id, theater_id)
   );
 
 create table if not exists
@@ -154,5 +162,23 @@ update
   to authenticated using (true);
 
 create policy "Authenticated users can delete casts" on shows_casts for
+delete
+  to authenticated using (true);
+
+
+alter table shows_theater enable row level security;
+create policy "Authenticated users can select shows_theater" on shows_theater for
+select
+  to authenticated using (true);
+
+create policy "Authenticated users can insert their own shows_theater" on shows_theater for insert to authenticated
+with
+  check (auth.uid () = user_id);
+
+create policy "Authenticated users can update shows_theater" on shows_theater for
+update
+  to authenticated using (true);
+
+create policy "Authenticated users can delete shows_theater" on shows_theater for
 delete
   to authenticated using (true);
