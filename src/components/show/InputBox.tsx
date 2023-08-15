@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Alert, Button, Select } from '@supabase/ui';
+import { Alert, Button, Select, Checkbox } from '@supabase/ui';
 import { Theater } from '@/types';
 import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
@@ -15,16 +15,22 @@ export function InputBox({
   theaters: Theater[];
   onClick: (data: {
     showDate?: Date;
+    canceled: boolean;
+    viewed: boolean;
     theater: Theater;
   }) => Promise<Error | undefined>;
 }): JSX.Element {
   const [value, onChange] = useState<Date | null>();
   const [theater, setTheater] = useState(theaters[0]);
+  const [canceled, setCanceled] = useState<boolean>(false);
+  const [viewed, setViewed] = useState<boolean>(false);
   const [error, setError] = useState<Error>();
 
   async function handleClick() {
     const error = await onClick({
       showDate: value ? new Date(value.toLocaleString()) : undefined,
+      canceled,
+      viewed,
       theater,
     });
     setError(error);
@@ -64,6 +70,17 @@ export function InputBox({
           </Select.Option>
         ))}
       </Select>
+      <div className="flex mb-4">
+        <Checkbox
+          label="Canceled"
+          onChange={(event) => setCanceled(event.target.checked)}
+          className="mr-8"
+        />
+        <Checkbox
+          label="Viewed"
+          onChange={(event) => setViewed(event.target.checked)}
+        />
+      </div>
       <Button key="save" onClick={() => void handleClick()}>
         Save
       </Button>

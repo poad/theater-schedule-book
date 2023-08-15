@@ -29,8 +29,11 @@ function Main({ session }: { session: Session }): JSX.Element {
                       key={`${title.id}-name`}
                       className="whitespace-nowrap px-6 py-4"
                     >
-                      <Link href="/titles/[id]" as={`/titles/${title.id}`}>
-                        <a>{title.name}</a>
+                      <Link
+                        href="/titles/[title_id]"
+                        as={`/titles/${title.id}`}
+                      >
+                        {title.name}
                       </Link>
                     </td>
                     <td
