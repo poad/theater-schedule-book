@@ -29,7 +29,7 @@ function Main() {
       return { name: new Error('Input to title name') };
     }
 
-    if (titles?.find((title) => title.name === name)) {
+    if (titles?.find((title) => title.name === name && title.year === year)) {
       return { name: new Error('Always exists') };
     }
 
