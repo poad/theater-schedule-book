@@ -7,7 +7,7 @@ function Main({ session }: { session: Session }): JSX.Element {
   const { titles } = useTitles(session);
 
   return (
-    <div className="w-1/2 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
+    <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 mb-8">
           <div className="overflow-hidden">
