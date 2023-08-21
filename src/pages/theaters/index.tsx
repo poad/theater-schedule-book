@@ -68,7 +68,7 @@ export default function Index(): JSX.Element {
         </div>
       </nav>
 
-      <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
+      <div className="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
         <div className="mb-4">
           <InputBox
             label="Teater name"
@@ -76,7 +76,7 @@ export default function Index(): JSX.Element {
             onClick={async (name: string) => await handleClick(name)}
           />
         </div>
-        <div>
+        <div className="h-[calc(100vh-theme(space.72))] lg:h-[calc(100vh-theme(space.80))] overflow-scroll">
           <ul>
             {theaters?.map((theater) => (
               <TheaterItem key={theater.id} theater={theater} />

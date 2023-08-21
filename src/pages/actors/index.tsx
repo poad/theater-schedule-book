@@ -68,15 +68,15 @@ export default function Index(): JSX.Element {
         </div>
       </nav>
 
-      <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
-        <div className="mb-4">
+      <div className="w-11/12 animate-in opacity-0 px-3 py-8 text-foreground">
+        <div className="mb-4 h-17">
           <InputBox
             label="Actor name"
             placeholder="name of actor to add"
             onClick={async (name: string) => await handleClick(name)}
           />
         </div>
-        <div>
+        <div className="h-[calc(100vh-theme(space.60))] overflow-scroll">
           <ul>
             {actors?.map((actor) => <ActorItem key={actor.id} actor={actor} />)}
           </ul>
