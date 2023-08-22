@@ -17,7 +17,9 @@
     "predev": "pnpm lint-fix",
     "prestart": "pnpm build",
     "prelint": "pnpm clean",
-    "prelint-fix": "pnpm clean"
+    "prelint-fix": "pnpm clean",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@supabase/auth-helpers-react": "^0.4.2",
@@ -37,6 +39,15 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.19",
+    "@storybook/addon-essentials": "^7.3.2",
+    "@storybook/addon-interactions": "^7.3.2",
+    "@storybook/addon-links": "^7.3.2",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/addon-styling": "^1.3.6",
+    "@storybook/blocks": "^7.3.2",
+    "@storybook/nextjs": "^7.3.2",
+    "@storybook/react": "^7.3.2",
+    "@storybook/testing-library": "^0.2.0",
     "@types/node": "^20.5.2",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
@@ -54,8 +65,12 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.13",
+    "msw": "^1.2.3",
+    "msw-storybook-addon": "^1.8.0",
     "prettier": "^3.0.2",
     "rimraf": "^5.0.1",
+    "storybook": "^7.3.2",
     "typescript": "^5.1.6"
   },
   "packageManager": "pnpm@8.6.12",
@@ -63,5 +78,8 @@
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!",
     "pnpm": ">=8.6.12"
+  },
+  "msw": {
+    "workerDirectory": ".storybook/public"
   }
 }
