@@ -8,7 +8,7 @@ export function SupabaseProvider({
   initialSession,
   children,
 }: {
-  initialSession: Session;
+  initialSession?: Session;
   children: ReactNode;
 }): JSX.Element {
   const [supabase] = useState(() =>
