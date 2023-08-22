@@ -644,8 +644,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/realtime-js@2.7.3:
-    resolution: {integrity: sha512-c7TzL81sx2kqyxsxcDduJcHL9KJdCOoKimGP6lQSqiZKX42ATlBZpWbyy9KFGFBjAP4nyopMf5JhPi2ZH9jyNw==}
+  /@supabase/realtime-js@2.7.4:
+    resolution: {integrity: sha512-FzSzs1k9ruh/uds5AJ95Nc3beiMCCIhougExJ3O98CX1LMLAKUKFy5FivKLvcNhXnNfUEL0XUfGMb4UH2J7alg==}
     dependencies:
       '@types/phoenix': 1.6.0
       '@types/websocket': 1.0.5
@@ -668,7 +668,7 @@ packages:
       '@supabase/functions-js': 2.1.2
       '@supabase/gotrue-js': 2.47.0
       '@supabase/postgrest-js': 1.8.0
-      '@supabase/realtime-js': 2.7.3
+      '@supabase/realtime-js': 2.7.4
       '@supabase/storage-js': 2.5.1
       cross-fetch: 3.1.8
     transitivePeerDependencies:
