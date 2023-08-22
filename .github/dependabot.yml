@@ -46,6 +46,13 @@ updates:
           - 'autoprefixer'
           - 'postcss'
           - 'tailwindcss'
+      storybook-msw:
+        patterns:
+          - '@storybook/*'
+          - 'storybook'
+          - 'eslint-plugin-storybook'
+          - 'msw'
+          - 'msw-storybook-addon'
       misc:
         patterns:
           - '*'
@@ -62,3 +69,8 @@ updates:
           - 'autoprefixer'
           - 'postcss'
           - 'tailwindcss'
+          - '@storybook/*'
+          - 'storybook'
+          - 'eslint-plugin-storybook'
+          - 'msw'
+          - 'msw-storybook-addon'
