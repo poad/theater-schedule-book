@@ -34,7 +34,7 @@ export default function SignOutButton(): JSX.Element {
     <div>
       <Button
         onClick={() => {
-          handleClick();
+          void handleClick();
         }}
         className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
       >

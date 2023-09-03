@@ -2,6 +2,7 @@
 import { Session, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useCallback } from 'react';
 import { Actor, Show, Theater, Title } from '@/types';
+import { PostgrestError } from '@supabase/supabase-js';
 
 export function useMutation(session: Session | null) {
   const supabase = useSupabaseClient<Title>();
@@ -26,13 +27,21 @@ export function useMutation(session: Session | null) {
         .insert([{ name, year, url }])
         .select()
         .single<Title>()
-        .then(({ data, error }) => {
-          if (error) {
-            return { error: new Error(error.message) };
-          }
-          onSuccess?.(data);
-          return { data };
-        });
+        .then(
+          ({
+            data,
+            error,
+          }: {
+            data: Title | null;
+            error: PostgrestError | null;
+          }) => {
+            if (error) {
+              return { error: new Error(error.message) };
+            }
+            onSuccess?.(data);
+            return { data };
+          },
+        );
     },
     [supabase, session],
   );
@@ -53,14 +62,22 @@ export function useMutation(session: Session | null) {
         .insert([{ name }])
         .select()
         .single<Theater>()
-        .then(({ data, error }) => {
-          if (error) {
-            return { error: new Error(error.message) };
-          }
+        .then(
+          ({
+            data,
+            error,
+          }: {
+            data: Theater | null;
+            error: PostgrestError | null;
+          }) => {
+            if (error) {
+              return { error: new Error(error.message) };
+            }
 
-          onSuccess?.(data);
-          return {};
-        });
+            onSuccess?.(data);
+            return {};
+          },
+        );
     },
     [supabase, session],
   );
@@ -89,35 +106,43 @@ export function useMutation(session: Session | null) {
         .from('shows')
         .insert([{ show_date: showDate.getTime(), viewed, canceled }])
         .select()
-        .single()
-        .then(async ({ data: newEntity, error }) => {
-          if (error) {
-            return { error: new Error(error.message) };
-          }
+        .single<Show>()
+        .then(
+          async ({
+            data: newEntity,
+            error,
+          }: {
+            data: Show | null;
+            error: PostgrestError | null;
+          }) => {
+            if (error) {
+              return { error: new Error(error.message) };
+            }
 
-          if (newEntity) {
-            await supabase
-              .from('shows_theater')
-              .insert([{ show_id: newEntity.id, theater_id: theaterId }])
-              .then(async ({ error }) => {
-                if (error) {
-                  return { error: new Error(error.message) };
-                }
+            if (newEntity) {
+              await supabase
+                .from('shows_theater')
+                .insert([{ show_id: newEntity.id, theater_id: theaterId }])
+                .then(async ({ error }: { error: PostgrestError | null }) => {
+                  if (error) {
+                    return { error: new Error(error.message) };
+                  }
 
-                await supabase
-                  .from('titles_shows')
-                  .insert([{ title_id: titleId, show_id: newEntity.id }])
-                  .then(({ error }) => {
-                    if (error) {
-                      return { error: new Error(error.message) };
-                    }
+                  await supabase
+                    .from('titles_shows')
+                    .insert([{ title_id: titleId, show_id: newEntity.id }])
+                    .then(({ error }: { error: PostgrestError | null }) => {
+                      if (error) {
+                        return { error: new Error(error.message) };
+                      }
 
-                    onSuccess?.();
-                  });
-              });
-          }
-          return {};
-        });
+                      onSuccess?.();
+                    });
+                });
+            }
+            return {};
+          },
+        );
     },
     [session, supabase],
   );
@@ -136,13 +161,13 @@ export function useMutation(session: Session | null) {
         return { error: new Error('uninitialized') };
       }
 
-      void supabase
+      await supabase
         .from('shows')
         .update({ viewed: status })
         .match({ id })
         .select()
         .maybeSingle()
-        .then(async ({ error }) => {
+        .then(({ error }: { error: PostgrestError | null }) => {
           if (error) {
             return { error: new Error(error.message) };
           }
@@ -167,13 +192,13 @@ export function useMutation(session: Session | null) {
         return { error: new Error('uninitialized') };
       }
 
-      void supabase
+      await supabase
         .from('shows')
         .update({ viewed: status })
         .match({ id })
         .select()
         .maybeSingle()
-        .then(async ({ error }) => {
+        .then(({ error }: { error: PostgrestError | null }) => {
           if (error) {
             return { error: new Error(error.message) };
           }
@@ -198,13 +223,13 @@ export function useMutation(session: Session | null) {
         return { error: new Error('uninitialized') };
       }
 
-      void supabase
+      await supabase
         .from('shows')
         .update({ skipped })
         .match({ id })
         .select()
         .maybeSingle()
-        .then(async ({ error }) => {
+        .then(({ error }: { error: PostgrestError | null }) => {
           if (error) {
             return { error: new Error(error.message) };
           }
@@ -231,14 +256,22 @@ export function useMutation(session: Session | null) {
         .insert([{ name }])
         .select()
         .single<Actor>()
-        .then(({ data, error }) => {
-          if (error) {
-            return { error: new Error(error.message) };
-          }
+        .then(
+          ({
+            data,
+            error,
+          }: {
+            data: Actor | null;
+            error: PostgrestError | null;
+          }) => {
+            if (error) {
+              return { error: new Error(error.message) };
+            }
 
-          onSuccess?.(data);
-          return {};
-        });
+            onSuccess?.(data);
+            return {};
+          },
+        );
     },
     [supabase, session],
   );
@@ -255,34 +288,34 @@ export function useMutation(session: Session | null) {
         return { error: new Error('uninitialized') };
       }
 
-      void supabase
+      await supabase
         .from('titles_shows')
         .delete()
         .match({ show_id: id })
         .select()
         .maybeSingle()
-        .then(async ({ error }) => {
+        .then(async ({ error }: { error: PostgrestError | null }) => {
           if (error) {
             return { error: new Error(error.message) };
           }
 
-          void supabase
+          await supabase
             .from('shows_theater')
             .delete()
             .match({ show_id: id })
             .select()
             .maybeSingle()
-            .then(async ({ error }) => {
+            .then(async ({ error }: { error: PostgrestError | null }) => {
               if (error) {
                 return { error: new Error(error.message) };
               }
-              void supabase
+              await supabase
                 .from('shows')
                 .delete()
                 .match({ id })
                 .select()
                 .maybeSingle()
-                .then(({ error }) => {
+                .then(({ error }: { error: PostgrestError | null }) => {
                   if (error) {
                     return { error: new Error(error.message) };
                   }

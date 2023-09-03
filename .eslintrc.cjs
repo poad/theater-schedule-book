@@ -4,12 +4,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react/recommended', 'next', 'plugin:storybook/recommended'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/stylistic', 'plugin:@typescript-eslint/recommended-type-checked', 'plugin:react/recommended', 'next', 'plugin:storybook/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: true,
     projectRoot: __dirname,
+    tsconfigRootDir: __dirname,
   },
   parser: '@typescript-eslint/parser',
   plugins: [

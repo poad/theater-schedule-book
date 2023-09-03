@@ -57,7 +57,7 @@ function Main({
     }
 
     const { error } = await addShow({
-      titleId: id as string,
+      titleId: id,
       showDate,
       viewed,
       canceled,
@@ -70,7 +70,7 @@ function Main({
   }
 
   async function handleClickCanceled(id: string) {
-    void updateShowCanceled({
+    await updateShowCanceled({
       id,
       status: true,
       onSuccess: () => {
@@ -80,7 +80,7 @@ function Main({
   }
 
   async function handleClickViewed(id: string) {
-    void updateShowViewed({
+    await updateShowViewed({
       id,
       status: true,
       onSuccess: () => {
@@ -90,7 +90,7 @@ function Main({
   }
 
   async function handleClickSkipped(id: string) {
-    void updateShowSkipped({
+    await updateShowSkipped({
       id,
       skipped: true,
       onSuccess: () => {
@@ -100,7 +100,7 @@ function Main({
   }
 
   async function handleDelete(id: string) {
-    void delShow({
+    await delShow({
       id,
       onSuccess: () => {
         void refetch();
