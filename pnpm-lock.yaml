@@ -33,8 +33,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0
   react-datetime-picker:
-    specifier: ^5.5.1
-    version: 5.5.1(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.5.2
+    version: 5.5.2(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -4390,11 +4390,16 @@ packages:
   /@types/lodash.memoize@4.1.7:
     resolution: {integrity: sha512-lGN7WeO4vO6sICVpf041Q7BX/9k1Y24Zo3FY0aUezr1QlKznpjzsDk3T3wvH8ofYzoK0QupN9TWcFAFZlyPwQQ==}
     dependencies:
-      '@types/lodash': 4.14.198
+      '@types/lodash': 4.14.199
     dev: false
 
   /@types/lodash@4.14.198:
     resolution: {integrity: sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==}
+    dev: true
+
+  /@types/lodash@4.14.199:
+    resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
+    dev: false
 
   /@types/mdx@2.0.7:
     resolution: {integrity: sha512-BG4tyr+4amr3WsSEmHn/fXPqaCba/AYZ7dsaQTiavihQunHSIxk+uAtqsjvicNpyHN6cm+B9RVrUOtW9VzIKHw==}
@@ -10092,8 +10097,8 @@ packages:
       tween-functions: 1.2.0
     dev: true
 
-  /react-date-picker@10.5.0(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-A0LsM7M9iaOj+ALFOum5xdKlE6GdmKQKrctKJiOrU9lAeX+adkBqjHMZItYiO2OmWoHhRQm8iGVJCMA2SV8+IA==}
+  /react-date-picker@10.5.1(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Ipsq0NorPqXRuZQsqWhdd86RlSbZbnhpiH0aEMzJo6Rs2YA7eALZKB5lrl9stSjpDriDJH0dyh2kdWQmkBhNFg==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -10117,8 +10122,8 @@ packages:
       - '@types/react-dom'
     dev: false
 
-  /react-datetime-picker@5.5.1(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-lYWTh5b1EbBCocM8JGOUTd72mWEDRRbkOv1Owni6fUDhlI1Gq9KhRiQ5HuLv72EL6gq9JHLE4GbczOQj4EM57g==}
+  /react-datetime-picker@5.5.2(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-v/WEPv7UxCVYLYQZHz1YYX21Lb6GE5E9k8B4dOrfdNSWB3cK3AH4Vqwj5ftgcsLjd5bpdmvJ8EeiCv0wV2zM8A==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -10136,10 +10141,10 @@ packages:
       react: 18.2.0
       react-calendar: 4.6.0(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
       react-clock: 4.5.0(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
-      react-date-picker: 10.5.0(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      react-date-picker: 10.5.1(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
       react-dom: 18.2.0(react@18.2.0)
       react-fit: 1.7.0(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
-      react-time-picker: 6.5.0(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+      react-time-picker: 6.5.1(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react-dom'
     dev: false
@@ -10309,8 +10314,8 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /react-time-picker@6.5.0(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-sf3E97geNhIUlXsFlBPouOqnS3h8kw/M8WSE0R2qgoLfJLY2VnF3cSCSr/0woL3WgF/yscZTN44t9ZfsHrp2Nw==}
+  /react-time-picker@6.5.1(@types/react-dom@18.2.8)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-8CLWWMNrx19GpHD3JQ5u5Cyqu3TmdFe+w5NQgInK9B3Vz6BkmqZC3fUQ8bQ4KbsjR21aqK1N6lEcJM2ARTQKkw==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
