@@ -25,7 +25,7 @@
     "@supabase/auth-helpers-react": "^0.4.2",
     "@supabase/auth-ui-react": "^0.4.5",
     "@supabase/auth-ui-shared": "^0.1.7",
-    "@supabase/supabase-js": "^2.36.0",
+    "@supabase/supabase-js": "^2.37.0",
     "@supabase/ui": "^0.36.5",
     "autoprefixer": "^10.4.16",
     "next": "^13.5.3",
