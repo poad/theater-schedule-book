@@ -28,7 +28,7 @@
     "@supabase/supabase-js": "^2.37.0",
     "@supabase/ui": "^0.36.5",
     "autoprefixer": "^10.4.16",
-    "next": "^13.5.3",
+    "next": "^13.5.4",
     "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-datetime-picker": "^5.5.2",
@@ -38,7 +38,7 @@
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.5.3",
+    "@next/bundle-analyzer": "^13.5.4",
     "@storybook/addon-essentials": "^7.4.2",
     "@storybook/addon-interactions": "^7.4.2",
     "@storybook/addon-links": "^7.4.2",
@@ -55,7 +55,7 @@
     "@typescript-eslint/parser": "^6.7.4",
     "eslint": "^8.50.0",
     "eslint-config-import": "^0.13.0",
-    "eslint-config-next": "^13.5.3",
+    "eslint-config-next": "^13.5.4",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard-with-typescript": "^39.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
