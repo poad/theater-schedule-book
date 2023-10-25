@@ -25,7 +25,7 @@
     "@supabase/auth-helpers-react": "^0.4.2",
     "@supabase/auth-ui-react": "^0.4.6",
     "@supabase/auth-ui-shared": "^0.1.8",
-    "@supabase/supabase-js": "^2.38.2",
+    "@supabase/supabase-js": "^2.38.3",
     "@supabase/ui": "^0.36.5",
     "autoprefixer": "^10.4.16",
     "next": "^13.5.6",
@@ -35,7 +35,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-spinners": "^0.13.8",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.5.6",
@@ -48,7 +48,7 @@
     "@storybook/nextjs": "^7.5.1",
     "@storybook/react": "^7.5.1",
     "@storybook/testing-library": "^0.2.2",
-    "@types/node": "^20.8.7",
+    "@types/node": "^20.8.8",
     "@types/react": "^18.2.31",
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
