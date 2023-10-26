@@ -42,6 +42,7 @@ function Menu(): JSX.Element {
           typeof window !== 'undefined' ? window.location.origin : undefined
         }
         providers={['azure']}
+        providerScopes={{'azure': 'email'}}
       />
     );
   }
