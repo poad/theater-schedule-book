@@ -3938,8 +3938,8 @@ packages:
       '@supabase/node-fetch': 2.6.14
     dev: false
 
-  /@supabase/realtime-js@2.8.2:
-    resolution: {integrity: sha512-QY9H3an/TaInBJkGdKMrTVU1etomEtwStgeRGUFfYX0eURzBYKffgheZBnMdM9VgPCv0Oz5JcchoclpSlC8KvQ==}
+  /@supabase/realtime-js@2.8.3:
+    resolution: {integrity: sha512-w0ogE+BS0jPMk+j85EUUw8YZGYjqdOHm/eWbI47hFFHIyT+Wdoa66Cr5SBN/XmofCkUfBEJEvQz4Xcjx39LBGQ==}
     dependencies:
       '@supabase/node-fetch': 2.6.14
       '@types/phoenix': 1.6.3
@@ -3962,7 +3962,7 @@ packages:
       '@supabase/gotrue-js': 2.57.0
       '@supabase/node-fetch': 2.6.14
       '@supabase/postgrest-js': 1.8.5
-      '@supabase/realtime-js': 2.8.2
+      '@supabase/realtime-js': 2.8.3
       '@supabase/storage-js': 2.5.4
     transitivePeerDependencies:
       - supports-color
