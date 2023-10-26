@@ -1,18 +1,11 @@
 'use client';
 
-import { Typography } from '@supabase/ui';
+import { Schedules } from '@/components/schedules';
 import { useSession } from '@supabase/auth-helpers-react';
-import { Titles } from '@/components/titles';
-
-function Main() {
-  const session = useSession();
-  if (!session) {
-    return <></>;
-  }
-  return <Titles session={session} />;
-}
+import { Typography } from '@supabase/ui';
 
 export default function Index(): JSX.Element {
+  const session = useSession();
   return (
     <div className="w-full flex flex-col items-center">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
@@ -26,7 +19,7 @@ export default function Index(): JSX.Element {
         </div>
       </nav>
 
-      <Main />
+      <Schedules session={session} currentMonthOnly={false} />
     </div>
   );
 }

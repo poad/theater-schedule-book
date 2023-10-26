@@ -19,10 +19,16 @@ function Menu(): JSX.Element {
     return (
       <div className="flex items-center gap-4">
         Hey, {user.email}!
+        <Typography.Link target="_self" href="/schedules">
+          All Schedules
+        </Typography.Link>
+        <Typography.Link target="_self" href="/titles">
+          Titles
+        </Typography.Link>
         <Typography.Link target="_self" href="/theaters">
           Theaters
         </Typography.Link>
-        <Typography.Link target="_self" href="/titles">
+        <Typography.Link target="_self" href="/titles/new">
           Add title
         </Typography.Link>
         <Typography.Link target="_self" href="/actors">
@@ -42,7 +48,7 @@ function Menu(): JSX.Element {
           typeof window !== 'undefined' ? window.location.origin : undefined
         }
         providers={['azure']}
-        providerScopes={{'azure': 'email offline_access'}}
+        providerScopes={{ azure: 'email offline_access' }}
       />
     );
   }
