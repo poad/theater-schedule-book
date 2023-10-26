@@ -19,6 +19,17 @@ export interface Show {
   theaters: Theater[];
 }
 
+export interface ShowTitle {
+  id: string;
+  show_date: number;
+  viewed: boolean;
+  skipped: boolean;
+  canceled: boolean;
+  casts: Cast[];
+  theaters: Theater[];
+  titles: Title[];
+}
+
 export interface Actor {
   id: string;
   name: string;

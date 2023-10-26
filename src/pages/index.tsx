@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from '@supabase/auth-helpers-react';
-import { Titles } from '@/components/titles';
+import { Schedules } from '@/components/schedules';
 import { Header } from '@/components/header';
 
 export default function Index(): JSX.Element {
@@ -11,7 +11,7 @@ export default function Index(): JSX.Element {
     <div className="w-full flex flex-col items-center">
       <Header />
 
-      {session ? <Titles session={session} /> : <></>}
+      {session ? <Schedules session={session} currentMonthOnly /> : <></>}
     </div>
   );
 }
