@@ -11,10 +11,14 @@ import { useRouter } from 'next/navigation';
 
 function Main() {
   const session = useSession();
-  const { titles, error } = useTitles(session);
+  const { titles, error } = useTitles();
   const { addTitle } = useMutation(session);
   const [errorMessage, setErrorMessage] = useState<string>();
   const router = useRouter();
+
+  if (!session) {
+    return <></>;
+  }
 
   async function handleClick({
     name,

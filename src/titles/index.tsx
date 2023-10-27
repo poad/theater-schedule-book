@@ -1,15 +1,9 @@
 'use client';
-import { Session, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useState, useEffect, useCallback } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useState, useCallback } from 'react';
 import { Title } from '@/types';
 
-export function useTitle({
-  id,
-  session,
-}: {
-  id: string;
-  session: Session | null;
-}) {
+export function useTitle({ id }: { id: string }) {
   const supabase = useSupabaseClient<Title>();
   const [title, setTitle] = useState<Title>();
   const [error, setError] = useState<Error>();
@@ -31,7 +25,7 @@ export function useTitle({
       });
   }, [supabase, id]);
 
-  useEffect(() => fetchData(), [session, id, supabase, fetchData]);
+  fetchData();
 
   return {
     title,
@@ -40,7 +34,7 @@ export function useTitle({
   };
 }
 
-export function useTitles(session: Session | null) {
+export function useTitles() {
   const supabase = useSupabaseClient<Title>();
   const [titles, setTitles] = useState<Title[]>();
   const [error, setError] = useState<Error>();
@@ -60,7 +54,7 @@ export function useTitles(session: Session | null) {
       });
   }, [supabase]);
 
-  useEffect(() => fetchData(), [session, supabase, fetchData]);
+  fetchData();
 
   return {
     titles,

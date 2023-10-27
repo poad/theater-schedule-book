@@ -11,9 +11,13 @@ import { useState } from 'react';
 
 export default function Index(): JSX.Element {
   const session = useSession();
-  const { theaters, error, refetch } = useTheaters(session);
+  const { theaters, error, refetch } = useTheaters();
   const { addTheater } = useMutation(session);
   const [errorMessage, setErrorMessage] = useState<string>();
+
+  if (!session) {
+    return <></>;
+  }
 
   async function handleClick(name: string): Promise<Error | undefined> {
     if (name.length === 0) {

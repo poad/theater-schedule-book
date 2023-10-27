@@ -27,7 +27,7 @@ function Main({
   session: Session | null;
   refetch: () => void;
 }): JSX.Element {
-  const { theaters, error } = useTheaters(session);
+  const { theaters, error } = useTheaters();
   const {
     addShow,
     updateShowViewed,
@@ -36,6 +36,10 @@ function Main({
     delShow,
   } = useMutation(session);
   const [errorMessage, setErrorMessage] = useState<string>();
+
+  if (!session) {
+    return <></>;
+  }
 
   async function handleClick({
     showDate,
@@ -260,7 +264,6 @@ export default function Shows(): JSX.Element {
   const session = useSession();
   const { title, error, refetch } = useTitle({
     id: title_id as string,
-    session,
   });
 
   if (error) {

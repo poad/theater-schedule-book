@@ -1,13 +1,11 @@
 'use client';
-import { Session, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { ShowTitle } from '@/types';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 export function useShows({
-  session,
   futures,
 }: {
-  session: Session | null;
   futures?: {
     today: Date;
     currentMonthOnly: boolean;
@@ -48,9 +46,7 @@ export function useShows({
       });
   }, [supabase, futures]);
 
-  useEffect(() => {
-    fetchData();
-  }, [session, supabase, fetchData]);
+  fetchData();
 
   return {
     shows,
