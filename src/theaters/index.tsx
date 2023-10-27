@@ -1,9 +1,9 @@
 'use client';
-import { Session, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Theater } from '@/types';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
-export function useTheaters(session: Session | null) {
+export function useTheaters() {
   const supabase = useSupabaseClient<Theater>();
   const [theaters, setTheaters] = useState<Theater[]>();
   const [error, setError] = useState<Error>();
@@ -24,9 +24,7 @@ export function useTheaters(session: Session | null) {
     [supabase],
   );
 
-  useEffect(() => {
-    fetchData();
-  }, [session, supabase, fetchData]);
+  fetchData();
 
   return {
     theaters,

@@ -4,14 +4,11 @@ import { useShows } from '@/shows';
 import { Typography } from '@supabase/ui';
 
 function Main({
-  session,
   currentMonthOnly,
 }: {
-  session: Session;
   currentMonthOnly: boolean;
 }): JSX.Element {
   const { shows } = useShows({
-    session,
     futures: { today: new Date(), currentMonthOnly },
   });
 
@@ -79,5 +76,5 @@ export function Schedules({
     return <></>;
   }
 
-  return <Main session={session} currentMonthOnly={currentMonthOnly} />;
+  return <Main currentMonthOnly={currentMonthOnly} />;
 }

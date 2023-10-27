@@ -28,7 +28,7 @@ function Menu(): JSX.Element {
         <Typography.Link target="_self" href="/theaters">
           Theaters
         </Typography.Link>
-        <Typography.Link target="_self" href="/titles/new">
+        <Typography.Link target="_self" href="/title">
           Add title
         </Typography.Link>
         <Typography.Link target="_self" href="/actors">

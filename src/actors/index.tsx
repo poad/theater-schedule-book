@@ -1,10 +1,10 @@
 'use client';
 
-import { Session, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useState, useEffect, useCallback } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useState, useCallback } from 'react';
 import { Actor } from '@/types';
 
-export function useActors(session: Session | null) {
+export function useActors() {
   const supabase = useSupabaseClient<Actor>();
   const [actors, setActors] = useState<Actor[]>();
   const [error, setError] = useState<Error>();
@@ -23,7 +23,7 @@ export function useActors(session: Session | null) {
       });
   }, [supabase]);
 
-  useEffect(() => fetchData(), [session, supabase, fetchData]);
+  fetchData();
 
   return {
     actors,
