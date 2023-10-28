@@ -1,7 +1,7 @@
 'use client';
 
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { Actor } from '@/types';
 
 export function useActors() {
@@ -9,7 +9,7 @@ export function useActors() {
   const [actors, setActors] = useState<Actor[]>();
   const [error, setError] = useState<Error>();
 
-  const fetchData = useCallback(() => {
+  function fetchData() {
     void supabase
       .from('actors')
       .select('id, name')
@@ -21,9 +21,11 @@ export function useActors() {
           setActors(data);
         }
       });
-  }, [supabase]);
+  }
 
-  fetchData();
+  if (!actors) {
+    fetchData();
+  }
 
   return {
     actors,

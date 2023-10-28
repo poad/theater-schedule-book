@@ -1,6 +1,7 @@
 'use client';
+
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { Title } from '@/types';
 
 export function useTitle({ id }: { id: string }) {
@@ -8,7 +9,7 @@ export function useTitle({ id }: { id: string }) {
   const [title, setTitle] = useState<Title>();
   const [error, setError] = useState<Error>();
 
-  const fetchData = useCallback(() => {
+  function fetchData() {
     void supabase
       .from('titles')
       .select(
@@ -23,9 +24,11 @@ export function useTitle({ id }: { id: string }) {
           setTitle(data);
         }
       });
-  }, [supabase, id]);
+  }
 
-  fetchData();
+  if (!title) {
+    fetchData();
+  }
 
   return {
     title,
@@ -39,7 +42,7 @@ export function useTitles() {
   const [titles, setTitles] = useState<Title[]>();
   const [error, setError] = useState<Error>();
 
-  const fetchData = useCallback(() => {
+  function fetchData() {
     void supabase
       .from('titles')
       .select()
@@ -52,9 +55,10 @@ export function useTitles() {
           setTitles(data ?? []);
         }
       });
-  }, [supabase]);
-
-  fetchData();
+  }
+  if (!titles) {
+    fetchData();
+  }
 
   return {
     titles,

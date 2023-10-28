@@ -34,7 +34,10 @@ function Main({
                     key={`${show.id}-name`}
                     className="whitespace-nowrap px-6 py-4"
                   >
-                    <Link href="/titles/[title_id]" as={`/titles/${show.id}`}>
+                    <Link
+                      href="/titles/[title_id]"
+                      as={`/titles/${show.titles[0].id}`}
+                    >
                       {show.titles[0].name}
                     </Link>
                   </td>

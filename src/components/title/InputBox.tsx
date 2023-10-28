@@ -22,7 +22,7 @@ export function InputBox({
 }): JSX.Element {
   const [name, setName] = useState<string>('');
   const [url, setUrl] = useState<string>('');
-  const [year, setYear] = useState<number>(2016);
+  const [year, setYear] = useState<number>(new Date().getFullYear());
   const [nameError, setNameError] = useState<string>();
   const [urlError, setUrlError] = useState<string>();
 

@@ -1,7 +1,8 @@
 'use client';
+
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { ShowTitle } from '@/types';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 export function useShows({
   futures,
@@ -14,13 +15,15 @@ export function useShows({
   const supabase = useSupabaseClient<ShowTitle>();
   const [shows, setShows] = useState<ShowTitle[]>();
   const [error, setError] = useState<Error>();
+  const ac = new AbortController();
 
-  const fetchData = useCallback(() => {
+  function fetchData() {
     const select = supabase
       .from('shows')
       .select(
         'id, show_date, viewed, canceled, skipped, theaters ( name ), titles ( id, name, url )',
-      );
+      )
+      .abortSignal(ac.signal);
     const withFutures = futures
       ? select.gte('show_date', futures.today.getTime())
       : select;
@@ -44,9 +47,11 @@ export function useShows({
           setShows(data ?? []);
         }
       });
-  }, [supabase, futures]);
+  }
 
-  fetchData();
+  if (!shows) {
+    fetchData();
+  }
 
   return {
     shows,
