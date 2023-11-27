@@ -10,7 +10,7 @@ function Main(): JSX.Element {
     <div className="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 h-[calc(100vh-theme(space.48))]">
-          <table className="min-w-full text-left text-sm font-light relative">
+          <table className="min-w-full text-left text-sm font-light relative border-collapse">
             <thead className="border-b top-0 font-medium dark:border-neutral-500 sticky bg-white">
               <tr>
                 <th>Name</th>
