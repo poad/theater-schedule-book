@@ -1,5 +1,6 @@
 import { Theater } from '@/types';
 import { RiEdit2Line, RiDeleteBin2Line } from 'react-icons/ri';
+import { If } from '../flows';
 
 export function TheaterItem({
   theater,
@@ -22,22 +23,18 @@ export function TheaterItem({
     <li key={theater.id} className="m-1 ml-3">
       <span>
         {theater.name}
-        {onUpdate ? (
+        <If when={onUpdate}>
           <RiEdit2Line
             style={{ display: 'inline' }}
             onClick={() => handleEditClick()}
           />
-        ) : (
-          <></>
-        )}
-        {onDelete ? (
+        </If>
+        <If when={onDelete}>
           <RiDeleteBin2Line
             style={{ display: 'inline' }}
             onClick={() => handleDeleteClick()}
           />
-        ) : (
-          <></>
-        )}
+        </If>
       </span>
     </li>
   );

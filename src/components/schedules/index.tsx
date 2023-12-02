@@ -2,6 +2,7 @@ import { Session } from '@supabase/auth-helpers-react';
 import Link from 'next/link';
 import { useShows } from '@/shows';
 import { Typography } from '@supabase/ui';
+import { For, If } from '../flows';
 
 function Main({
   currentMonthOnly,
@@ -25,41 +26,43 @@ function Main({
               </tr>
             </thead>
             <tbody className="overflow-y-auto">
-              {shows?.map((show) => (
-                <tr
-                  key={`${show.id}`}
-                  className="border-b dark:border-neutral-500"
-                >
-                  <td
-                    key={`${show.id}-name`}
-                    className="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4"
+              <For items={shows}>
+                {({ item: show }) => (
+                  <tr
+                    key={`${show.id}`}
+                    className="border-b dark:border-neutral-500"
                   >
-                    <Link
-                      href="/titles/[title_id]"
-                      as={`/titles/${show.titles[0].id}`}
+                    <td
+                      key={`${show.id}-name`}
+                      className="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4"
                     >
-                      {show.titles[0].name}
-                    </Link>
-                  </td>
-                  <td
-                    key={`${show.id}-date`}
-                    className="whitespace-nowrap px-6 py-4"
-                  >
-                    {new Date(show.show_date).toLocaleString()}
-                  </td>
-                  <td
-                    key={`${show.id}-link`}
-                    className="whitespace-nowrap px-6 py-4"
-                  >
-                    <Typography.Link
-                      target="_blank"
-                      href={show.titles[0].url.toString()}
+                      <Link
+                        href="/titles/[title_id]"
+                        as={`/titles/${show.titles[0].id}`}
+                      >
+                        {show.titles[0].name}
+                      </Link>
+                    </td>
+                    <td
+                      key={`${show.id}-date`}
+                      className="whitespace-nowrap px-6 py-4"
                     >
-                      link
-                    </Typography.Link>
-                  </td>
-                </tr>
-              ))}
+                      {new Date(show.show_date).toLocaleString()}
+                    </td>
+                    <td
+                      key={`${show.id}-link`}
+                      className="whitespace-nowrap px-6 py-4"
+                    >
+                      <Typography.Link
+                        target="_blank"
+                        href={show.titles[0].url.toString()}
+                      >
+                        link
+                      </Typography.Link>
+                    </td>
+                  </tr>
+                )}
+              </For>
             </tbody>
           </table>
         </div>
@@ -75,9 +78,9 @@ export function Schedules({
   session: Session | null;
   currentMonthOnly?: boolean;
 }): JSX.Element {
-  if (!session) {
-    return <></>;
-  }
-
-  return <Main currentMonthOnly={currentMonthOnly} />;
+  return (
+    <If when={session}>
+      <Main currentMonthOnly={currentMonthOnly} />
+    </If>
+  );
 }
