@@ -9,16 +9,33 @@ import {
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Typography } from '@supabase/ui';
 import SignOutButton from '../SignOutButton';
+import { If } from '../flows';
 
 function Menu(): JSX.Element {
   const supabase = useSupabaseClient();
   const session = useSession();
   const user = useUser();
 
-  if (user) {
-    return (
+  return (
+    <If
+      when={user}
+      fallback={
+        <If when={!session}>
+          <Auth
+            supabaseClient={supabase}
+            appearance={{ theme: ThemeSupa }}
+            onlyThirdPartyProviders
+            redirectTo={
+              typeof window !== 'undefined' ? window.location.origin : undefined
+            }
+            providers={['azure']}
+            providerScopes={{ azure: 'email offline_access' }}
+          />
+        </If>
+      }
+    >
       <div className="flex items-center gap-4">
-        Hey, {user.email}!
+        Hey, {user?.email}!
         <Typography.Link target="_self" href="/schedules">
           All Schedules
         </Typography.Link>
@@ -36,23 +53,8 @@ function Menu(): JSX.Element {
         </Typography.Link>
         <SignOutButton />
       </div>
-    );
-  }
-  if (!session) {
-    return (
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        onlyThirdPartyProviders
-        redirectTo={
-          typeof window !== 'undefined' ? window.location.origin : undefined
-        }
-        providers={['azure']}
-        providerScopes={{ azure: 'email offline_access' }}
-      />
-    );
-  }
-  return <></>;
+    </If>
+  );
 }
 
 export function Header(): JSX.Element {

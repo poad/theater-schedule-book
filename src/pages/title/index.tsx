@@ -8,6 +8,7 @@ import { useSession } from '@supabase/auth-helpers-react';
 import { useMutation } from '@/mutation';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { If } from '@/components/flows';
 
 function Main() {
   const session = useSession();
@@ -15,10 +16,6 @@ function Main() {
   const { addTitle } = useMutation(session);
   const [errorMessage, setErrorMessage] = useState<string>();
   const router = useRouter();
-
-  if (!session) {
-    return <></>;
-  }
 
   async function handleClick({
     name,
@@ -48,44 +45,51 @@ function Main() {
     }
   }
 
-  if (!titles) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <FadeLoader color="#aaaaaa" radius={4} />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <Alert variant="danger" title="fetch error">
-        {error.message}
-      </Alert>
-    );
-  }
-
-  if (errorMessage) {
-    return (
-      <Alert variant="danger" title="fetch error">
-        {errorMessage}
-      </Alert>
-    );
-  }
-
   return (
-    <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
-      <div>
-        <InputBox
-          labelName="Title name"
-          placeholderName="name of title to add"
-          labelUrl="Title URL"
-          placeholderUrl="URL of title to add"
-          onClick={async (data: { name: string; year: number; url?: string }) =>
-            await handleClick(data)
+    <If when={session}>
+      <If
+        when={titles}
+        fallback={
+          <div className="h-screen w-screen flex justify-center items-center">
+            <FadeLoader color="#aaaaaa" radius={4} />
+          </div>
+        }
+      >
+        <If
+          when={!error}
+          fallback={
+            <Alert variant="danger" title="fetch error">
+              {error?.message}
+            </Alert>
           }
-        />
-      </div>
-    </div>
+        >
+          <If
+            when={!errorMessage}
+            fallback={
+              <Alert variant="danger" title="fetch error">
+                {errorMessage}
+              </Alert>
+            }
+          >
+            <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
+              <div>
+                <InputBox
+                  labelName="Title name"
+                  placeholderName="name of title to add"
+                  labelUrl="Title URL"
+                  placeholderUrl="URL of title to add"
+                  onClick={async (data: {
+                    name: string;
+                    year: number;
+                    url?: string;
+                  }) => await handleClick(data)}
+                />
+              </div>
+            </div>
+          </If>
+        </If>
+      </If>
+    </If>
   );
 }
 

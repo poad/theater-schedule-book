@@ -7,6 +7,7 @@ import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
+import { For, If } from '../flows';
 
 export function InputBox({
   theaters,
@@ -64,11 +65,13 @@ export function InputBox({
         onChange={(event) => handleSelectChange(event.target.value)}
         className="mb-4"
       >
-        {theaters.map((it) => (
-          <Select.Option key={it.id} value={it.id}>
-            {it.name}
-          </Select.Option>
-        ))}
+        <For items={theaters}>
+          {({ item }) => (
+            <Select.Option key={item.id} value={item.id}>
+              {item.name}
+            </Select.Option>
+          )}
+        </For>
       </Select>
       <div className="flex mb-4">
         <Checkbox
@@ -84,13 +87,11 @@ export function InputBox({
       <Button key="save" onClick={() => void handleClick()}>
         Save
       </Button>
-      {error ? (
+      <If when={error}>
         <Alert title="Date error" variant="danger" withIcon className="mt-8">
-          {error.message}
+          {error?.message}
         </Alert>
-      ) : (
-        <></>
-      )}
+      </If>
     </>
   );
 }

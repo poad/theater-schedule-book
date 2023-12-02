@@ -2,6 +2,7 @@ import { Session } from '@supabase/auth-helpers-react';
 import { Typography } from '@supabase/ui';
 import Link from 'next/link';
 import { useTitles } from '@/titles';
+import { For, If } from '../flows';
 
 function Main(): JSX.Element {
   const { titles } = useTitles();
@@ -19,38 +20,43 @@ function Main(): JSX.Element {
               </tr>
             </thead>
             <tbody className="overflow-y-auto">
-              {titles?.map((title) => (
-                <tr
-                  key={`${title.id}`}
-                  className="border-b dark:border-neutral-500"
-                >
-                  <td
-                    key={`${title.id}-name`}
-                    className="whitespace-nowrap px-6 py-4"
+              <For items={titles}>
+                {({ item: title }) => (
+                  <tr
+                    key={`${title.id}`}
+                    className="border-b dark:border-neutral-500"
                   >
-                    <Link href="/titles/[title_id]" as={`/titles/${title.id}`}>
-                      {title.name}
-                    </Link>
-                  </td>
-                  <td
-                    key={`${title.id}-year`}
-                    className="whitespace-nowrap px-6 py-4"
-                  >
-                    {title.year}
-                  </td>
-                  <td
-                    key={`${title.id}-link`}
-                    className="whitespace-nowrap px-6 py-4"
-                  >
-                    <Typography.Link
-                      target="_blank"
-                      href={title.url.toString()}
+                    <td
+                      key={`${title.id}-name`}
+                      className="whitespace-nowrap px-6 py-4"
                     >
-                      link
-                    </Typography.Link>
-                  </td>
-                </tr>
-              ))}
+                      <Link
+                        href="/titles/[title_id]"
+                        as={`/titles/${title.id}`}
+                      >
+                        {title.name}
+                      </Link>
+                    </td>
+                    <td
+                      key={`${title.id}-year`}
+                      className="whitespace-nowrap px-6 py-4"
+                    >
+                      {title.year}
+                    </td>
+                    <td
+                      key={`${title.id}-link`}
+                      className="whitespace-nowrap px-6 py-4"
+                    >
+                      <Typography.Link
+                        target="_blank"
+                        href={title.url.toString()}
+                      >
+                        link
+                      </Typography.Link>
+                    </td>
+                  </tr>
+                )}
+              </For>
             </tbody>
           </table>
         </div>
@@ -60,9 +66,9 @@ function Main(): JSX.Element {
 }
 
 export function Titles({ session }: { session: Session }): JSX.Element {
-  if (!session) {
-    return <></>;
-  }
-
-  return <Main />;
+  return (
+    <If when={session}>
+      <Main />
+    </If>
+  );
 }

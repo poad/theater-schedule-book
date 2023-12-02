@@ -3,6 +3,7 @@
 import { useSession } from '@supabase/auth-helpers-react';
 import { Schedules } from '@/components/schedules';
 import { Header } from '@/components/header';
+import { If } from '@/components/flows';
 
 export default function Index(): JSX.Element {
   const session = useSession();
@@ -11,7 +12,9 @@ export default function Index(): JSX.Element {
     <div className="w-full flex flex-col items-center">
       <Header />
 
-      {session ? <Schedules session={session} currentMonthOnly /> : <></>}
+      <If when={session}>
+        <Schedules session={session} currentMonthOnly />
+      </If>
     </div>
   );
 }
