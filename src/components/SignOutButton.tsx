@@ -37,6 +37,7 @@ export default function SignOutButton(): JSX.Element {
           void handleClick();
         }}
         className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+        placeholder={''}
       >
         Sign out
       </Button>

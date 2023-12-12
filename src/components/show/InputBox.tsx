@@ -84,7 +84,7 @@ export function InputBox({
           onChange={(event) => setViewed(event.target.checked)}
         />
       </div>
-      <Button key="save" onClick={() => void handleClick()}>
+      <Button key="save" onClick={() => void handleClick()} placeholder={''}>
         Save
       </Button>
       <If when={error}>

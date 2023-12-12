@@ -39,7 +39,9 @@ export function SignInButton(): JSX.Element {
 
   return (
     <>
-      <Button onClick={() => void signInWithAzure()}>Sign in</Button>
+      <Button onClick={() => void signInWithAzure()} placeholder={''}>
+        Sign in
+      </Button>
       <ErrorAlert error={errors} />
     </>
   );
