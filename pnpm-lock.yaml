@@ -7,16 +7,16 @@ settings:
 dependencies:
   '@supabase/auth-helpers-react':
     specifier: ^0.4.2
-    version: 0.4.2(@supabase/supabase-js@2.39.2)
+    version: 0.4.2(@supabase/supabase-js@2.39.3)
   '@supabase/auth-ui-react':
     specifier: ^0.4.7
-    version: 0.4.7(@supabase/supabase-js@2.39.2)
+    version: 0.4.7(@supabase/supabase-js@2.39.3)
   '@supabase/auth-ui-shared':
     specifier: ^0.1.8
-    version: 0.1.8(@supabase/supabase-js@2.39.2)
+    version: 0.1.8(@supabase/supabase-js@2.39.3)
   '@supabase/supabase-js':
-    specifier: ^2.39.2
-    version: 2.39.2
+    specifier: ^2.39.3
+    version: 2.39.3
   '@supabase/ui':
     specifier: ^0.36.5
     version: 0.36.5(react-dom@18.2.0)(react@18.2.0)
@@ -3656,33 +3656,33 @@ packages:
       file-system-cache: 2.3.0
     dev: true
 
-  /@supabase/auth-helpers-react@0.4.2(@supabase/supabase-js@2.39.2):
+  /@supabase/auth-helpers-react@0.4.2(@supabase/supabase-js@2.39.3):
     resolution: {integrity: sha512-zRj1leYMKJVYQeHFvZiUzlmHM+ATWFR/V7Q9F0yXSWEnMcNHL0CKnIBqhkjtSQ2trE+YaoCvFEHjxISppxIZXQ==}
     peerDependencies:
       '@supabase/supabase-js': ^2.19.0
     dependencies:
-      '@supabase/supabase-js': 2.39.2
+      '@supabase/supabase-js': 2.39.3
     dev: false
 
-  /@supabase/auth-ui-react@0.4.7(@supabase/supabase-js@2.39.2):
+  /@supabase/auth-ui-react@0.4.7(@supabase/supabase-js@2.39.3):
     resolution: {integrity: sha512-Lp4FQGFh7BMX1Y/BFaUKidbryL7eskj1fl6Lby7BeHrTctbdvDbCMjVKS8wZ2rxuI8FtPS2iU900fSb70FHknQ==}
     peerDependencies:
       '@supabase/supabase-js': ^2.21.0
     dependencies:
       '@stitches/core': 1.2.8
-      '@supabase/auth-ui-shared': 0.1.8(@supabase/supabase-js@2.39.2)
-      '@supabase/supabase-js': 2.39.2
+      '@supabase/auth-ui-shared': 0.1.8(@supabase/supabase-js@2.39.3)
+      '@supabase/supabase-js': 2.39.3
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@supabase/auth-ui-shared@0.1.8(@supabase/supabase-js@2.39.2):
+  /@supabase/auth-ui-shared@0.1.8(@supabase/supabase-js@2.39.3):
     resolution: {integrity: sha512-ouQ0DjKcEFg+0gZigFIEgu01V3e6riGZPzgVD0MJsCBNsMsiDT74+GgCEIElMUpTGkwSja3xLwdFRFgMNFKcjg==}
     peerDependencies:
       '@supabase/supabase-js': ^2.21.0
     dependencies:
-      '@supabase/supabase-js': 2.39.2
+      '@supabase/supabase-js': 2.39.3
     dev: false
 
   /@supabase/functions-js@2.1.5:
@@ -3728,8 +3728,8 @@ packages:
       '@supabase/node-fetch': 2.6.15
     dev: false
 
-  /@supabase/supabase-js@2.39.2:
-    resolution: {integrity: sha512-P+raK0epLef7x/s4MOUx6/TM2DX2UqMwbQXcV8PKYBX6xvX/zXARzakHsBrL/W5mA52S1vsRZjR8l7HhEPKmqA==}
+  /@supabase/supabase-js@2.39.3:
+    resolution: {integrity: sha512-NoltJSaJNKDJNutO5sJPAAi5RIWrn1z2XH+ig1+cHDojT6BTN7TvZPNa3Kq3gFQWfO5H1N9El/bCTZJ3iFW2kQ==}
     dependencies:
       '@supabase/functions-js': 2.1.5
       '@supabase/gotrue-js': 2.62.0
