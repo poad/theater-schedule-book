@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ['src/mocks/*.ts'],
   root: true,
   env: {
     browser: true,
