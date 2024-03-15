@@ -33,7 +33,13 @@ export function InputBox({
       value={name}
       error={error}
       actions={[
-        <Button key="save" onClick={() => void handleClick()} placeholder={''}>
+        <Button
+          key="save"
+          onClick={() => void handleClick()}
+          placeholder={''}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           Save
         </Button>,
       ]}

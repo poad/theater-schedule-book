@@ -68,7 +68,13 @@ export function InputBox({
         max={9999}
         className="mb-8"
       />
-      <Button key="save" onClick={() => void handleClick()} placeholder={''}>
+      <Button
+        key="save"
+        onClick={() => void handleClick()}
+        placeholder={''}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
         Save
       </Button>
     </>

@@ -39,7 +39,12 @@ export function SignInButton(): JSX.Element {
 
   return (
     <>
-      <Button onClick={() => void signInWithAzure()} placeholder={''}>
+      <Button
+        onClick={() => void signInWithAzure()}
+        placeholder={''}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
         Sign in
       </Button>
       <ErrorAlert error={errors} />

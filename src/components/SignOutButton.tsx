@@ -38,6 +38,8 @@ export default function SignOutButton(): JSX.Element {
         }}
         className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
         placeholder={''}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
       >
         Sign out
       </Button>
