@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@supabase/auth-helpers-react':
-    specifier: ^0.4.2
-    version: 0.4.2(@supabase/supabase-js@2.42.0)
+    specifier: ^0.5.0
+    version: 0.5.0(@supabase/supabase-js@2.42.0)
   '@supabase/auth-ui-react':
     specifier: ^0.4.7
     version: 0.4.7(@supabase/supabase-js@2.42.0)
@@ -4034,10 +4034,10 @@ packages:
       file-system-cache: 2.3.0
     dev: true
 
-  /@supabase/auth-helpers-react@0.4.2(@supabase/supabase-js@2.42.0):
-    resolution: {integrity: sha512-zRj1leYMKJVYQeHFvZiUzlmHM+ATWFR/V7Q9F0yXSWEnMcNHL0CKnIBqhkjtSQ2trE+YaoCvFEHjxISppxIZXQ==}
+  /@supabase/auth-helpers-react@0.5.0(@supabase/supabase-js@2.42.0):
+    resolution: {integrity: sha512-5QSaV2CGuhDhd7RlQCoviVEAYsP7XnrFMReOcBazDvVmqSIyjKcDwhLhWvnrxMOq5qjOaA44MHo7wXqDiF0puQ==}
     peerDependencies:
-      '@supabase/supabase-js': ^2.19.0
+      '@supabase/supabase-js': ^2.39.8
     dependencies:
       '@supabase/supabase-js': 2.42.0
     dev: false
