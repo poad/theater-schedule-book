@@ -57,7 +57,6 @@ export function InputBox({
         minDate={new Date('2016/01/01 00:00:00.000+09:00')}
         maxDate={new Date('9999/12/23 00:00:00.000+09:00')}
         locale="ja-JP"
-        calendarType="hebrew"
         className="mb-4"
       />
       <Select
