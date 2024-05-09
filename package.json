@@ -33,7 +33,7 @@
     "react": "^18.3.1",
     "react-datetime-picker": "^6.0.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.2.0",
+    "react-icons": "^5.2.1",
     "react-spinners": "^0.13.8",
     "tailwindcss": "^3.4.3"
   },
@@ -48,7 +48,7 @@
     "@storybook/nextjs": "^8.0.10",
     "@storybook/react": "^8.0.10",
     "@storybook/testing-library": "^0.2.2",
-    "@types/node": "^20.12.8",
+    "@types/node": "^20.12.11",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
@@ -61,12 +61,12 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^17.4.0",
+    "eslint-plugin-n": "^17.5.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-storybook": "^0.8.0",
-    "msw": "^2.2.14",
+    "msw": "^2.3.0",
     "msw-storybook-addon": "^2.0.2",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
@@ -80,5 +80,6 @@
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!",
     "pnpm": ">=9.0.0"
-  }
+  },
+  "packageManager": "pnpm@9.1.0+sha512.67f5879916a9293e5cf059c23853d571beaf4f753c707f40cb22bed5fb1578c6aad3b6c4107ccb3ba0b35be003eb621a16471ac836c87beb53f9d54bb4612724"
 }
