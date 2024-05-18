@@ -16,7 +16,7 @@ import { useState } from 'react';
 import { Tooltip } from '@/components/ui/tooltip';
 import { For, If } from '@/components/flows';
 import { ErrorAlert } from '@/components/ui/alert';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 import { ThroughableLine } from '@/components/ui/TextDecoration/LineThrough';
 
 function Main({

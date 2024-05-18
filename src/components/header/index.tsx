@@ -9,7 +9,7 @@ import {
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import SignOutButton from '../SignOutButton';
 import { If } from '@/components/flows';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 
 function Menu(): JSX.Element {
   const supabase = useSupabaseClient();

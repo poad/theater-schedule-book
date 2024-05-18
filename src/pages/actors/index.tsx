@@ -9,7 +9,7 @@ import { useMutation } from '@/mutation';
 import { useState } from 'react';
 import { For, If } from '@/components/flows';
 import { ErrorAlert } from '@/components/ui/alert';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 
 export default function Index(): JSX.Element {
   const session = useSession();

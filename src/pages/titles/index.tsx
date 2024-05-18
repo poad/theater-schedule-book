@@ -3,7 +3,7 @@
 import { useSession } from '@supabase/auth-helpers-react';
 import { Titles } from '@/components/titles';
 import { Header } from '@/components/header';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 
 function Main() {
   const session = useSession();

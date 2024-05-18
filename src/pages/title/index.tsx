@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { If } from '@/components/flows';
 import { ErrorAlert } from '@/components/ui/alert';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 
 function Main() {
   const session = useSession();
