@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { initialize, mswLoader } from 'msw-storybook-addon';
-import { SupabaseProvider } from '../src/supabase';
 import React from 'react';
+import { SupabaseProvider } from '../src/supabase';
 
 import '../src/styles/globals.css';
 

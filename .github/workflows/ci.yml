@@ -43,6 +43,9 @@ jobs:
           echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}" >> .env.local
           echo "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL=${NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL}" >> .env.local
 
+      - name: lint
+        run: pnpm lint && pnpm build-storybook
+
       - name: Build with Next.js
         run: pnpm build
 

@@ -15,6 +15,11 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
 };
 
-export default withBundleAnalyzer(nextConfig)({
-  enabled: process.env.ANALYZE === 'true',
-});
+const config =
+  process.env.ANALYZE === 'true'
+    ? withBundleAnalyzer(nextConfig)({
+        enabled: true,
+      })
+    : nextConfig;
+
+export default config;
