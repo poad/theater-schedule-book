@@ -1,5 +1,5 @@
 import { Session } from '@supabase/auth-helpers-react';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 import { useTitles } from '@/titles';
 import { For, If } from '@/components/flows';
 

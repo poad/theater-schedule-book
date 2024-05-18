@@ -2,7 +2,7 @@
 
 import { Schedules } from '@/components/schedules';
 import { useSession } from '@supabase/auth-helpers-react';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 
 export default function Index(): JSX.Element {
   const session = useSession();

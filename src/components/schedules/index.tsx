@@ -1,5 +1,5 @@
 import { Session } from '@supabase/auth-helpers-react';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 import { useShows } from '@/shows';
 import { For, If } from '@/components/flows';
 
@@ -38,6 +38,7 @@ function Main({
                       <Link
                         href="/titles/[title_id]"
                         as={`/titles/${show.titles[0].id}`}
+                        className="text-current"
                       >
                         {show.titles[0].name}
                       </Link>
