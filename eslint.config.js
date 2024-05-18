@@ -22,7 +22,7 @@ export default tseslint.config(
       'src/stories',
       '**/*.css',
       'node_modules/**/*',
-      './.next/*',
+      '.next',
       'out',
       '.storybook',
     ],
@@ -35,6 +35,10 @@ export default tseslint.config(
   ...compat.config({
     extends: ['plugin:storybook/recommended'],
     ignorePatterns: ['!.storybook', 'storybook-static'],
+  }),
+  ...compat.config({
+    extends: ['plugin:promise/recommended'],
+    ignorePatterns: ['.next', 'out'],
   }),
   {
     files: ['src/**/*.{jsx,tsx}'],
@@ -96,8 +100,8 @@ export default tseslint.config(
   },
   {
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
+      ecmaVersion: 'latest',
+      sourceType: 'module',
     },
   },
   {
@@ -127,6 +131,10 @@ export default tseslint.config(
       'import/no-named-as-default': 'off',
       'import/no-named-as-default-member': 'off',
       'import/no-unresolved': 'off',
+      'promise/no-promise-in-callback': 'off',
+      'promise/no-nesting': 'off',
+      'promise/no-return-wrap': 'off',
+      'promise/always-return': 'off',
     },
   },
 );
