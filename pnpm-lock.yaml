@@ -20,15 +20,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.43.2
         version: 2.43.2
-      autoprefixer:
-        specifier: ^10.4.19
-        version: 10.4.19(postcss@8.4.38)
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      postcss:
-        specifier: ^8.4.38
-        version: 8.4.38
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -44,9 +38,6 @@ importers:
       react-spinners:
         specifier: ^0.13.8
         version: 0.13.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      tailwindcss:
-        specifier: ^3.4.3
-        version: 3.4.3
       web-vitals:
         specifier: ^3.5.2
         version: 3.5.2
@@ -99,6 +90,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.4.19(postcss@8.4.38)
       css-loader:
         specifier: ^7.1.1
         version: 7.1.1(webpack@5.91.0(esbuild@0.20.2))
@@ -144,6 +138,9 @@ importers:
       msw-storybook-addon:
         specifier: ^2.0.2
         version: 2.0.2(msw@2.3.0(typescript@5.4.5))
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
       postcss-loader:
         specifier: ^8.1.1
         version: 8.1.1(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0(esbuild@0.20.2))
@@ -153,6 +150,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.5.14
         version: 0.5.14(prettier@3.2.5)
+      react-hook-form:
+        specifier: ^7.51.4
+        version: 7.51.4(react@18.3.1)
       rimraf:
         specifier: ^5.0.7
         version: 5.0.7
@@ -162,6 +162,9 @@ importers:
       style-loader:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.91.0(esbuild@0.20.2))
+      tailwindcss:
+        specifier: ^3.4.3
+        version: 3.4.3
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -4969,6 +4972,12 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
+
+  react-hook-form@7.51.4:
+    resolution: {integrity: sha512-V14i8SEkh+V1gs6YtD0hdHYnoL4tp/HX/A45wWQN15CYr9bFRmmRdYStSO5L65lCCZRF+kYiSKhm9alqbcdiVA==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
 
   react-icons@5.2.1:
     resolution: {integrity: sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==}
@@ -11845,6 +11854,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.2
       '@types/react-dom': 18.3.0
+
+  react-hook-form@7.51.4(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   react-icons@5.2.1(react@18.3.1):
     dependencies:
