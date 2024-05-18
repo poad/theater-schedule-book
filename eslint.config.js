@@ -61,6 +61,12 @@ export default tseslint.config(
   },
   {
     files: ['src/**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
     plugins: {
       import: importPlugin,
     },
@@ -71,14 +77,27 @@ export default tseslint.config(
     ],
     settings: {
       'import/internal-regex': '^~/',
+      'import/parsers': {
+        espree: ['.js', '.cjs', '.mjs', '.jsx'],
+      },
       'import/resolver': {
         node: {
+          typescript: true,
           extensions: ['.ts', '.tsx'],
         },
         typescript: {
           alwaysTryTypes: true,
         },
       },
+    },
+    rules: {
+      ...importPlugin.configs['recommended'].rules,
+    },
+  },
+  {
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
     },
   },
   {
@@ -107,6 +126,7 @@ export default tseslint.config(
       'import/namespace': 'off',
       'import/no-named-as-default': 'off',
       'import/no-named-as-default-member': 'off',
+      'import/no-unresolved': 'off',
     },
   },
 );
