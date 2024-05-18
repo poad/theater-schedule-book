@@ -7,9 +7,9 @@ import {
   useUser,
 } from '@supabase/auth-helpers-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { Typography } from '@supabase/ui';
 import SignOutButton from '../SignOutButton';
-import { If } from '../flows';
+import { If } from '@/components/flows';
+import Link from 'next/link';
 
 function Menu(): JSX.Element {
   const supabase = useSupabaseClient();
@@ -36,21 +36,21 @@ function Menu(): JSX.Element {
     >
       <div className="flex items-center gap-4">
         Hey, {user?.email}!
-        <Typography.Link target="_self" href="/schedules">
+        <Link target="_self" href="/schedules">
           All Schedules
-        </Typography.Link>
-        <Typography.Link target="_self" href="/titles">
+        </Link>
+        <Link target="_self" href="/titles">
           Titles
-        </Typography.Link>
-        <Typography.Link target="_self" href="/theaters">
+        </Link>
+        <Link target="_self" href="/theaters">
           Theaters
-        </Typography.Link>
-        <Typography.Link target="_self" href="/title">
+        </Link>
+        <Link target="_self" href="/title">
           Add title
-        </Typography.Link>
-        <Typography.Link target="_self" href="/actors">
+        </Link>
+        <Link target="_self" href="/actors">
           Actors
-        </Typography.Link>
+        </Link>
         <SignOutButton />
       </div>
     </If>

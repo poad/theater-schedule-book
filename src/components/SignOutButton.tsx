@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Alert } from '@supabase/ui';
+import { Button } from '@headlessui/react';
+import { If } from '@/components/flows';
+import { ErrorAlert } from '@/components/ui/alert';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export default function SignOutButton(): JSX.Element {
@@ -15,35 +17,19 @@ export default function SignOutButton(): JSX.Element {
     }
   }
 
-  function ErrorAlert({ error }: { error?: Error }) {
-    if (error) {
-      return (
-        <Alert
-          variant="danger"
-          closable={true}
-          title="Failed to Sign In"
-          withIcon
-        >
-          {error.message}
-        </Alert>
-      );
-    }
-  }
-
   return (
     <div>
       <Button
         onClick={() => {
           void handleClick();
         }}
-        className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-        placeholder={''}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
+        className="py-2 px-4 rounded-md no-underline bg-green-500 text-white text-xs  hover:bg-btn-background-hover"
       >
         Sign out
       </Button>
-      <ErrorAlert error={errors} />
+      <If when={errors}>
+        <ErrorAlert title="Failed to Sign In">{errors?.message}</ErrorAlert>
+      </If>
     </div>
   );
 }

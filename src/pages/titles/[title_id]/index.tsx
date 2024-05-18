@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/router';
 import { FadeLoader } from 'react-spinners';
-import { Alert, Typography } from '@supabase/ui';
 import { InputBox } from '@/components/show';
 import { useTheaters } from '@/theaters';
 import { Show, Theater } from '@/types';
@@ -14,8 +13,11 @@ import { useTitle } from '@/titles';
 import { Session, useSession } from '@supabase/auth-helpers-react';
 import { useMutation } from '@/mutation';
 import { useState } from 'react';
-import { Tooltip } from '@/components/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
 import { For, If } from '@/components/flows';
+import { ErrorAlert } from '@/components/ui/alert';
+import Link from 'next/link';
+import { ThroughableLine } from '@/components/ui/TextDecoration/LineThrough';
 
 function Main({
   id,
@@ -116,19 +118,11 @@ function Main({
   return (
     <If
       when={!error}
-      fallback={
-        <Alert variant="danger" title="fetch error">
-          {error?.message}
-        </Alert>
-      }
+      fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
     >
       <If
         when={!errorMessage}
-        fallback={
-          <Alert variant="danger" title="fetch error">
-            {errorMessage}
-          </Alert>
-        }
+        fallback={<ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>}
       >
         <If
           when={theaters}
@@ -170,20 +164,20 @@ function Main({
                               key={`${show.id}-datetime`}
                               className="whitespace-nowrap px-3 py-4"
                             >
-                              <Typography.Text strikethrough={show.canceled}>
+                              <ThroughableLine strikethrough={show.canceled}>
                                 {new Date(show.show_date).toLocaleString()}
                                 <Tooltip text="Casts">
                                   <HiUsers className="inline ml-2" />
                                 </Tooltip>
-                              </Typography.Text>
+                              </ThroughableLine>
                             </td>
                             <td
                               key={`${show.id}-theater`}
                               className="whitespace-nowrap px-3 py-4"
                             >
-                              <Typography.Text strikethrough={show.canceled}>
+                              <ThroughableLine strikethrough={show.canceled}>
                                 {show.theaters[0].name}
-                              </Typography.Text>
+                              </ThroughableLine>
                             </td>
                             <td
                               key={`${show.id}-delete`}
@@ -285,11 +279,7 @@ export default function Shows(): JSX.Element {
   });
 
   if (error) {
-    return (
-      <Alert variant="danger" title="fetch error">
-        {error.message}
-      </Alert>
-    );
+    return <ErrorAlert title="fetch error">{error.message}</ErrorAlert>;
   }
 
   if (!title) {
@@ -306,9 +296,9 @@ export default function Shows(): JSX.Element {
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
           <div>{title.name}</div>
           <div>
-            <Typography.Link href="/" target="_self">
+            <Link href="/" target="_self">
               Top
-            </Typography.Link>
+            </Link>
           </div>
         </div>
       </nav>

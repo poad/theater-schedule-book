@@ -1,8 +1,7 @@
 import { Session } from '@supabase/auth-helpers-react';
 import Link from 'next/link';
 import { useShows } from '@/shows';
-import { Typography } from '@supabase/ui';
-import { For, If } from '../flows';
+import { For, If } from '@/components/flows';
 
 function Main({
   currentMonthOnly,
@@ -53,12 +52,12 @@ function Main({
                       key={`${show.id}-link`}
                       className="whitespace-nowrap px-6 py-4"
                     >
-                      <Typography.Link
+                      <Link
                         target="_blank"
                         href={show.titles[0].url.toString()}
                       >
                         link
-                      </Typography.Link>
+                      </Link>
                     </td>
                   </tr>
                 )}

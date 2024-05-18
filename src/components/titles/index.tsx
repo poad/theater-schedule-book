@@ -1,8 +1,7 @@
 import { Session } from '@supabase/auth-helpers-react';
-import { Typography } from '@supabase/ui';
 import Link from 'next/link';
 import { useTitles } from '@/titles';
-import { For, If } from '../flows';
+import { For, If } from '@/components/flows';
 
 function Main(): JSX.Element {
   const { titles } = useTitles();
@@ -47,12 +46,9 @@ function Main(): JSX.Element {
                       key={`${title.id}-link`}
                       className="whitespace-nowrap px-6 py-4"
                     >
-                      <Typography.Link
-                        target="_blank"
-                        href={title.url.toString()}
-                      >
+                      <Link target="_blank" href={title.url.toString()}>
                         link
-                      </Typography.Link>
+                      </Link>
                     </td>
                   </tr>
                 )}

@@ -1,9 +1,9 @@
 'use client';
 
-import { Typography } from '@supabase/ui';
 import { useSession } from '@supabase/auth-helpers-react';
 import { Titles } from '@/components/titles';
 import { Header } from '@/components/header';
+import Link from 'next/link';
 
 function Main() {
   const session = useSession();
@@ -21,9 +21,9 @@ export default function Index(): JSX.Element {
           <div />
           <Header />
           <div>
-            <Typography.Link href="/" target="_self">
+            <Link href="/" target="_self">
               Top
-            </Typography.Link>
+            </Link>
           </div>
         </div>
       </nav>
