@@ -29,13 +29,13 @@ export function useShows({
       : select;
     const withConditions = futures?.currentMonthOnly
       ? withFutures.lte(
-          'show_date',
+        'show_date',
+        new Date(
           new Date(
-            new Date(
-              new Date(futures.today).setMonth(futures.today.getMonth() + 1),
-            ).setDate(0),
-          ).setHours(23, 59, 59, 999),
-        )
+            new Date(futures.today).setMonth(futures.today.getMonth() + 1),
+          ).setDate(0),
+        ).setHours(23, 59, 59, 999),
+      )
       : select;
     void withConditions
       .order('show_date')

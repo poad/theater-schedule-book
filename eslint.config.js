@@ -7,9 +7,12 @@ import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 // @ts-ignore
 import importPlugin from 'eslint-plugin-import';
 
-import prettier from 'eslint-config-prettier';
 import tseslint from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
+
+import stylistic from '@stylistic/eslint-plugin';
+import stylisticTs from '@stylistic/eslint-plugin-ts';
+import stylisticJsx from '@stylistic/eslint-plugin-jsx';
 
 const compat = new FlatCompat();
 
@@ -28,7 +31,7 @@ export default tseslint.config(
     ],
   },
   {
-    files: ['src/**/*.{jsx,ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -40,6 +43,18 @@ export default tseslint.config(
     extends: ['plugin:promise/recommended'],
     ignorePatterns: ['.next', 'out'],
   }),
+  {
+    plugins: {
+      '@stylistic': stylistic,
+      '@stylistic/ts': stylisticTs,
+      '@stylistic/jsx': stylisticJsx,
+    },
+    rules: {
+      '@stylistic/semi': 'error',
+      '@stylistic/ts/indent': ['error', 2],
+      '@stylistic/jsx/jsx-indent': ['error', 2],
+    },
+  },
   {
     files: ['src/**/*.{jsx,tsx}'],
     plugins: {
@@ -105,7 +120,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     plugins: {
       '@next/next': nextPlugin,
     },
@@ -116,12 +131,6 @@ export default tseslint.config(
       '@next/next/no-duplicate-head': 'off',
       '@next/next/no-img-element': 'error',
       '@next/next/no-page-custom-font': 'off',
-    },
-  },
-  {
-    files: ['src/**/*.{js,jsx,ts,tsx}'],
-    rules: {
-      ...prettier.rules,
     },
   },
   {
