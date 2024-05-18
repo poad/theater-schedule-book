@@ -11,21 +11,10 @@ permissions:
   id-token: write
   deployments: write
 
-env:
-  AWS_REGION: us-west-2
-
 jobs:
-  # Build job
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.OIDC_IAM_ROLE_ARN }}
-          role-session-name: GitHubActions
-          aws-region: ${{ env.AWS_REGION }}
-
       - name: Checkout
         uses: actions/checkout@v4
 
