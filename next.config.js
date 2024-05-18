@@ -1,6 +1,4 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -17,4 +15,11 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+const config =
+  process.env.ANALYZE === 'true'
+    ? withBundleAnalyzer(nextConfig)({
+        enabled: true,
+      })
+    : nextConfig;
+
+export default config;
