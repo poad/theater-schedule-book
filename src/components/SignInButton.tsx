@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Alert } from '@supabase/ui';
+import { Button } from '@headlessui/react';
+import { If } from '@/components/flows';
+import { ErrorAlert } from '@/components/ui/alert';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export function SignInButton(): JSX.Element {
@@ -22,32 +24,17 @@ export function SignInButton(): JSX.Element {
     }
   }
 
-  function ErrorAlert({ error }: { error?: Error }) {
-    if (error) {
-      return (
-        <Alert
-          variant="danger"
-          closable={true}
-          title="Failed to Sign In"
-          withIcon
-        >
-          {error.message}
-        </Alert>
-      );
-    }
-  }
-
   return (
     <>
       <Button
         onClick={() => void signInWithAzure()}
-        placeholder={''}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
+        className="bg-green-500 rounded text-white text-xs px-2.5 py-2"
       >
         Sign in
       </Button>
-      <ErrorAlert error={errors} />
+      <If when={errors}>
+        <ErrorAlert title="Failed to Sign In">{errors?.message}</ErrorAlert>
+      </If>
     </>
   );
 }

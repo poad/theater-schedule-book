@@ -1,7 +1,6 @@
 'use client';
 
 import { FadeLoader } from 'react-spinners';
-import { Alert, Typography } from '@supabase/ui';
 import { useTitles } from '@/titles';
 import { InputBox } from '@/components/title';
 import { useSession } from '@supabase/auth-helpers-react';
@@ -9,6 +8,8 @@ import { useMutation } from '@/mutation';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { If } from '@/components/flows';
+import { ErrorAlert } from '@/components/ui/alert';
+import Link from 'next/link';
 
 function Main() {
   const session = useSession();
@@ -23,11 +24,15 @@ function Main() {
     url,
   }: {
     name: string;
-    year: number;
+    year?: number;
     url?: string;
-  }): Promise<{ name?: Error; url?: Error } | undefined> {
+  }): Promise<{ name?: Error; url?: Error; year?: Error } | undefined> {
     if (name.length === 0) {
       return { name: new Error('Input to title name') };
+    }
+
+    if (!year) {
+      return { year: new Error('Input to title year') };
     }
 
     if (titles?.find((title) => title.name === name && title.year === year)) {
@@ -58,17 +63,13 @@ function Main() {
         <If
           when={!error}
           fallback={
-            <Alert variant="danger" title="fetch error">
-              {error?.message}
-            </Alert>
+            <ErrorAlert title="fetch error">{error?.message}</ErrorAlert>
           }
         >
           <If
             when={!errorMessage}
             fallback={
-              <Alert variant="danger" title="fetch error">
-                {errorMessage}
-              </Alert>
+              <ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>
             }
           >
             <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
@@ -80,7 +81,7 @@ function Main() {
                   placeholderUrl="URL of title to add"
                   onClick={async (data: {
                     name: string;
-                    year: number;
+                    year?: number;
                     url?: string;
                   }) => await handleClick(data)}
                 />
@@ -100,9 +101,9 @@ export default function Index(): JSX.Element {
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
           <div />
           <div>
-            <Typography.Link href="/" target="_self">
+            <Link href="/" target="_self">
               Top
-            </Typography.Link>
+            </Link>
           </div>
         </div>
       </nav>

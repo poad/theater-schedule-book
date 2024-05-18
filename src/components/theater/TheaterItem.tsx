@@ -1,6 +1,6 @@
 import { Theater } from '@/types';
 import { RiEdit2Line, RiDeleteBin2Line } from 'react-icons/ri';
-import { If } from '../flows';
+import { If } from '@/components/flows';
 
 export function TheaterItem({
   theater,

@@ -1,14 +1,15 @@
 'use client';
 
 import { FadeLoader } from 'react-spinners';
-import { Alert, Typography } from '@supabase/ui';
 import { useTheaters } from '@/theaters';
 import { TheaterItem } from '@/components/theater';
-import { InputBox } from '@/components/theater/InputBox';
+import { NameInputBox as InputBox } from '@/components/ui/NameInputBox';
 import { useSession } from '@supabase/auth-helpers-react';
 import { useMutation } from '@/mutation';
 import { useState } from 'react';
 import { For, If } from '@/components/flows';
+import { ErrorAlert } from '@/components/ui/alert';
+import Link from 'next/link';
 
 export default function Index(): JSX.Element {
   const session = useSession();
@@ -36,19 +37,11 @@ export default function Index(): JSX.Element {
     <If when={session}>
       <If
         when={!error}
-        fallback={
-          <Alert variant="danger" title="fetch error">
-            {error?.message}
-          </Alert>
-        }
+        fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
       >
         <If
           when={!errorMessage}
-          fallback={
-            <Alert variant="danger" title="fetch error">
-              {errorMessage}
-            </Alert>
-          }
+          fallback={<ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>}
         >
           <If
             when={theaters}
@@ -63,9 +56,9 @@ export default function Index(): JSX.Element {
                 <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
                   <div />
                   <div>
-                    <Typography.Link href="/" target="_self">
+                    <Link href="/" target="_self">
                       Top
-                    </Typography.Link>
+                    </Link>
                   </div>
                 </div>
               </nav>
