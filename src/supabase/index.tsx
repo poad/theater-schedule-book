@@ -1,3 +1,2 @@
-export * from './provider';
-import SupabaseProvider from './provider';
-export default SupabaseProvider;
+export * from './client';
+export * from './session';

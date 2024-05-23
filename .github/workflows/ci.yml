@@ -44,7 +44,7 @@ jobs:
           echo "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL=${NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL}" >> .env.local
 
       - name: lint
-        run: pnpm lint && pnpm build-storybook
+        run: pnpm lint
 
       - name: Build with Next.js
         run: pnpm build
@@ -55,7 +55,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 189f193d40c08d2618ee4b94de81d79e
           projectName: ${{ github.event.repository.name }}
-          directory: ./out
+          directory: ./dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: preview
           workingDirectory: ./
