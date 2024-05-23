@@ -44,7 +44,7 @@ jobs:
           echo "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL=${NEXT_PUBLIC_GRAPHQL_API_ENDPOINT_URL}" >> .env.local
 
       - name: lint
-        run: pnpm lint && pnpm build-storybook
+        run: pnpm lint
 
       - name: Build with Next.js
         run: pnpm build

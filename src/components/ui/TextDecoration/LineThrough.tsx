@@ -1,16 +1,15 @@
-import { If } from '@/components/flows';
-import { ReactNode } from 'react';
+import { type JSX , Show } from 'solid-js';
 
 export function ThroughableLine({
   strikethrough,
   children,
 }: {
   strikethrough: boolean;
-  children: ReactNode;
-}): JSX.Element {
+  children: JSX.Element;
+}) {
   return (
-    <If when={strikethrough} fallback={<span>{children}</span>}>
-      <span className="line-through">{children}</span>
-    </If>
+    <Show when={strikethrough} fallback={<span>{children}</span>}>
+      <span class="line-through">{children}</span>
+    </Show>
   );
 }

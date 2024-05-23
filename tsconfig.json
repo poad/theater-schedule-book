@@ -2,67 +2,41 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "jsx": "preserve",
-    "allowJs": true,
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "skipLibCheck": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext.asynciterable",
-      "esnext"
-    ],
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "sourceRoot": "src",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
     "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types",
-      ".next"
+    "types": [
+      "vinxi/types/client",
+      "vitest/globals",
+      "@testing-library/jest-dom"
     ],
+    "isolatedModules": true,
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
       "~/*": [
-        "src/*"
-      ],
-      "../*": [
         "src/*"
       ]
     },
-    "types": [
-      "node",
-      "react"
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "incremental": true
+    "skipLibCheck": true,
+    "incremental": true,
+    "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "**/*.test.ts",
-    "**/*.test.tsx"
-  ],
   "include": [
     "next-env.d.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".next/types/**/*.ts"
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
