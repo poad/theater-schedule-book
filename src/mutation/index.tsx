@@ -1,7 +1,6 @@
-'use client';
 import { Session, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useCallback } from 'react';
-import { Actor, Show, Theater, Title } from '@/types';
+import { Actor, Show, Theater, Title } from '~/types';
 import { PostgrestError } from '@supabase/supabase-js';
 
 export function useMutation(session: Session | null) {

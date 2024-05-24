@@ -1,17 +1,16 @@
 'use client';
 
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { ShowTitle } from '@/types';
+import { ShowTitle } from '~/types';
 import { useState } from 'react';
 
-export function useShows({
-  futures,
-}: {
+export function useShows(props: {
   futures?: {
     today: Date;
     currentMonthOnly: boolean;
   };
 }) {
+  const { futures } = props;
   const supabase = useSupabaseClient<ShowTitle>();
   const [shows, setShows] = useState<ShowTitle[]>();
   const [error, setError] = useState<Error>();
@@ -59,3 +58,5 @@ export function useShows({
     refetch: fetchData,
   };
 }
+
+export default useShows;

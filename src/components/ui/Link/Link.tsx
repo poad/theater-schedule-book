@@ -2,19 +2,20 @@ import { ReactNode } from 'react';
 import * as NextLink from 'next/link';
 import { UrlObject } from 'url';
 
-export function Link({
-  children,
-  target,
-  href,
-  as,
-  className,
-}: {
+export function Link(props: {
   children: ReactNode;
   target?: string;
   href: string | UrlObject;
   as?: string | UrlObject;
   className?: string;
 }): JSX.Element {
+  const {
+    children,
+    target,
+    href,
+    as,
+    className,
+  } = props;
   return (
     <NextLink.default
       target={target}
@@ -26,3 +27,5 @@ export function Link({
     </NextLink.default>
   );
 }
+
+export default Link;

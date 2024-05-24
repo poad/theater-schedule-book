@@ -1,8 +1,8 @@
 'use client';
 
-import { Schedules } from '@/components/schedules';
+import Schedules from '~/components/schedules';
+import Link from '~/components/ui/Link';
 import { useSession } from '@supabase/auth-helpers-react';
-import { Link } from '@/components/ui/Link';
 
 export default function Index(): JSX.Element {
   const session = useSession();

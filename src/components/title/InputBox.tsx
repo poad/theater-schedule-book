@@ -1,16 +1,8 @@
-'use client';
-
 import { useState } from 'react';
 import { Input, Label, Button, Field } from '@headlessui/react';
-import { If } from '@/components/flows';
+import { Show } from '~/components/flows';
 
-export function InputBox({
-  labelName,
-  placeholderName,
-  labelUrl,
-  placeholderUrl,
-  onClick,
-}: {
+export function InputBox(props: {
   labelName: string;
   placeholderName: string;
   labelUrl: string;
@@ -21,6 +13,9 @@ export function InputBox({
     url?: string;
   }) => Promise<{ name?: Error; url?: Error; year?: Error } | undefined>;
 }): JSX.Element {
+  const { labelName, placeholderName, labelUrl, placeholderUrl, onClick } =
+    props;
+
   const [name, setName] = useState<string>('');
   const [url, setUrl] = useState<string>('');
   const [year, setYear] = useState<number>(new Date().getFullYear());
@@ -59,9 +54,9 @@ export function InputBox({
             value={name}
           />
         </div>
-        <If when={nameError}>
+        <Show when={nameError}>
           <span className="text-red-500">{nameError}</span>
-        </If>
+        </Show>
       </Field>
       <Field className="mb-8">
         <Label className="url" htmlFor="url">
@@ -79,9 +74,9 @@ export function InputBox({
             value={url}
           />
         </div>
-        <If when={urlError}>
+        <Show when={urlError}>
           <span className="text-red-500">{urlError}</span>
-        </If>
+        </Show>
       </Field>
       <Field className="mb-8">
         <Label className="year" htmlFor="year">
@@ -101,9 +96,9 @@ export function InputBox({
             value={year}
           />
         </div>
-        <If when={yearError}>
+        <Show when={yearError}>
           <span className="text-red-500">{yearError}</span>
-        </If>
+        </Show>
       </Field>
       <Button
         key="save"
@@ -116,3 +111,5 @@ export function InputBox({
     </>
   );
 }
+
+export default InputBox;

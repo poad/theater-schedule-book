@@ -1,9 +1,7 @@
-'use client';
-
 import { useState } from 'react';
 import { Button } from '@headlessui/react';
-import { If } from '@/components/flows';
-import { ErrorAlert } from '@/components/ui/alert';
+import { Show } from '~/components/flows';
+import { ErrorAlert } from '~/components/ui/alert';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export function SignInButton(): JSX.Element {
@@ -11,7 +9,7 @@ export function SignInButton(): JSX.Element {
   const [errors, setErrors] = useState<Error>();
 
   async function signInWithAzure() {
-    const { error } = await supabase.auth.signInWithOAuth({
+    const reposnse = await supabase.auth.signInWithOAuth({
       provider: 'azure',
       options: {
         scopes: 'email offline_access',
@@ -19,8 +17,8 @@ export function SignInButton(): JSX.Element {
           typeof window !== 'undefined' ? window.location.origin : undefined,
       },
     });
-    if (error) {
-      setErrors(error);
+    if (reposnse.error) {
+      setErrors(reposnse.error);
     }
   }
 
@@ -32,9 +30,11 @@ export function SignInButton(): JSX.Element {
       >
         Sign in
       </Button>
-      <If when={errors}>
+      <Show when={errors}>
         <ErrorAlert title="Failed to Sign In">{errors?.message}</ErrorAlert>
-      </If>
+      </Show>
     </>
   );
 }
+
+export default SignInButton;

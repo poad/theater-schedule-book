@@ -1,7 +1,7 @@
 import { Session } from '@supabase/auth-helpers-react';
-import { Link } from '@/components/ui/Link';
-import { useTitles } from '@/titles';
-import { For, If } from '@/components/flows';
+import { Link } from '~/components/ui/Link';
+import { useTitles } from '~/features/titles';
+import { For, Show } from '~/components/flows';
 
 function Main(): JSX.Element {
   const { titles } = useTitles();
@@ -61,10 +61,12 @@ function Main(): JSX.Element {
   );
 }
 
-export function Titles({ session }: { session: Session }): JSX.Element {
+export function Titles(props: { session: Session }): JSX.Element {
   return (
-    <If when={session}>
+    <Show when={props.session}>
       <Main />
-    </If>
+    </Show>
   );
 }
+
+export default Titles;

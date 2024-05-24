@@ -1,15 +1,11 @@
 import { Session } from '@supabase/auth-helpers-react';
-import { Link } from '@/components/ui/Link';
-import { useShows } from '@/shows';
-import { For, If } from '@/components/flows';
+import { Link } from '~/components/ui/Link';
+import { useShows } from '~/features/shows';
+import { For, Show } from '~/components/flows';
 
-function Main({
-  currentMonthOnly,
-}: {
-  currentMonthOnly: boolean;
-}): JSX.Element {
+function Main(props: { currentMonthOnly: boolean }): JSX.Element {
   const { shows } = useShows({
-    futures: { today: new Date(), currentMonthOnly },
+    futures: { today: new Date(), currentMonthOnly: props.currentMonthOnly },
   });
 
   return (
@@ -71,16 +67,16 @@ function Main({
   );
 }
 
-export function Schedules({
-  session,
-  currentMonthOnly = true,
-}: {
+export function Schedules(props: {
   session: Session | null;
   currentMonthOnly?: boolean;
 }): JSX.Element {
+  const { session, currentMonthOnly = true } = props;
   return (
-    <If when={session}>
+    <Show when={session}>
       <Main currentMonthOnly={currentMonthOnly} />
-    </If>
+    </Show>
   );
 }
+
+export default Schedules;
