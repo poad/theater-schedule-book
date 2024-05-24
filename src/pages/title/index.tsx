@@ -1,15 +1,15 @@
 'use client';
 
 import { FadeLoader } from 'react-spinners';
-import { useTitles } from '@/titles';
-import { InputBox } from '@/components/title';
+import { useTitles } from '~/features/titles';
+import InputBox from '~/components/title';
 import { useSession } from '@supabase/auth-helpers-react';
-import { useMutation } from '@/mutation';
+import { useMutation } from '~/mutation';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { If } from '@/components/flows';
-import { ErrorAlert } from '@/components/ui/alert';
-import { Link } from '@/components/ui/Link';
+import { Show } from '~/components/flows';
+import ErrorAlert from '~/components/ui/alert';
+import Link from '~/components/ui/Link';
 
 function Main() {
   const session = useSession();
@@ -51,8 +51,8 @@ function Main() {
   }
 
   return (
-    <If when={session}>
-      <If
+    <Show when={session}>
+      <Show
         when={titles}
         fallback={
           <div className="h-screen w-screen flex justify-center items-center">
@@ -60,13 +60,13 @@ function Main() {
           </div>
         }
       >
-        <If
+        <Show
           when={!error}
           fallback={
             <ErrorAlert title="fetch error">{error?.message}</ErrorAlert>
           }
         >
-          <If
+          <Show
             when={!errorMessage}
             fallback={
               <ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>
@@ -87,10 +87,10 @@ function Main() {
                 />
               </div>
             </div>
-          </If>
-        </If>
-      </If>
-    </If>
+          </Show>
+        </Show>
+      </Show>
+    </Show>
   );
 }
 

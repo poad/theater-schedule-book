@@ -1,6 +1,6 @@
 'use client';
 
-import '@/styles/globals.css';
+import '~/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { SupabaseProvider } from '../supabase';
 import { Session } from '@supabase/auth-helpers-react';

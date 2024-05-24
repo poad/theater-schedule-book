@@ -1,8 +1,6 @@
-'use client';
-
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
-import { Actor } from '@/types';
+import { Actor } from '~/types';
 
 export function useActors() {
   const supabase = useSupabaseClient<Actor>();
@@ -33,3 +31,5 @@ export function useActors() {
     refetch: fetchData,
   };
 }
+
+export default useActors;

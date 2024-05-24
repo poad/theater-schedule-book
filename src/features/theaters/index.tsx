@@ -1,7 +1,7 @@
 'use client';
 
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Theater } from '@/types';
+import { Theater } from '~/types';
 import { useState } from 'react';
 
 export function useTheaters() {
@@ -33,3 +33,5 @@ export function useTheaters() {
     refetch: fetchData,
   };
 }
+
+export default useTheaters;

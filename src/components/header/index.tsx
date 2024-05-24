@@ -1,5 +1,3 @@
-'use client';
-
 import { Auth } from '@supabase/auth-ui-react';
 import {
   useSession,
@@ -8,8 +6,8 @@ import {
 } from '@supabase/auth-helpers-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import SignOutButton from '../SignOutButton';
-import { If } from '@/components/flows';
-import { Link } from '@/components/ui/Link';
+import { Show } from '~/components/flows';
+import Link from '~/components/ui/Link';
 
 function Menu(): JSX.Element {
   const supabase = useSupabaseClient();
@@ -17,10 +15,10 @@ function Menu(): JSX.Element {
   const user = useUser();
 
   return (
-    <If
+    <Show
       when={user}
       fallback={
-        <If when={!session}>
+        <Show when={!session}>
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
@@ -31,7 +29,7 @@ function Menu(): JSX.Element {
             providers={['azure']}
             providerScopes={{ azure: 'email offline_access' }}
           />
-        </If>
+        </Show>
       }
     >
       <div className="flex items-center gap-4">
@@ -53,7 +51,7 @@ function Menu(): JSX.Element {
         </Link>
         <SignOutButton />
       </div>
-    </If>
+    </Show>
   );
 }
 
@@ -69,3 +67,5 @@ export function Header(): JSX.Element {
     </nav>
   );
 }
+
+export default Header;

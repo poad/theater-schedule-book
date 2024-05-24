@@ -1,15 +1,15 @@
 'use client';
 
 import { FadeLoader } from 'react-spinners';
-import { useActors } from '@/actors';
-import { ActorItem } from '@/components/actor';
-import { NameInputBox as InputBox } from '@/components/ui/NameInputBox';
+import { useActors } from '~/features/actors';
+import ActorItem from '~/components/actor';
+import { NameInputBox as InputBox } from '~/components/ui/NameInputBox';
 import { useSession } from '@supabase/auth-helpers-react';
-import { useMutation } from '@/mutation';
+import { useMutation } from '~/mutation';
 import { useState } from 'react';
-import { For, If } from '@/components/flows';
-import { ErrorAlert } from '@/components/ui/alert';
-import { Link } from '@/components/ui/Link';
+import { For, Show } from '~/components/flows';
+import ErrorAlert from '~/components/ui/alert';
+import Link from '~/components/ui/Link';
 
 export default function Index(): JSX.Element {
   const session = useSession();
@@ -34,16 +34,16 @@ export default function Index(): JSX.Element {
   }
 
   return (
-    <If when={session}>
-      <If
+    <Show when={session}>
+      <Show
         when={!error}
         fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
       >
-        <If
+        <Show
           when={!errorMessage}
           fallback={<ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>}
         >
-          <If
+          <Show
             when={actors}
             fallback={
               <div className="h-screen w-screen flex justify-center items-center">
@@ -82,9 +82,9 @@ export default function Index(): JSX.Element {
                 </div>
               </div>
             </div>
-          </If>
-        </If>
-      </If>
-    </If>
+          </Show>
+        </Show>
+      </Show>
+    </Show>
   );
 }

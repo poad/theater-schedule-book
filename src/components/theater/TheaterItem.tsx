@@ -1,16 +1,18 @@
-import { Theater } from '@/types';
+import { Theater } from '~/types';
 import { RiEdit2Line, RiDeleteBin2Line } from 'react-icons/ri';
-import { If } from '@/components/flows';
+import { Show } from '~/components/flows';
 
-export function TheaterItem({
-  theater,
-  onDelete,
-  onUpdate,
-}: {
+export function TheaterItem(props: {
   theater: Theater;
   onDelete?: (theater: Theater) => void;
   onUpdate?: (theater: Theater) => void;
 }): JSX.Element {
+  const {
+    theater,
+    onDelete,
+    onUpdate,
+  } = props;
+
   function handleDeleteClick(): void {
     onDelete?.(theater);
   }
@@ -23,19 +25,21 @@ export function TheaterItem({
     <li key={theater.id} className="m-1 ml-3">
       <span>
         {theater.name}
-        <If when={onUpdate}>
+        <Show when={onUpdate}>
           <RiEdit2Line
             style={{ display: 'inline' }}
             onClick={() => handleEditClick()}
           />
-        </If>
-        <If when={onDelete}>
+        </Show>
+        <Show when={onDelete}>
           <RiDeleteBin2Line
             style={{ display: 'inline' }}
             onClick={() => handleDeleteClick()}
           />
-        </If>
+        </Show>
       </span>
     </li>
   );
 }
+
+export default TheaterItem;

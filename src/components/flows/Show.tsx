@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-export function If<T>(props: {
+export function Show<T>(props: {
   when: T | undefined | null | false;
   fallback?: JSX.Element;
   children: JSX.Element;

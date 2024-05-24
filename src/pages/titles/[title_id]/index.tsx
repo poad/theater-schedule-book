@@ -2,34 +2,30 @@
 
 import { useRouter } from 'next/router';
 import { FadeLoader } from 'react-spinners';
-import { InputBox } from '@/components/show';
-import { useTheaters } from '@/theaters';
-import { Show, Theater } from '@/types';
+import InputBox from '~/components/show';
+import { useTheaters } from '~/features/theaters';
+import { Show as ShowItem, Theater } from '~/types';
 import { RiDeleteBin2Line, RiCheckFill, RiCheckboxFill } from 'react-icons/ri';
 import { TbCalendarCancel } from 'react-icons/tb';
 import { HiUsers } from 'react-icons/hi';
 import { ImEyeBlocked } from 'react-icons/im';
-import { useTitle } from '@/titles';
+import { useTitle } from '~/features/titles';
 import { Session, useSession } from '@supabase/auth-helpers-react';
-import { useMutation } from '@/mutation';
+import { useMutation } from '~/mutation';
 import { useState } from 'react';
-import { Tooltip } from '@/components/ui/tooltip';
-import { For, If } from '@/components/flows';
-import { ErrorAlert } from '@/components/ui/alert';
-import { Link } from '@/components/ui/Link';
-import { ThroughableLine } from '@/components/ui/TextDecoration/LineThrough';
+import Tooltip from '~/components/ui/tooltip';
+import { For, Show } from '~/components/flows';
+import ErrorAlert from '~/components/ui/alert';
+import Link from '~/components/ui/Link';
+import ThroughableLine from '~/components/ui/TextDecoration/LineThrough';
 
-function Main({
-  id,
-  shows,
-  session,
-  refetch,
-}: {
+function Main(props: {
   id: string;
-  shows?: Show[];
+  shows?: ShowItem[];
   session: Session | null;
   refetch: () => void;
 }): JSX.Element {
+  const { id, shows, session, refetch } = props;
   const { theaters, error } = useTheaters();
   const {
     addShow,
@@ -116,15 +112,15 @@ function Main({
   }
 
   return (
-    <If
+    <Show
       when={!error}
       fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
     >
-      <If
+      <Show
         when={!errorMessage}
         fallback={<ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>}
       >
-        <If
+        <Show
           when={theaters}
           fallback={
             <div className="h-screen w-screen flex justify-center items-center">
@@ -183,7 +179,7 @@ function Main({
                               key={`${show.id}-delete`}
                               className="whitespace-nowrap px-3 py-4"
                             >
-                              <If
+                              <Show
                                 when={
                                   !show.canceled &&
                                   !show.viewed &&
@@ -195,13 +191,13 @@ function Main({
                                     void handleClickCanceled(show.id)
                                   }
                                 />
-                              </If>
+                              </Show>
                             </td>
                             <td
                               key={`${show.id}-delete`}
                               className="whitespace-nowrap px-3 py-4"
                             >
-                              <If
+                              <Show
                                 when={
                                   !show.canceled &&
                                   !show.viewed &&
@@ -214,13 +210,13 @@ function Main({
                                     void handleClickViewed(show.id)
                                   }
                                 />
-                              </If>
+                              </Show>
                             </td>
                             <td
                               key={`${show.id}-datetime`}
                               className="whitespace-nowrap px-3 py-4"
                             >
-                              <If
+                              <Show
                                 when={
                                   !show.canceled &&
                                   !show.viewed &&
@@ -233,7 +229,7 @@ function Main({
                                     void handleClickSkipped(show.id)
                                   }
                                 />
-                              </If>
+                              </Show>
                             </td>
                             <td
                               key={`${show.id}-delete`}
@@ -263,9 +259,9 @@ function Main({
               />
             </div>
           </div>
-        </If>
-      </If>
-    </If>
+        </Show>
+      </Show>
+    </Show>
   );
 }
 
@@ -278,37 +274,39 @@ export default function Shows(): JSX.Element {
     id: title_id as string,
   });
 
-  if (error) {
-    return <ErrorAlert title="fetch error">{error.message}</ErrorAlert>;
-  }
-
-  if (!title) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <FadeLoader color="#aaaaaa" radius={4} />
-      </div>
-    );
-  }
-
   return (
-    <div className="w-full flex flex-col items-center">
-      <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
-          <div>{title.name}</div>
-          <div>
-            <Link href="/" target="_self">
-              Top
-            </Link>
+    <Show
+      when={!error}
+      fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
+    >
+      <Show
+        when={title}
+        fallback={
+          <div className="h-screen w-screen flex justify-center items-center">
+            <FadeLoader color="#aaaaaa" radius={4} />
           </div>
-        </div>
-      </nav>
+        }
+      >
+        <div className="w-full flex flex-col items-center">
+          <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+            <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
+              <div>{title?.name}</div>
+              <div>
+                <Link href="/" target="_self">
+                  Top
+                </Link>
+              </div>
+            </div>
+          </nav>
 
-      <Main
-        id={title_id as string}
-        shows={title?.shows}
-        session={session}
-        refetch={refetch}
-      />
-    </div>
+          <Main
+            id={title_id as string}
+            shows={title?.shows}
+            session={session}
+            refetch={refetch}
+          />
+        </div>
+      </Show>
+    </Show>
   );
 }

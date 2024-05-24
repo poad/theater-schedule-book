@@ -2,9 +2,10 @@
 
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
-import { Title } from '@/types';
+import { Title } from '~/types';
 
-export function useTitle({ id }: { id: string }) {
+export function useTitle(props: { id: string }) {
+  const { id } = props;
   const supabase = useSupabaseClient<Title>();
   const [title, setTitle] = useState<Title>();
   const [error, setError] = useState<Error>();

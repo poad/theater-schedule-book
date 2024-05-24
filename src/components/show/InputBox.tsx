@@ -2,18 +2,15 @@
 
 import { useState } from 'react';
 import { Label, Button, Field, Select } from '@headlessui/react';
-import { Theater } from '@/types';
+import { Theater } from '~/types';
 import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
-import { For, If } from '@/components/flows';
-import { ErrorAlert } from '@/components/ui/alert';
+import { For, Show } from '~/components/flows';
+import { ErrorAlert } from '~/components/ui/alert';
 
-export function InputBox({
-  theaters,
-  onClick,
-}: {
+export function InputBox(props: {
   theaters: Theater[];
   onClick: (data: {
     showDate?: Date;
@@ -22,6 +19,8 @@ export function InputBox({
     theater: Theater;
   }) => Promise<Error | undefined>;
 }): JSX.Element {
+  const { theaters, onClick } = props;
+
   const [value, onChange] = useState<Date | null>();
   const [theater, setTheater] = useState(theaters[0]);
   const [canceled, setCanceled] = useState<boolean>(false);
@@ -100,9 +99,11 @@ export function InputBox({
       >
         Save
       </Button>
-      <If when={error}>
+      <Show when={error}>
         <ErrorAlert title="Date error">{error?.message}</ErrorAlert>
-      </If>
+      </Show>
     </>
   );
 }
+
+export default InputBox;

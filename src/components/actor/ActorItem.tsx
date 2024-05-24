@@ -1,16 +1,18 @@
-import { Actor } from '@/types';
+import { Actor } from '~/types';
 import { RiEdit2Line, RiDeleteBin2Line } from 'react-icons/ri';
-import { If } from '@/components/flows';
+import { Show } from '~/components/flows';
 
-export function ActorItem({
-  actor,
-  onDelete,
-  onUpdate,
-}: {
+export function ActorItem(props: {
   actor: Actor;
   onDelete?: (actor: Actor) => void;
   onUpdate?: (actor: Actor) => void;
 }): JSX.Element {
+  const {
+    actor,
+    onDelete,
+    onUpdate,
+  } = props;
+
   function handleDeleteClick(): void {
     onDelete?.(actor);
   }
@@ -23,19 +25,21 @@ export function ActorItem({
     <li key={actor.id} className="m-1 ml-3">
       <span>
         {actor.name}
-        <If when={onUpdate}>
+        <Show when={onUpdate}>
           <RiEdit2Line
             style={{ display: 'inline' }}
             onClick={() => handleEditClick()}
           />
-        </If>
-        <If when={onDelete}>
+        </Show>
+        <Show when={onDelete}>
           <RiDeleteBin2Line
             style={{ display: 'inline' }}
             onClick={() => handleDeleteClick()}
           />
-        </If>
+        </Show>
       </span>
     </li>
   );
 }
+
+export default ActorItem;

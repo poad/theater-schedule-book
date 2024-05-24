@@ -1,16 +1,16 @@
-import { If } from '@/components/flows';
+import { Show } from '~/components/flows';
 import { ReactNode } from 'react';
 
-export function ThroughableLine({
-  strikethrough,
-  children,
-}: {
+export function ThroughableLine(props: {
   strikethrough: boolean;
   children: ReactNode;
 }): JSX.Element {
+  const { strikethrough, children } = props;
   return (
-    <If when={strikethrough} fallback={<span>{children}</span>}>
+    <Show when={strikethrough} fallback={<span>{children}</span>}>
       <span className="line-through">{children}</span>
-    </If>
+    </Show>
   );
 }
+
+export default ThroughableLine;

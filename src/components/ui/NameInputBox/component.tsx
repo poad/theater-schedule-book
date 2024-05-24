@@ -1,23 +1,19 @@
-'use client';
-
 import { useState } from 'react';
 import { Input, Label, Button, Field } from '@headlessui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { If } from '@/components/flows';
+import { Show } from '~/components/flows';
 
 type Inputs = {
   name: string;
 };
 
-export function NameInputBox({
-  label,
-  placeholder,
-  onClick,
-}: {
+export function NameInputBox(props: {
   label: string;
   placeholder: string;
   onClick: (value: string) => Promise<Error | undefined>;
 }): JSX.Element {
+  const { label, placeholder, onClick } = props;
+
   const [error, setError] = useState<Error>();
   const {
     register,
@@ -59,15 +55,17 @@ export function NameInputBox({
             Save
           </Button>
         </div>
-        <If when={errors.name}>
+        <Show when={errors.name}>
           <span className="text-red-500">
             {errors.name?.message ?? '名前を入力してください。'}
           </span>
-        </If>
-        <If when={error}>
+        </Show>
+        <Show when={error}>
           <span className="text-red-500">{error?.message}</span>
-        </If>
+        </Show>
       </Field>
     </form>
   );
 }
+
+export default NameInputBox;

@@ -1,16 +1,18 @@
 'use client';
 
 import { useSession } from '@supabase/auth-helpers-react';
-import { Titles } from '@/components/titles';
-import { Header } from '@/components/header';
-import { Link } from '@/components/ui/Link';
+import Titles from '~/components/titles';
+import Header from '~/components/header';
+import Link from '~/components/ui/Link';
+import { Show } from '~/components/flows';
 
 function Main() {
   const session = useSession();
-  if (!session) {
-    return <></>;
-  }
-  return <Titles session={session} />;
+  return (
+    <Show when={session} fallback={<></>}>
+      <Titles session={session!} />
+    </Show>
+  );
 }
 
 export default function Index(): JSX.Element {
