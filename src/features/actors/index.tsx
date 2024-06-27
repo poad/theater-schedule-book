@@ -12,7 +12,7 @@ export function useActors() {
       .from('actors')
       .select('id, name')
       .returns<Actor[]>()
-      .then(({ data, error }) => {
+      .then(({ data, error }: { data: Actor[]; error: Error }) => {
         if (error) {
           setError(new Error(error.message));
         } else {

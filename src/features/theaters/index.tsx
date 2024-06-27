@@ -14,7 +14,7 @@ export function useTheaters() {
       .from('theaters')
       .select()
       .returns<Theater[]>()
-      .then(({ data, error }) => {
+      .then(({ data, error }: { data: Theater[]; error: Error }) => {
         if (error) {
           setError(new Error(error.message));
         } else {
