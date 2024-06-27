@@ -36,8 +36,8 @@ importers:
         specifier: ^5.2.1
         version: 5.2.1(react@18.3.1)
       react-spinners:
-        specifier: ^0.13.8
-        version: 0.13.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.14.0
+        version: 0.14.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       web-vitals:
         specifier: ^4.2.0
         version: 4.2.0
@@ -4304,6 +4304,10 @@ packages:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  minimatch@9.0.5:
+    resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
+    engines: {node: '>=16 || 14 >=14.17'}
+
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
@@ -5037,8 +5041,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-spinners@0.13.8:
-    resolution: {integrity: sha512-3e+k56lUkPj0vb5NDXPVFAOkPC//XyhKPJjvcGjyMNPWsBKpplfeyialP74G7H7+It7KzhtET+MvGqbKgAqpZA==}
+  react-spinners@0.14.0:
+    resolution: {integrity: sha512-7d/uAqas0Eg+2vyEewb+xkeMmzDqtWHB9elyFeWqp9+PwLOg0U0GOyWkwUzpwy/z9pNAG074ZAtJnTSji9jv8A==}
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
@@ -11259,6 +11263,10 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.1
 
+  minimatch@9.0.5:
+    dependencies:
+      brace-expansion: 2.0.1
+
   minimist@1.2.8: {}
 
   minipass@3.3.6:
@@ -12024,7 +12032,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  react-spinners@0.13.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-spinners@0.14.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
