@@ -55,7 +55,13 @@ function Main() {
       <Show
         when={titles}
         fallback={
-          <div className="h-screen w-screen flex justify-center items-center">
+          <div className={`
+            h-screen
+            w-screen
+            flex
+            justify-center
+            items-center
+          `}>
             <FadeLoader color="#aaaaaa" radius={4} />
           </div>
         }
@@ -72,7 +78,16 @@ function Main() {
               <ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>
             }
           >
-            <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
+            <div className={`
+              w-11/12
+              animate-in
+              gap-14
+              opacity-0
+              px-3
+              py-16
+              lg:py-24
+              text-foreground
+            `}>
               <div>
                 <InputBox
                   labelName="Title name"
@@ -96,9 +111,30 @@ function Main() {
 
 export default function Index(): JSX.Element {
   return (
-    <div className="w-full flex flex-col items-center">
-      <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
+    <div className={`
+      w-full
+      flex
+      flex-col
+      items-center
+    `}>
+      <nav className={`
+        w-full
+        flex
+        justify-center
+        border-b
+        border-b-foreground/10
+        h-16
+      `}>
+        <div className={`
+          w-full
+          max-w-4xl
+          flex
+          justify-between
+          items-center
+          p-3
+          text-sm
+          text-foreground
+        `}>
           <div />
           <div>
             <Link href="/" target="_self">

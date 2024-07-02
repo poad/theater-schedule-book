@@ -9,7 +9,14 @@ export default function Index(): JSX.Element {
   const session = useSession();
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div
+      className={`
+        w-full
+        flex
+        flex-col
+        items-center
+      `}
+    >
       <Header />
 
       <Show when={session}>

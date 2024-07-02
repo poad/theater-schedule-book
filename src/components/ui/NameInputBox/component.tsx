@@ -38,7 +38,16 @@ export function NameInputBox(props: {
         <Label className="name" htmlFor="name">
           <div>{label}</div>
         </Label>
-        <div className="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+        <div className={`
+          border
+          border-gray-400
+          w-[calc(90vw)]
+          rounded
+          p-0.5
+          flex
+          items-center
+          justify-center
+        `}>
           <Input
             id="name"
             type="text"
@@ -50,7 +59,16 @@ export function NameInputBox(props: {
           />
           <Button
             type="submit"
-            className="mr-auto bg-green-500 rounded text-white text-xs px-2.5 py-2 inline-block"
+            className={`
+              mr-auto
+              bg-green-500
+              rounded
+              text-white
+              text-xs
+              px-2.5
+              py-2
+              inline-block
+            `}
           >
             Save
           </Button>

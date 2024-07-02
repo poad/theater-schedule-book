@@ -9,11 +9,44 @@ function Main(props: { currentMonthOnly: boolean }): JSX.Element {
   });
 
   return (
-    <div className="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 h-[calc(100vh-theme(space.48))]">
-          <table className="min-w-full text-left text-sm font-light relative border-collapse">
-            <thead className="border-b top-0 font-medium dark:border-neutral-500 sticky bg-white">
+    <div className={`
+      w-11/12
+      animate-in
+      opacity-0
+      px-3
+      pt-16
+      lg:pt-24
+      text-foreground
+    `}>
+      <div className={`
+        overflow-x-auto
+        sm:-mx-6
+        lg:-mx-8
+      `}>
+        <div className={`
+          inline-block
+          min-w-full
+          py-2
+          sm:px-6
+          lg:px-8
+          h-[calc(100vh-theme(space.48))]
+        `}>
+          <table className={`
+            min-w-full
+            text-left
+            text-sm
+            font-light
+            relative
+            border-collapse
+          `}>
+            <thead className={`
+              border-b
+              top-0
+              font-medium
+              dark:border-neutral-500
+              sticky
+              bg-white
+            `}>
               <tr>
                 <th>Name</th>
                 <th>Date</th>
@@ -25,11 +58,20 @@ function Main(props: { currentMonthOnly: boolean }): JSX.Element {
                 {({ item: show }) => (
                   <tr
                     key={`${show.id}`}
-                    className="border-b dark:border-neutral-500"
+                    className={`
+                      border-b
+                      dark:border-neutral-500
+                    `}
                   >
                     <td
                       key={`${show.id}-name`}
-                      className="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4"
+                      className={`
+                        whitespace-nowrap
+                        sm:whitespace-normal
+                        sm:w-1/3
+                        px-6
+                        py-4
+                      `}
                     >
                       <Link
                         href="/titles/[title_id]"
@@ -41,13 +83,21 @@ function Main(props: { currentMonthOnly: boolean }): JSX.Element {
                     </td>
                     <td
                       key={`${show.id}-date`}
-                      className="whitespace-nowrap px-6 py-4"
+                      className={`
+                        whitespace-nowrap
+                        px-6
+                        py-4
+                      `}
                     >
                       {new Date(show.show_date).toLocaleString()}
                     </td>
                     <td
                       key={`${show.id}-link`}
-                      className="whitespace-nowrap px-6 py-4"
+                      className={`
+                        whitespace-nowrap
+                        px-6
+                        py-4
+                      `}
                     >
                       <Link
                         target="_blank"

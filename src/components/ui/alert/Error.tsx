@@ -5,7 +5,14 @@ export function ErrorAlert(props: { title: string; children?: ReactNode }) {
   const { title, children } = props;
   return (
     <>
-      <div className="mt-8 flex bg-red-600/10 text-red-500 p-4 rounded-md">
+      <div className={`
+        mt-8
+        flex
+        bg-red-600/10
+        text-red-500
+        p-4
+        rounded-md
+      `}>
         <div className=".flex-shrink-0">
           <RiCloseCircleLine
             style={{

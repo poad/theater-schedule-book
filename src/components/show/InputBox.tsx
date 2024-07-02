@@ -95,7 +95,14 @@ export function InputBox(props: {
       <Button
         key="save"
         onClick={() => void handleClick()}
-        className="bg-green-500 rounded text-white text-xs px-2.5 py-2"
+        className={`
+          bg-green-500
+          rounded
+          text-white
+          text-xs
+          px-2.5
+          py-2
+        `}
       >
         Save
       </Button>

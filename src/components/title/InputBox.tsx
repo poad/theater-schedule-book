@@ -42,7 +42,16 @@ export function InputBox(props: {
         <Label className="name" htmlFor="name">
           <div>{labelName}</div>
         </Label>
-        <div className="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+        <div className={`
+          border
+          border-gray-400
+          w-[calc(90vw)]
+          rounded
+          p-0.5
+          flex
+          items-center
+          justify-center
+        `}>
           <Input
             id="name"
             type="text"
@@ -62,7 +71,16 @@ export function InputBox(props: {
         <Label className="url" htmlFor="url">
           <div>{labelUrl}</div>
         </Label>
-        <div className="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+        <div className={`
+          border
+          border-gray-400
+          w-[calc(90vw)]
+          rounded
+          p-0.5
+          flex
+          items-center
+          justify-center
+        `}>
           <Input
             id="url"
             type="text"
@@ -82,7 +100,16 @@ export function InputBox(props: {
         <Label className="year" htmlFor="year">
           <div>Year</div>
         </Label>
-        <div className="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+        <div className={`
+          border
+          border-gray-400
+          w-[calc(90vw)]
+          rounded
+          p-0.5
+          flex
+          items-center
+          justify-center
+        `}>
           <Input
             id="year"
             type="number"
@@ -104,7 +131,16 @@ export function InputBox(props: {
         key="save"
         onClick={() => void handleClick()}
         type="submit"
-        className="mr-auto bg-green-500 rounded text-white text-xs px-2.5 py-2 inline-block"
+        className={`
+          mr-auto
+          bg-green-500
+          rounded
+          text-white
+          text-xs
+          px-2.5
+          py-2
+          inline-block
+        `}
       >
         Save
       </Button>

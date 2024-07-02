@@ -39,7 +39,8 @@ export function useShows(props: {
     void withConditions
       .order('show_date')
       .returns<ShowTitle[]>()
-      .then(({ data, error }: { data: ShowTitle[]; error: Error }) => {
+      .then((value) => {
+        const { data, error } = value;
         if (error) {
           setError(new Error(error.message));
         } else {

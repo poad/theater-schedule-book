@@ -123,17 +123,53 @@ function Main(props: {
         <Show
           when={theaters}
           fallback={
-            <div className="h-screen w-screen flex justify-center items-center">
+            <div className={`
+              h-screen
+              w-screen
+              flex
+              justify-center
+              items-center
+            `}>
               <FadeLoader color="#aaaaaa" radius={4} />
             </div>
           }
         >
-          <div className="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
-            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 mb-8">
+          <div className={`
+            w-11/12
+            animate-in
+            gap-14
+            opacity-0
+            px-3
+            py-16
+            lg:py-24
+            text-foreground
+          `}>
+            <div className={`
+              overflow-x-auto
+              sm:-mx-6
+              lg:-mx-8
+            `}>
+              <div className={`
+                inline-block
+                min-w-full
+                py-2
+                sm:px-6
+                lg:px-8
+                mb-8
+              `}>
                 <div className="overflow-hidden">
-                  <table className="min-w-full text-left text-sm font-light border-collapse">
-                    <thead className="border-b font-medium dark:border-neutral-500">
+                  <table className={`
+                    min-w-full
+                    text-left
+                    text-sm
+                    font-light
+                    border-collapse
+                  `}>
+                    <thead className={`
+                      border-b
+                      font-medium
+                      dark:border-neutral-500
+                    `}>
                       <tr>
                         <th>Viewed</th>
                         <th>Date</th>
@@ -148,17 +184,28 @@ function Main(props: {
                         {({ item: show }) => (
                           <tr
                             key={`${show.id}`}
-                            className="border-b dark:border-neutral-500"
+                            className={`
+                              border-b
+                              dark:border-neutral-500
+                            `}
                           >
                             <td
                               key={`${show.id}-datetime`}
-                              className="whitespace-nowrap px-6 py-4"
+                              className={`
+                                whitespace-nowrap
+                                px-6
+                                py-4
+                              `}
                             >
                               {show.viewed ? <RiCheckFill /> : <></>}
                             </td>
                             <td
                               key={`${show.id}-datetime`}
-                              className="whitespace-nowrap px-3 py-4"
+                              className={`
+                                whitespace-nowrap
+                                px-3
+                                py-4
+                              `}
                             >
                               <ThroughableLine strikethrough={show.canceled}>
                                 {new Date(show.show_date).toLocaleString()}
@@ -169,7 +216,11 @@ function Main(props: {
                             </td>
                             <td
                               key={`${show.id}-theater`}
-                              className="whitespace-nowrap px-3 py-4"
+                              className={`
+                                whitespace-nowrap
+                                px-3
+                                py-4
+                              `}
                             >
                               <ThroughableLine strikethrough={show.canceled}>
                                 {show.theaters[0].name}
@@ -177,7 +228,11 @@ function Main(props: {
                             </td>
                             <td
                               key={`${show.id}-delete`}
-                              className="whitespace-nowrap px-3 py-4"
+                              className={`
+                                whitespace-nowrap
+                                px-3
+                                py-4
+                              `}
                             >
                               <Show
                                 when={
@@ -195,7 +250,11 @@ function Main(props: {
                             </td>
                             <td
                               key={`${show.id}-delete`}
-                              className="whitespace-nowrap px-3 py-4"
+                              className={`
+                                whitespace-nowrap
+                                px-3
+                                py-4
+                              `}
                             >
                               <Show
                                 when={
@@ -214,7 +273,11 @@ function Main(props: {
                             </td>
                             <td
                               key={`${show.id}-datetime`}
-                              className="whitespace-nowrap px-3 py-4"
+                              className={`
+                                whitespace-nowrap
+                                px-3
+                                py-4
+                              `}
                             >
                               <Show
                                 when={
@@ -233,7 +296,11 @@ function Main(props: {
                             </td>
                             <td
                               key={`${show.id}-delete`}
-                              className="whitespace-nowrap px-3 py-4"
+                              className={`
+                                whitespace-nowrap
+                                px-3
+                                py-4
+                              `}
                             >
                               <RiDeleteBin2Line
                                 onClick={() => void handleDelete(show.id)}
@@ -282,14 +349,41 @@ export default function Shows(): JSX.Element {
       <Show
         when={title}
         fallback={
-          <div className="h-screen w-screen flex justify-center items-center">
+          <div className={`
+            h-screen
+            w-screen
+            flex
+            justify-center
+            items-center
+          `}>
             <FadeLoader color="#aaaaaa" radius={4} />
           </div>
         }
       >
-        <div className="w-full flex flex-col items-center">
-          <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-            <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
+        <div className={`
+          w-full
+          flex
+          flex-col
+          items-center
+        `}>
+          <nav className={`
+            w-full
+            flex
+            justify-center
+            border-b
+            border-b-foreground/10
+            h-16
+          `}>
+            <div className={`
+              w-full
+              max-w-4xl
+              flex
+              justify-between
+              items-center
+              p-3
+              text-sm
+              text-foreground
+            `}>
               <div>{title?.name}</div>
               <div>
                 <Link href="/" target="_self">

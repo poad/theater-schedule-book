@@ -21,7 +21,16 @@ export function SignOutButton(): JSX.Element {
         onClick={() => {
           void handleClick();
         }}
-        className="py-2 px-4 rounded-md no-underline bg-green-500 text-white text-xs  hover:bg-btn-background-hover"
+        className={`
+          py-2
+          px-4
+          rounded-md
+          no-underline
+          bg-green-500
+          text-white
+          text-xs
+          hover:bg-btn-background-hover
+        `}
       >
         Sign out
       </Button>

@@ -18,7 +18,8 @@ export function useTitle(props: { id: string }) {
       )
       .match({ id })
       .single<Title>()
-      .then(({ data, error }: { data: Title; error: Error }) => {
+      .then((value) => {
+        const { data, error } = value;
         if (error) {
           setError(new Error(error.message));
         } else {
@@ -49,7 +50,8 @@ export function useTitles() {
       .select()
       .order('year', { ascending: true })
       .returns<Title[]>()
-      .then(({ data, error }: { data: Title[]; error: Error }) => {
+      .then((value) => {
+        const { data, error } = value;
         if (error) {
           setError(new Error(error.message));
         } else {

@@ -46,14 +46,41 @@ export default function Index(): JSX.Element {
           <Show
             when={theaters}
             fallback={
-              <div className="h-screen w-screen flex justify-center items-center">
+              <div className={`
+                h-screen
+                w-screen
+                flex
+                justify-center
+                items-center
+              `}>
                 <FadeLoader color="#aaaaaa" radius={4} />
               </div>
             }
           >
-            <div className="w-full flex flex-col items-center">
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
+            <div className={`
+              w-full
+              flex
+              flex-col
+              items-center
+            `}>
+              <nav className={`
+                w-full
+                flex
+                justify-center
+                border-b
+                border-b-foreground/10
+                h-16
+              `}>
+                <div className={`
+                  w-full
+                  max-w-4xl
+                  flex
+                  justify-between
+                  items-center
+                  p-3
+                  text-sm
+                  text-foreground
+                `}>
                   <div />
                   <div>
                     <Link href="/" target="_self">
@@ -63,7 +90,15 @@ export default function Index(): JSX.Element {
                 </div>
               </nav>
 
-              <div className="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
+              <div className={`
+                w-11/12
+                animate-in
+                opacity-0
+                px-3
+                pt-16
+                lg:pt-24
+                text-foreground
+              `}>
                 <div className="mb-4">
                   <InputBox
                     label="Teater name"
@@ -71,7 +106,11 @@ export default function Index(): JSX.Element {
                     onClick={async (name: string) => await handleClick(name)}
                   />
                 </div>
-                <div className="h-[calc(100vh-theme(space.72))] lg:h-[calc(100vh-theme(space.80))] overflow-scroll">
+                <div className={`
+                  h-[calc(100vh-theme(space.72))]
+                  lg:h-[calc(100vh-theme(space.80))]
+                  overflow-scroll
+                `}>
                   <ul>
                     <For items={theaters}>
                       {({ item: theater }) => (

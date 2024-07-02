@@ -26,7 +26,14 @@ export function SignInButton(): JSX.Element {
     <>
       <Button
         onClick={() => void signInWithAzure()}
-        className="bg-green-500 rounded text-white text-xs px-2.5 py-2"
+        className={`
+          bg-green-500
+          rounded
+          text-white
+          text-xs
+          px-2.5
+          py-2
+        `}
       >
         Sign in
       </Button>

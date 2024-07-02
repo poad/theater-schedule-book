@@ -14,7 +14,8 @@ export function useTheaters() {
       .from('theaters')
       .select()
       .returns<Theater[]>()
-      .then(({ data, error }: { data: Theater[]; error: Error }) => {
+      .then((value) => {
+        const { data, error } = value;
         if (error) {
           setError(new Error(error.message));
         } else {

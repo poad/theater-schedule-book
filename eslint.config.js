@@ -6,8 +6,6 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 // @ts-ignore
 import importPlugin from 'eslint-plugin-import';
-
-// @ts-ignore
 import tseslint from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
 
