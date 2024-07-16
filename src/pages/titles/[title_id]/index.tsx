@@ -1,40 +1,35 @@
-'use client';
+import {
+  RiSystemDeleteBin2Line,
+  RiSystemCheckFill,
+  RiSystemCheckboxFill,
+} from 'solid-icons/ri';
+import { TbCalendarCancel } from 'solid-icons/tb';
+import { HiSolidUsers } from 'solid-icons/hi';
+import { ImEyeBlocked } from 'solid-icons/im';
+import { useParams } from '@solidjs/router';
+import { For, Show, createResource, createSignal, useContext } from 'solid-js';
+import { FadeLoader } from '../../../components/ui/FadeLoader';
+import InputBox from '../../../components/show';
+import { fetchTheaters } from '../../../features/theaters';
+import { Show as ShowData, Theater } from '../../../types';
+import { useTitle } from '../../../features/titles';
+import { useMutation } from '../../../mutation';
+import { Tooltip } from '../../../components/ui/tooltip';
+import { ErrorAlert } from '../../../components/ui/alert';
+import { ThroughableLine } from '../../../components/ui/TextDecoration/LineThrough';
+import { SupabaseSessionContext } from '../../../supabase';
 
-import { useRouter } from 'next/router';
-import { FadeLoader } from 'react-spinners';
-import InputBox from '~/components/show';
-import { useTheaters } from '~/features/theaters';
-import { Show as ShowItem, Theater } from '~/types';
-import { RiDeleteBin2Line, RiCheckFill, RiCheckboxFill } from 'react-icons/ri';
-import { TbCalendarCancel } from 'react-icons/tb';
-import { HiUsers } from 'react-icons/hi';
-import { ImEyeBlocked } from 'react-icons/im';
-import { useTitle } from '~/features/titles';
-import { Session, useSession } from '@supabase/auth-helpers-react';
-import { useMutation } from '~/mutation';
-import { useState } from 'react';
-import Tooltip from '~/components/ui/tooltip';
-import { For, Show } from '~/components/flows';
-import ErrorAlert from '~/components/ui/alert';
-import Link from '~/components/ui/Link';
-import ThroughableLine from '~/components/ui/TextDecoration/LineThrough';
+function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
+  const session = useContext(SupabaseSessionContext);
 
-function Main(props: {
-  id: string;
-  shows?: ShowItem[];
-  session: Session | null;
-  refetch: () => void;
-}): JSX.Element {
-  const { id, shows, session, refetch } = props;
-  const { theaters, error } = useTheaters();
-  const {
-    addShow,
-    updateShowViewed,
-    updateShowCanceled,
-    updateShowSkipped,
-    delShow,
-  } = useMutation(session);
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [theaters] = createResource(fetchTheaters);
+  const mutations = useMutation();
+  const addShow = mutations.addShow;
+  const updateShowViewed = mutations.updateShowViewed;
+  const updateShowCanceled = mutations.updateShowCanceled;
+  const updateShowSkipped = mutations.updateShowSkipped;
+  const delShow = mutations.delShow;
+  const [errorMessage, setErrorMessage] = createSignal<string>();
 
   if (!session) {
     return <></>;
@@ -55,21 +50,21 @@ function Main(props: {
       return new Error('Please select date');
     }
 
-    if (shows?.find((it) => it.show_date === showDate.getTime())) {
+    if (props.shows?.find((it) => it.show_date === showDate.getTime())) {
       return new Error('Already exists');
     }
 
-    const { error } = await addShow({
-      titleId: id,
+    const result = await addShow({
+      titleId: props.id,
       showDate,
       viewed,
       canceled,
       theaterId: theater.id,
       onSuccess: () => {
-        void refetch();
+        void props.refetch();
       },
     });
-    setErrorMessage(error?.message);
+    setErrorMessage(result?.error?.message);
   }
 
   async function handleClickCanceled(id: string) {
@@ -77,7 +72,7 @@ function Main(props: {
       id,
       status: true,
       onSuccess: () => {
-        void refetch();
+        void props.refetch();
       },
     });
   }
@@ -87,7 +82,7 @@ function Main(props: {
       id,
       status: true,
       onSuccess: () => {
-        void refetch();
+        void props.refetch();
       },
     });
   }
@@ -97,7 +92,7 @@ function Main(props: {
       id,
       skipped: true,
       onSuccess: () => {
-        void refetch();
+        void props.refetch();
       },
     });
   }
@@ -106,70 +101,38 @@ function Main(props: {
     await delShow({
       id,
       onSuccess: () => {
-        void refetch();
+        void props.refetch();
       },
     });
   }
 
   return (
     <Show
-      when={!error}
-      fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
+      when={!theaters()?.error}
+      fallback={
+        <ErrorAlert title="fetch error">
+          {theaters()?.error?.message}
+        </ErrorAlert>
+      }
     >
       <Show
-        when={!errorMessage}
-        fallback={<ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>}
+        when={!errorMessage()}
+        fallback={<ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>}
       >
         <Show
-          when={theaters}
+          when={theaters()}
           fallback={
-            <div className={`
-              h-screen
-              w-screen
-              flex
-              justify-center
-              items-center
-            `}>
-              <FadeLoader color="#aaaaaa" radius={4} />
+            <div class="h-screen w-screen flex justify-center items-center">
+              <FadeLoader />
             </div>
           }
         >
-          <div className={`
-            w-11/12
-            animate-in
-            gap-14
-            opacity-0
-            px-3
-            py-16
-            lg:py-24
-            text-foreground
-          `}>
-            <div className={`
-              overflow-x-auto
-              sm:-mx-6
-              lg:-mx-8
-            `}>
-              <div className={`
-                inline-block
-                min-w-full
-                py-2
-                sm:px-6
-                lg:px-8
-                mb-8
-              `}>
-                <div className="overflow-hidden">
-                  <table className={`
-                    min-w-full
-                    text-left
-                    text-sm
-                    font-light
-                    border-collapse
-                  `}>
-                    <thead className={`
-                      border-b
-                      font-medium
-                      dark:border-neutral-500
-                    `}>
+          <div class="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 mb-8">
+                <div class="overflow-hidden">
+                  <table class="min-w-full text-left text-sm font-light border-collapse">
+                    <thead class="border-b font-medium dark:border-neutral-500">
                       <tr>
                         <th>Viewed</th>
                         <th>Date</th>
@@ -179,61 +142,29 @@ function Main(props: {
                     </thead>
                     <tbody>
                       <For
-                        items={shows?.sort((a, b) => a.show_date - b.show_date)}
+                        each={props.shows?.sort(
+                          (a, b) => a.show_date - b.show_date,
+                        )}
                       >
-                        {({ item: show }) => (
-                          <tr
-                            key={`${show.id}`}
-                            className={`
-                              border-b
-                              dark:border-neutral-500
-                            `}
-                          >
-                            <td
-                              key={`${show.id}-datetime`}
-                              className={`
-                                whitespace-nowrap
-                                px-6
-                                py-4
-                              `}
-                            >
-                              {show.viewed ? <RiCheckFill /> : <></>}
+                        {(show) => (
+                          <tr class="border-b dark:border-neutral-500">
+                            <td class="whitespace-nowrap px-6 py-4">
+                              {show.viewed ? <RiSystemCheckFill /> : <></>}
                             </td>
-                            <td
-                              key={`${show.id}-datetime`}
-                              className={`
-                                whitespace-nowrap
-                                px-3
-                                py-4
-                              `}
-                            >
+                            <td class="whitespace-nowrap px-3 py-4">
                               <ThroughableLine strikethrough={show.canceled}>
                                 {new Date(show.show_date).toLocaleString()}
                                 <Tooltip text="Casts">
-                                  <HiUsers className="inline ml-2" />
+                                  <HiSolidUsers class="inline ml-2" />
                                 </Tooltip>
                               </ThroughableLine>
                             </td>
-                            <td
-                              key={`${show.id}-theater`}
-                              className={`
-                                whitespace-nowrap
-                                px-3
-                                py-4
-                              `}
-                            >
+                            <td class="whitespace-nowrap px-3 py-4">
                               <ThroughableLine strikethrough={show.canceled}>
                                 {show.theaters[0].name}
                               </ThroughableLine>
                             </td>
-                            <td
-                              key={`${show.id}-delete`}
-                              className={`
-                                whitespace-nowrap
-                                px-3
-                                py-4
-                              `}
-                            >
+                            <td class="whitespace-nowrap px-3 py-4">
                               <Show
                                 when={
                                   !show.canceled &&
@@ -248,14 +179,7 @@ function Main(props: {
                                 />
                               </Show>
                             </td>
-                            <td
-                              key={`${show.id}-delete`}
-                              className={`
-                                whitespace-nowrap
-                                px-3
-                                py-4
-                              `}
-                            >
+                            <td class="whitespace-nowrap px-3 py-4">
                               <Show
                                 when={
                                   !show.canceled &&
@@ -264,21 +188,14 @@ function Main(props: {
                                   new Date().getTime() >= show.show_date
                                 }
                               >
-                                <RiCheckboxFill
+                                <RiSystemCheckboxFill
                                   onClick={() =>
                                     void handleClickViewed(show.id)
                                   }
                                 />
                               </Show>
                             </td>
-                            <td
-                              key={`${show.id}-datetime`}
-                              className={`
-                                whitespace-nowrap
-                                px-3
-                                py-4
-                              `}
-                            >
+                            <td class="whitespace-nowrap px-3 py-4">
                               <Show
                                 when={
                                   !show.canceled &&
@@ -294,15 +211,8 @@ function Main(props: {
                                 />
                               </Show>
                             </td>
-                            <td
-                              key={`${show.id}-delete`}
-                              className={`
-                                whitespace-nowrap
-                                px-3
-                                py-4
-                              `}
-                            >
-                              <RiDeleteBin2Line
+                            <td class="whitespace-nowrap px-3 py-4">
+                              <RiSystemDeleteBin2Line
                                 onClick={() => void handleDelete(show.id)}
                               />
                             </td>
@@ -316,7 +226,7 @@ function Main(props: {
             </div>
             <div>
               <InputBox
-                theaters={theaters ?? []}
+                theaters={theaters()?.data ?? []}
                 onClick={async (data: {
                   showDate?: Date;
                   theater: Theater;
@@ -332,75 +242,47 @@ function Main(props: {
   );
 }
 
-export default function Shows(): JSX.Element {
-  const {
-    query: { title_id },
-  } = useRouter();
-  const session = useSession();
-  const { title, error, refetch } = useTitle({
-    id: title_id as string,
-  });
+export default function Shows() {
+  const params = useParams();
+  const [title, { refetch }] = createResource(
+    useTitle({
+      id: params.title_id,
+    }),
+  );
+
+  if (title()?.error) {
+    return (
+      <ErrorAlert title="fetch error">{title()?.error?.message}</ErrorAlert>
+    );
+  }
 
   return (
     <Show
-      when={!error}
-      fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
-    >
-      <Show
-        when={title}
-        fallback={
-          <div className={`
-            h-screen
-            w-screen
-            flex
-            justify-center
-            items-center
-          `}>
-            <FadeLoader color="#aaaaaa" radius={4} />
-          </div>
-        }
-      >
-        <div className={`
-          w-full
-          flex
-          flex-col
-          items-center
-        `}>
-          <nav className={`
-            w-full
-            flex
-            justify-center
-            border-b
-            border-b-foreground/10
-            h-16
-          `}>
-            <div className={`
-              w-full
-              max-w-4xl
-              flex
-              justify-between
-              items-center
-              p-3
-              text-sm
-              text-foreground
-            `}>
-              <div>{title?.name}</div>
-              <div>
-                <Link href="/" target="_self">
-                  Top
-                </Link>
-              </div>
-            </div>
-          </nav>
-
-          <Main
-            id={title_id as string}
-            shows={title?.shows}
-            session={session}
-            refetch={refetch}
-          />
+      when={!title.loading}
+      fallback={
+        <div class="h-screen w-screen flex justify-center items-center">
+          <FadeLoader />
         </div>
-      </Show>
+      }
+    >
+      <div class="w-full flex flex-col items-center">
+        <nav class="w-full flex justify-center border-b border-b-foreground/10 h-16">
+          <div class="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
+            <div>{title.name}</div>
+            <div>
+              <a href="/" target="_self">
+                Top
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <Main
+          id={params.title_id as string}
+          shows={title()?.data?.shows}
+          refetch={refetch}
+        />
+      </div>
     </Show>
   );
 }

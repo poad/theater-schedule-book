@@ -1,52 +1,21 @@
-'use client';
-
-import { useSession } from '@supabase/auth-helpers-react';
-import Titles from '~/components/titles';
-import Header from '~/components/header';
-import Link from '~/components/ui/Link';
-import { Show } from '~/components/flows';
+import { Titles } from '../../components/titles';
+import { Header } from '../../components/header';
 
 function Main() {
-  const session = useSession();
-  return (
-    <Show when={session} fallback={<></>}>
-      <Titles session={session!} />
-    </Show>
-  );
+  return <Titles />;
 }
 
-export default function Index(): JSX.Element {
+export default function Index() {
   return (
-    <div className={`
-      w-full
-      flex
-      flex-col
-      items-center
-    `}>
-      <nav className={`
-        w-full
-        flex
-        justify-center
-        border-b
-        border-b-foreground/10
-        h-16
-      `}>
-        <div className={`
-          w-full
-          max-w-4xl
-          flex
-          justify-between
-          items-center
-          p-3
-          text-sm
-          text-foreground
-        `}>
+    <div class="w-full flex flex-col items-center">
+      <nav class="w-full flex justify-center border-b border-b-foreground/10 h-16">
+        <div class="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
           <div />
           <Header />
           <div>
-            <Link href="/" target="_self">
+            <a href="/" target="_self">
               Top
-            </Link>
+            </a>
           </div>
         </div>
       </nav>

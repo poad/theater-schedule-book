@@ -1,15 +1,13 @@
-import { useState } from 'react';
-import { Button } from '@headlessui/react';
-import { Show } from '~/components/flows';
-import { ErrorAlert } from '~/components/ui/alert';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { Button } from 'terracotta';
+import { Show, createSignal } from 'solid-js';
+import { ErrorAlert } from '../components/ui/alert';
+import { supabase } from '../supabase';
 
-export function SignInButton(): JSX.Element {
-  const supabase = useSupabaseClient();
-  const [errors, setErrors] = useState<Error>();
+export function SignInButton() {
+  const [errors, setErrors] = createSignal<Error>();
 
   async function signInWithAzure() {
-    const reposnse = await supabase.auth.signInWithOAuth({
+    const response = await supabase.auth.signInWithOAuth({
       provider: 'azure',
       options: {
         scopes: 'email offline_access',
@@ -17,8 +15,8 @@ export function SignInButton(): JSX.Element {
           typeof window !== 'undefined' ? window.location.origin : undefined,
       },
     });
-    if (reposnse.error) {
-      setErrors(reposnse.error);
+    if (response?.error) {
+      setErrors(response.error);
     }
   }
 
@@ -26,19 +24,12 @@ export function SignInButton(): JSX.Element {
     <>
       <Button
         onClick={() => void signInWithAzure()}
-        className={`
-          bg-green-500
-          rounded
-          text-white
-          text-xs
-          px-2.5
-          py-2
-        `}
+        class="bg-green-500 rounded text-white text-xs px-2.5 py-2"
       >
         Sign in
       </Button>
-      <Show when={errors}>
-        <ErrorAlert title="Failed to Sign In">{errors?.message}</ErrorAlert>
+      <Show when={errors()}>
+        <ErrorAlert title="Failed to Sign In">{errors()?.message}</ErrorAlert>
       </Show>
     </>
   );

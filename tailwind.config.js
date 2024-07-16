@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/react-tailwind-datetime-picker/dist/index.esm.mjs',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {

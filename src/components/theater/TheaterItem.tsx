@@ -1,38 +1,32 @@
-import { Theater } from '~/types';
-import { RiEdit2Line, RiDeleteBin2Line } from 'react-icons/ri';
-import { Show } from '~/components/flows';
+import { RiDesignEdit2Line, RiSystemDeleteBin2Line } from 'solid-icons/ri';
+import { Show } from 'solid-js';
+import { Theater } from '../../types';
 
 export function TheaterItem(props: {
   theater: Theater;
   onDelete?: (theater: Theater) => void;
   onUpdate?: (theater: Theater) => void;
-}): JSX.Element {
-  const {
-    theater,
-    onDelete,
-    onUpdate,
-  } = props;
-
+}) {
   function handleDeleteClick(): void {
-    onDelete?.(theater);
+    props.onDelete?.(props.theater);
   }
 
   function handleEditClick(): void {
-    onUpdate?.(theater);
+    props.onUpdate?.(props.theater);
   }
 
   return (
-    <li key={theater.id} className="m-1 ml-3">
+    <li class="m-1 ml-3">
       <span>
-        {theater.name}
-        <Show when={onUpdate}>
-          <RiEdit2Line
+        {props.theater.name}
+        <Show when={props.onUpdate}>
+          <RiDesignEdit2Line
             style={{ display: 'inline' }}
             onClick={() => handleEditClick()}
           />
         </Show>
-        <Show when={onDelete}>
-          <RiDeleteBin2Line
+        <Show when={props.onDelete}>
+          <RiSystemDeleteBin2Line
             style={{ display: 'inline' }}
             onClick={() => handleDeleteClick()}
           />

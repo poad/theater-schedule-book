@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { Input, Label, Button, Field } from '@headlessui/react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Show } from '~/components/flows';
-
+import { Button } from 'terracotta';
+import { Show, createSignal } from 'solid-js';
+import { reset, createForm, SubmitHandler } from '@modular-forms/solid';
 type Inputs = {
   name: string;
 };
@@ -11,78 +9,56 @@ export function NameInputBox(props: {
   label: string;
   placeholder: string;
   onClick: (value: string) => Promise<Error | undefined>;
-}): JSX.Element {
-  const { label, placeholder, onClick } = props;
-
-  const [error, setError] = useState<Error>();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<Inputs>();
+}) {
+  const [error, setError] = createSignal<Error>();
+  const [
+    form, { Form, Field },
+  ] = createForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const name = data.name ?? '';
-    const error = await onClick(name);
+    const error = await props.onClick(name);
     if (error) {
       setError(error);
       return;
     }
-    reset();
+    reset(form);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} action="">
-      <Field>
-        <Label className="name" htmlFor="name">
-          <div>{label}</div>
-        </Label>
-        <div className={`
-          border
-          border-gray-400
-          w-[calc(90vw)]
-          rounded
-          p-0.5
-          flex
-          items-center
-          justify-center
-        `}>
-          <Input
-            id="name"
-            type="text"
-            placeholder={placeholder}
-            key="name-input"
-            pattern=".{2,}"
-            className="p-1 inline w-full relative"
-            {...register('name', { required: true })}
-          />
+    <Form onSubmit={onSubmit} action="">
+      <div>
+        <label class="name" for="name">
+          <div>{props.label}</div>
+        </label>
+        <div class="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+          <Field name="name" type="string">
+            {(field, inputProps) => (<>
+              <input
+                id={field.name}
+                type="text"
+                {...inputProps}
+                placeholder={props.placeholder}
+                pattern=".{2,}"
+                class="p-1 inline w-full relative"
+                value={field.value ?? ''}
+                required
+              />
+              <Show when={field.error}><div class="text-red-500">{field.error}</div></Show></>
+            )}
+          </Field>
           <Button
             type="submit"
-            className={`
-              mr-auto
-              bg-green-500
-              rounded
-              text-white
-              text-xs
-              px-2.5
-              py-2
-              inline-block
-            `}
+            class="mr-auto bg-green-500 rounded text-white text-xs px-2.5 py-2 inline-block"
           >
             Save
           </Button>
         </div>
-        <Show when={errors.name}>
-          <span className="text-red-500">
-            {errors.name?.message ?? '名前を入力してください。'}
-          </span>
+        <Show when={error()}>
+          <span class="text-red-500">{error()?.message}</span>
         </Show>
-        <Show when={error}>
-          <span className="text-red-500">{error?.message}</span>
-        </Show>
-      </Field>
-    </form>
+      </div>
+    </Form>
   );
 }
 

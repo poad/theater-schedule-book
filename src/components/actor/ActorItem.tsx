@@ -1,38 +1,32 @@
-import { Actor } from '~/types';
-import { RiEdit2Line, RiDeleteBin2Line } from 'react-icons/ri';
-import { Show } from '~/components/flows';
+import { Actor } from '../../types';
+import { RiDesignEdit2Line, RiSystemDeleteBin2Line } from 'solid-icons/ri';
+import { Show } from 'solid-js';
 
 export function ActorItem(props: {
   actor: Actor;
   onDelete?: (actor: Actor) => void;
   onUpdate?: (actor: Actor) => void;
-}): JSX.Element {
-  const {
-    actor,
-    onDelete,
-    onUpdate,
-  } = props;
-
+}) {
   function handleDeleteClick(): void {
-    onDelete?.(actor);
+    props.onDelete?.(props.actor);
   }
 
   function handleEditClick(): void {
-    onUpdate?.(actor);
+    props.onUpdate?.(props.actor);
   }
 
   return (
-    <li key={actor.id} className="m-1 ml-3">
+    <li class="m-1 ml-3">
       <span>
-        {actor.name}
-        <Show when={onUpdate}>
-          <RiEdit2Line
+        {props.actor.name}
+        <Show when={props.onUpdate}>
+          <RiDesignEdit2Line
             style={{ display: 'inline' }}
             onClick={() => handleEditClick()}
           />
         </Show>
-        <Show when={onDelete}>
-          <RiDeleteBin2Line
+        <Show when={props.onDelete}>
+          <RiSystemDeleteBin2Line
             style={{ display: 'inline' }}
             onClick={() => handleDeleteClick()}
           />

@@ -1,121 +1,79 @@
-'use client';
+import { For, Show, createResource, createSignal, useContext } from 'solid-js';
+import { FadeLoader } from '../../components/ui/FadeLoader';
+import { fetchTheaters } from '../../features/theaters';
+import { TheaterItem } from '../../components/theater';
+import { NameInputBox as InputBox } from '../../components/ui/NameInputBox';
+import { useMutation } from '../../mutation';
+import { ErrorAlert } from '../../components/ui/alert';
+import { SupabaseSessionContext } from '../../supabase';
 
-import { FadeLoader } from 'react-spinners';
-import { useTheaters } from '~/features/theaters';
-import TheaterItem from '~/components/theater';
-import { NameInputBox as InputBox } from '~/components/ui/NameInputBox';
-import { useSession } from '@supabase/auth-helpers-react';
-import { useMutation } from '~/mutation';
-import { useState } from 'react';
-import { For, Show } from '~/components/flows';
-import ErrorAlert from '~/components/ui/alert';
-import Link from '~/components/ui/Link';
+export default function Index() {
+  const session = useContext(SupabaseSessionContext);
+  const { addTheater } = useMutation();
+  const [errorMessage, setErrorMessage] = createSignal<string>();
 
-export default function Index(): JSX.Element {
-  const session = useSession();
-  const { theaters, error, refetch } = useTheaters();
-  const { addTheater } = useMutation(session);
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [theaters, { refetch }] = createResource(fetchTheaters);
 
   async function handleClick(name: string): Promise<Error | undefined> {
     if (name.length === 0) {
       return new Error('Input to theater name');
     }
 
-    if (theaters?.find((theater) => theater.name === name)) {
+    if (theaters()?.data?.find((theater) => theater.name === name)) {
       return new Error('Always exists');
     }
 
-    const { error } = await addTheater({
+    const result = await addTheater({
       name,
       onSuccess: () => void refetch(),
     });
-    setErrorMessage(error?.message);
+    setErrorMessage(result?.error?.message);
   }
 
   return (
     <Show when={session}>
       <Show
-        when={!error}
-        fallback={<ErrorAlert title="fetch error">{error?.message}</ErrorAlert>}
+        when={!theaters()?.error}
+        fallback={<ErrorAlert title="fetch error">{theaters()?.error?.message}</ErrorAlert>}
       >
         <Show
-          when={!errorMessage}
-          fallback={<ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>}
+          when={!errorMessage()}
+          fallback={
+            <ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>
+          }
         >
           <Show
             when={theaters}
             fallback={
-              <div className={`
-                h-screen
-                w-screen
-                flex
-                justify-center
-                items-center
-              `}>
-                <FadeLoader color="#aaaaaa" radius={4} />
+              <div class="h-screen w-screen flex justify-center items-center">
+                <FadeLoader />
               </div>
             }
           >
-            <div className={`
-              w-full
-              flex
-              flex-col
-              items-center
-            `}>
-              <nav className={`
-                w-full
-                flex
-                justify-center
-                border-b
-                border-b-foreground/10
-                h-16
-              `}>
-                <div className={`
-                  w-full
-                  max-w-4xl
-                  flex
-                  justify-between
-                  items-center
-                  p-3
-                  text-sm
-                  text-foreground
-                `}>
+            <div class="w-full flex flex-col items-center">
+              <nav class="w-full flex justify-center border-b border-b-foreground/10 h-16">
+                <div class="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
                   <div />
                   <div>
-                    <Link href="/" target="_self">
+                    <a href="/" target="_self">
                       Top
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </nav>
 
-              <div className={`
-                w-11/12
-                animate-in
-                opacity-0
-                px-3
-                pt-16
-                lg:pt-24
-                text-foreground
-              `}>
-                <div className="mb-4">
+              <div class="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
+                <div class="mb-4">
                   <InputBox
                     label="Teater name"
                     placeholder="name of theater to add"
                     onClick={async (name: string) => await handleClick(name)}
                   />
                 </div>
-                <div className={`
-                  h-[calc(100vh-theme(space.72))]
-                  lg:h-[calc(100vh-theme(space.80))]
-                  overflow-scroll
-                `}>
+                <div class="h-[calc(100vh-theme(space.72))] lg:h-[calc(100vh-theme(space.80))] overflow-scroll">
                   <ul>
-                    <For items={theaters}>
-                      {({ item: theater }) => (
-                        <TheaterItem key={theater.id} theater={theater} />
-                      )}
+                    <For each={theaters()?.data}>
+                      {(theater) => <TheaterItem theater={theater} />}
                     </For>
                   </ul>
                 </div>

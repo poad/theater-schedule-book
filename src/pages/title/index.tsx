@@ -1,22 +1,19 @@
-'use client';
-
-import { FadeLoader } from 'react-spinners';
-import { useTitles } from '~/features/titles';
-import InputBox from '~/components/title';
-import { useSession } from '@supabase/auth-helpers-react';
-import { useMutation } from '~/mutation';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Show } from '~/components/flows';
-import ErrorAlert from '~/components/ui/alert';
-import Link from '~/components/ui/Link';
+import { Show, createResource, createSignal, useContext } from 'solid-js';
+import { useNavigate } from '@solidjs/router';
+import { FadeLoader } from '../../components/ui/FadeLoader';
+import { fetchTitles } from '../../features/titles';
+import { InputBox } from '../../components/title';
+import { useMutation } from '../../mutation';
+import { ErrorAlert } from '../../components/ui/alert';
+import { SupabaseSessionContext } from '../../supabase';
 
 function Main() {
-  const session = useSession();
-  const { titles, error } = useTitles();
-  const { addTitle } = useMutation(session);
-  const [errorMessage, setErrorMessage] = useState<string>();
-  const router = useRouter();
+  const session = useContext(SupabaseSessionContext);
+
+  const [titles, loading] = createResource(fetchTitles);
+  const { addTitle } = useMutation();
+  const [errorMessage, setErrorMessage] = createSignal<string>();
+  const navigate = useNavigate();
 
   async function handleClick({
     name,
@@ -35,59 +32,44 @@ function Main() {
       return { year: new Error('Input to title year') };
     }
 
-    if (titles?.find((title) => title.name === name && title.year === year)) {
+    if (titles()?.data?.find((title) => title.name === name && title.year === year)) {
       return { name: new Error('Always exists') };
     }
 
-    const { error } = await addTitle({
+    const result = await addTitle({
       name,
       year,
       url,
-      onSuccess: () => void router.push('/'),
+      onSuccess: () => void navigate('/', { replace: true }),
     });
-    if (error) {
-      setErrorMessage(error.message);
+    if (result?.error) {
+      setErrorMessage(result?.error.message);
     }
   }
 
   return (
     <Show when={session}>
       <Show
-        when={titles}
+        when={loading}
         fallback={
-          <div className={`
-            h-screen
-            w-screen
-            flex
-            justify-center
-            items-center
-          `}>
-            <FadeLoader color="#aaaaaa" radius={4} />
+          <div class="h-screen w-screen flex justify-center items-center">
+            <FadeLoader />
           </div>
         }
       >
         <Show
-          when={!error}
+          when={!titles()?.error}
           fallback={
-            <ErrorAlert title="fetch error">{error?.message}</ErrorAlert>
+            <ErrorAlert title="fetch error">{titles()?.error?.message}</ErrorAlert>
           }
         >
           <Show
-            when={!errorMessage}
+            when={!errorMessage()}
             fallback={
-              <ErrorAlert title="fetch error">{errorMessage}</ErrorAlert>
+              <ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>
             }
           >
-            <div className={`
-              w-11/12
-              animate-in
-              gap-14
-              opacity-0
-              px-3
-              py-16
-              lg:py-24
-              text-foreground
-            `}>
+            <div class="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
               <div>
                 <InputBox
                   labelName="Title name"
@@ -109,37 +91,16 @@ function Main() {
   );
 }
 
-export default function Index(): JSX.Element {
+export default function Index() {
   return (
-    <div className={`
-      w-full
-      flex
-      flex-col
-      items-center
-    `}>
-      <nav className={`
-        w-full
-        flex
-        justify-center
-        border-b
-        border-b-foreground/10
-        h-16
-      `}>
-        <div className={`
-          w-full
-          max-w-4xl
-          flex
-          justify-between
-          items-center
-          p-3
-          text-sm
-          text-foreground
-        `}>
+    <div class="w-full flex flex-col items-center">
+      <nav class="w-full flex justify-center border-b border-b-foreground/10 h-16">
+        <div class="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
           <div />
           <div>
-            <Link href="/" target="_self">
+            <a href="/" target="_self">
               Top
-            </Link>
+            </a>
           </div>
         </div>
       </nav>

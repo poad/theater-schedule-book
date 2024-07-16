@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { Input, Label, Button, Field } from '@headlessui/react';
-import { Show } from '~/components/flows';
+import { Show, createSignal } from 'solid-js';
+import { Button } from 'terracotta';
 
 export function InputBox(props: {
   labelName: string;
@@ -12,19 +11,16 @@ export function InputBox(props: {
     year?: number;
     url?: string;
   }) => Promise<{ name?: Error; url?: Error; year?: Error } | undefined>;
-}): JSX.Element {
-  const { labelName, placeholderName, labelUrl, placeholderUrl, onClick } =
-    props;
-
-  const [name, setName] = useState<string>('');
-  const [url, setUrl] = useState<string>('');
-  const [year, setYear] = useState<number>(new Date().getFullYear());
-  const [nameError, setNameError] = useState<string>();
-  const [urlError, setUrlError] = useState<string>();
-  const [yearError, setYearError] = useState<string>();
+}) {
+  const [name, setName] = createSignal<string>('');
+  const [url, setUrl] = createSignal<string>('');
+  const [year, setYear] = createSignal<number>(new Date().getFullYear());
+  const [nameError, setNameError] = createSignal<string>();
+  const [urlError, setUrlError] = createSignal<string>();
+  const [yearError, setYearError] = createSignal<string>();
 
   async function handleClick() {
-    const error = await onClick({ name, year, url });
+    const error = await props.onClick({ name: name(), year: year(), url: url() });
     if (error?.name || error?.url || error?.year) {
       setNameError(error?.name?.message);
       setUrlError(error?.url?.message);
@@ -38,109 +34,69 @@ export function InputBox(props: {
 
   return (
     <>
-      <Field className="mb-8">
-        <Label className="name" htmlFor="name">
-          <div>{labelName}</div>
-        </Label>
-        <div className={`
-          border
-          border-gray-400
-          w-[calc(90vw)]
-          rounded
-          p-0.5
-          flex
-          items-center
-          justify-center
-        `}>
-          <Input
+      <div class="mb-8">
+        <label class="name" for="name">
+          <div>{props.labelName}</div>
+        </label>
+        <div class="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+          <input
             id="name"
             type="text"
-            placeholder={placeholderName}
-            key="name-input"
+            placeholder={props.placeholderName}
             pattern=".{2,}"
-            className="p-1 inline w-full relative"
+            class="p-1 inline w-full relative"
             onChange={(event) => setName(event.target.value)}
-            value={name}
+            value={name()}
           />
         </div>
-        <Show when={nameError}>
-          <span className="text-red-500">{nameError}</span>
+        <Show when={nameError()}>
+          <span class="text-red-500">{nameError()}</span>
         </Show>
-      </Field>
-      <Field className="mb-8">
-        <Label className="url" htmlFor="url">
-          <div>{labelUrl}</div>
-        </Label>
-        <div className={`
-          border
-          border-gray-400
-          w-[calc(90vw)]
-          rounded
-          p-0.5
-          flex
-          items-center
-          justify-center
-        `}>
-          <Input
+      </div>
+      <div class="mb-8">
+        <label class="url" for="url">
+          <div>{props.labelUrl}</div>
+        </label>
+        <div class="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+          <input
             id="url"
             type="text"
-            placeholder={placeholderUrl}
-            key="url-input"
+            placeholder={props.placeholderUrl}
             pattern=".{2,}"
-            className="p-1 inline w-full relative"
+            class="p-1 inline w-full relative"
             onChange={(event) => setUrl(event.target.value)}
-            value={url}
+            value={url()}
           />
         </div>
         <Show when={urlError}>
-          <span className="text-red-500">{urlError}</span>
+          <span class="text-red-500">{urlError()}</span>
         </Show>
-      </Field>
-      <Field className="mb-8">
-        <Label className="year" htmlFor="year">
+      </div>
+      <div class="mb-8">
+        <label class="year" for="year">
           <div>Year</div>
-        </Label>
-        <div className={`
-          border
-          border-gray-400
-          w-[calc(90vw)]
-          rounded
-          p-0.5
-          flex
-          items-center
-          justify-center
-        `}>
-          <Input
+        </label>
+        <div class="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
+          <input
             id="year"
             type="number"
             placeholder="title begin year"
-            key="url-input"
             pattern=".{4}"
-            className="p-1 inline w-full relative"
+            class="p-1 inline w-full relative"
             onChange={(event) => setYear(event.target.valueAsNumber)}
             min={2014}
             max={9999}
-            value={year}
+            value={year()}
           />
         </div>
         <Show when={yearError}>
-          <span className="text-red-500">{yearError}</span>
+          <span class="text-red-500">{yearError()}</span>
         </Show>
-      </Field>
+      </div>
       <Button
-        key="save"
         onClick={() => void handleClick()}
         type="submit"
-        className={`
-          mr-auto
-          bg-green-500
-          rounded
-          text-white
-          text-xs
-          px-2.5
-          py-2
-          inline-block
-        `}
+        class="mr-auto bg-green-500 rounded text-white text-xs px-2.5 py-2 inline-block"
       >
         Save
       </Button>
