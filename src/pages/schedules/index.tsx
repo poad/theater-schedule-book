@@ -1,4 +1,4 @@
-import { Schedules } from '../../components/schedules';
+import { Schedules } from '../../feature/schedule';
 
 export default function Index() {
   return (

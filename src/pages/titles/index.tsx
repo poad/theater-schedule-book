@@ -1,5 +1,5 @@
-import { Titles } from '../../components/titles';
-import { Header } from '../../components/header';
+import { Titles } from '../../feature/title';
+import { Header } from '../../feature/ui';
 
 function Main() {
   return <Titles />;

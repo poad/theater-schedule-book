@@ -1,5 +1,5 @@
-import Schedules from '../components/schedules';
-import Header from '../components/header';
+import { Schedules } from '../feature/schedule';
+import { Header } from '../feature/ui';
 
 export default function Index() {
   return (

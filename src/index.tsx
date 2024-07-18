@@ -2,7 +2,7 @@ import { render } from 'solid-js/web';
 import { Router } from '@solidjs/router';
 import routes from '~solid-pages';
 import { Suspense } from 'solid-js';
-import { SupabaseSessionProvider } from './supabase/';
+import { SupabaseSessionProvider } from './feature/supabase/';
 import './index.css';
 
 const root = document.getElementById('root');
