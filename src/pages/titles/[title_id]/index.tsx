@@ -8,16 +8,13 @@ import { HiSolidUsers } from 'solid-icons/hi';
 import { ImEyeBlocked } from 'solid-icons/im';
 import { useParams } from '@solidjs/router';
 import { For, Show, createResource, createSignal, useContext } from 'solid-js';
-import { FadeLoader } from '../../../components/ui/FadeLoader';
-import InputBox from '../../../components/show';
-import { fetchTheaters } from '../../../features/theaters';
 import { Show as ShowData, Theater } from '../../../types';
-import { useTitle } from '../../../features/titles';
-import { useMutation } from '../../../mutation';
-import { Tooltip } from '../../../components/ui/tooltip';
-import { ErrorAlert } from '../../../components/ui/alert';
-import { ThroughableLine } from '../../../components/ui/TextDecoration/LineThrough';
-import { SupabaseSessionContext } from '../../../supabase';
+import InputBox from '../../../feature/show';
+import { fetchTheaters } from '../../../feature/theater';
+import { useTitle } from '../../../feature/title';
+import { useMutation } from '../../../feature/mutations';
+import { Tooltip, ErrorAlert, FadeLoader, ThroughableLine } from '../../../feature/ui';
+import { SupabaseSessionContext } from '../../../feature/supabase';
 
 function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
   const session = useContext(SupabaseSessionContext);

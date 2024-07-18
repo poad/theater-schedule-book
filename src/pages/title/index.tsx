@@ -1,11 +1,9 @@
 import { Show, createResource, createSignal, useContext } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
-import { FadeLoader } from '../../components/ui/FadeLoader';
-import { fetchTitles } from '../../features/titles';
-import { InputBox } from '../../components/title';
-import { useMutation } from '../../mutation';
-import { ErrorAlert } from '../../components/ui/alert';
-import { SupabaseSessionContext } from '../../supabase';
+import { fetchTitles, InputBox } from '../../feature/title';
+import { useMutation } from '../../feature/mutations';
+import { FadeLoader, ErrorAlert } from '../../feature/ui';
+import { SupabaseSessionContext } from '../../feature/supabase';
 
 function Main() {
   const session = useContext(SupabaseSessionContext);
