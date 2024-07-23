@@ -1,4 +1,4 @@
-name: Deploy Next.js site to Cloudflare Pages
+name: Deploy solid.js site to Cloudflare Pages
 
 on:
   push:
