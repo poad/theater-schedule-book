@@ -28,12 +28,7 @@ export default tseslint.config(
       'src/stories',
       '**/*.css',
       'node_modules/**/*',
-      './.next/*',
-      'out',
-      '.storybook',
       'dist',
-      '.vinxi',
-      '.output',
     ],
   },
   {
