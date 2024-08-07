@@ -28,7 +28,7 @@
     "@rnwonder/solid-date-picker": "^1.4.0",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.45.0",
+    "@supabase/supabase-js": "^2.45.1",
     "solid-icons": "^1.1.0",
     "terracotta": "^1.0.5"
   },
@@ -51,7 +51,7 @@
     "css-loader": "^7.1.2",
     "eslint": "^9.8.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-promise": "^7.0.0",
+    "eslint-plugin-promise": "^7.1.0",
     "eslint-plugin-solid": "^0.14.1",
     "jsdom": "^24.1.1",
     "postcss": "^8.4.41",
