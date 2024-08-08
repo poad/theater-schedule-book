@@ -25,10 +25,10 @@
   },
   "dependencies": {
     "@modular-forms/solid": "^0.22.1",
-    "@rnwonder/solid-date-picker": "^1.3.8",
+    "@rnwonder/solid-date-picker": "^1.4.0",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.45.0",
+    "@supabase/supabase-js": "^2.45.1",
     "solid-icons": "^1.1.0",
     "terracotta": "^1.0.5"
   },
@@ -47,22 +47,22 @@
     "@types/node": "^20.14.14",
     "@vitest/coverage-v8": "^2.0.5",
     "@vitest/ui": "^2.0.5",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "css-loader": "^7.1.2",
     "eslint": "^9.8.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-solid": "^0.14.1",
     "jsdom": "^24.1.1",
-    "postcss": "^8.4.40",
+    "postcss": "^8.4.41",
     "postcss-loader": "^8.1.1",
     "rimraf": "^6.0.1",
     "solid-js": "^1.8.19",
     "style-loader": "^4.0.0",
-    "tailwindcss": "^3.4.7",
+    "tailwindcss": "^3.4.8",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.18.0",
-    "vite": "^5.3.5",
+    "vite": "^5.4.0",
     "vite-plugin-pages": "^0.32.3",
     "vite-plugin-solid": "^2.10.2",
     "vitest": "^2.0.5"
@@ -72,5 +72,5 @@
     "yarn": "use pnpm please!",
     "pnpm": ">=9.0.0"
   },
-  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
+  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf"
 }
