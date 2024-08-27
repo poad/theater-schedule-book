@@ -12,7 +12,7 @@ function Menu() {
       when={session}
       fallback={
         <Auth
-          supabaseClient={supabase!}
+          supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           onlyThirdPartyProviders
           redirectTo={

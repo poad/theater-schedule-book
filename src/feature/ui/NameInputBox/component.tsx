@@ -1,9 +1,9 @@
 import { Button } from 'terracotta';
 import { Show, createSignal } from 'solid-js';
 import { reset, createForm, SubmitHandler } from '@modular-forms/solid';
-type Inputs = {
+interface Inputs {
   name: string;
-};
+}
 
 export function NameInputBox(props: {
   label: string;

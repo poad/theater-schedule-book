@@ -7,7 +7,9 @@ import stylisticTs from '@stylistic/eslint-plugin-ts';
 import stylisticJsx from '@stylistic/eslint-plugin-jsx';
 import tseslint from 'typescript-eslint';
 // @ts-ignore
-import eslintImport from "eslint-plugin-import";
+import importPlugin from 'eslint-plugin-import';
+import importRecommented from 'eslint-plugin-import/config/recommended.js';
+import { fixupPluginRules } from '@eslint/compat';
 
 import solid from 'eslint-plugin-solid';
 
@@ -19,7 +21,8 @@ const compat = new FlatCompat();
 
 export default tseslint.config(
   eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+  ...tseslint.configs.strict,
+  ...tseslint.configs.stylistic,
   {
     ignores: [
       '**/*.d.ts',
@@ -33,31 +36,24 @@ export default tseslint.config(
   },
   {
     files: ['src/*.{ts,tsx}', 'src/**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: 'module',
+      },
+    },
     plugins: {
+      import: fixupPluginRules(importPlugin),
       '@stylistic': stylistic,
       '@stylistic/ts': stylisticTs,
       '@stylistic/jsx': stylisticJsx,
-    },
-    rules: {
-      '@stylistic/semi': 'error',
-      '@stylistic/ts/indent': ['error', 2],
-      '@stylistic/jsx/jsx-indent': ['error', 2],
-      "comma-dangle": ["error", "always-multiline"],
-      "quotes": ["error", "single"]
-    },
-  },
-  {
-    files: ['src/**/*.{ts,tsx}'],
-    plugins: {
-      import: eslintImport,
       solid,
     },
-    extends: [
-      ...tseslint.configs.recommended,
-      ...compat.config(eslintImport.configs.recommended),
-      ...compat.config(eslintImport.configs.typescript),
-    ],
     settings: {
+      'import/parsers': {
+        espree: ['.js', '.cjs', '.mjs'],
+        '@typescript-eslint/parser': ['.ts'],
+      },
       'import/internal-regex': '^~/',
       'import/resolver': {
         node: {
@@ -69,6 +65,13 @@ export default tseslint.config(
       },
     },
     rules: {
+      ...importRecommented.rules,
+      '@stylistic/semi': 'error',
+      '@stylistic/ts/indent': ['error', 2],
+      '@stylistic/jsx/jsx-indent': ['error', 2],
+      "comma-dangle": ["error", "always-multiline"],
+      "quotes": ["error", "single"],
+      'semi': ["error", "always"],
       'import/namespace': 'off',
       'import/named': 'off',
       'import/no-named-as-default': 'off',
@@ -78,10 +81,5 @@ export default tseslint.config(
       'import/default': 'off',
       'import/export': 'off',
     }
-  },
-  {
-    rules: {
-      semi: ["error", "always"],
-    },
   },
 );
