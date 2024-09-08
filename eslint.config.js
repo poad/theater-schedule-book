@@ -31,7 +31,7 @@ export default tseslint.config(
     ...importPlugin.flatConfigs.recommended,
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 2022,
+        ecmaVersion: 'latest',
         sourceType: 'module',
       },
     },
