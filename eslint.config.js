@@ -8,16 +8,8 @@ import stylisticJsx from '@stylistic/eslint-plugin-jsx';
 import tseslint from 'typescript-eslint';
 // @ts-ignore
 import importPlugin from 'eslint-plugin-import';
-import importRecommented from 'eslint-plugin-import/config/recommended.js';
-import { fixupPluginRules } from '@eslint/compat';
 
 import solid from 'eslint-plugin-solid';
-
-// @ts-ignore
-import { FlatCompat } from '@eslint/eslintrc';
-
-const compat = new FlatCompat();
-
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -35,7 +27,8 @@ export default tseslint.config(
     ],
   },
   {
-    files: ['src/*.{ts,tsx}', 'src/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
+    ...importPlugin.flatConfigs.recommended,
     languageOptions: {
       parserOptions: {
         ecmaVersion: 2022,
@@ -43,7 +36,6 @@ export default tseslint.config(
       },
     },
     plugins: {
-      import: fixupPluginRules(importPlugin),
       '@stylistic': stylistic,
       '@stylistic/ts': stylisticTs,
       '@stylistic/jsx': stylisticJsx,
@@ -65,21 +57,12 @@ export default tseslint.config(
       },
     },
     rules: {
-      ...importRecommented.rules,
       '@stylistic/semi': 'error',
       '@stylistic/ts/indent': ['error', 2],
       '@stylistic/jsx/jsx-indent': ['error', 2],
       "comma-dangle": ["error", "always-multiline"],
       "quotes": ["error", "single"],
       'semi': ["error", "always"],
-      'import/namespace': 'off',
-      'import/named': 'off',
-      'import/no-named-as-default': 'off',
-      'import/no-named-as-default-member': 'off',
-      'import/no-unresolved': 'off',
-      'import/no-duplicates': 'off',
-      'import/default': 'off',
-      'import/export': 'off',
     }
   },
 );
