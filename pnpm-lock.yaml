@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@modular-forms/solid':
-        specifier: ^0.22.1
-        version: 0.22.1(solid-js@1.8.22)(typescript@5.5.4)
+        specifier: ^0.23.0
+        version: 0.23.0(solid-js@1.8.22)(typescript@5.5.4)
       '@rnwonder/solid-date-picker':
         specifier: ^1.4.1
         version: 1.4.1(solid-js@1.8.22)
@@ -450,8 +450,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@modular-forms/solid@0.22.1':
-    resolution: {integrity: sha512-l6p/erp9k5bAFZDLVVLyyFTp+JQsp+wxsmuaT8n7BMllHDDVblkMlerB7PxmwXPnZbB5sTetVu2onzYq6rlMrQ==}
+  '@modular-forms/solid@0.23.0':
+    resolution: {integrity: sha512-6Nb0g01T275iszl96+JI/ozFZk9dD2TYxgFVTacVb9KXP/Yg4HgJnD94eMC70EYogbvcQU4O+XTi/wJhfNLPgg==}
     peerDependencies:
       solid-js: ^1.3.1
 
@@ -999,8 +999,8 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  caniuse-lite@1.0.30001658:
-    resolution: {integrity: sha512-N2YVqWbJELVdrnsW5p+apoQyYt51aBMSsBZki1XZEfeBCexcM/sf4xiAHcXQBkuOwJBXtWF7aW1sYX6tKebPHw==}
+  caniuse-lite@1.0.30001659:
+    resolution: {integrity: sha512-Qxxyfv3RdHAfJcXelgf0hU4DFUVXBGTjqrBUZLUh8AtlGnsDo+CnncYtTd95+ZKfnANUOzxyIQCuU/UeBZBYoA==}
 
   chai@5.1.1:
     resolution: {integrity: sha512-pT1ZgP8rPNqUgieVaEY+ryQr6Q4HXNg8Ei9UnLUrjN4IA7dvQC5JB+/kxVcPNDHyBcc/26CXPkbNzq3qwrOEKA==}
@@ -2331,8 +2331,8 @@ packages:
     peerDependencies:
       solid-js: ^1.7
 
-  source-map-js@1.2.0:
-    resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
   source-map-support@0.5.21:
@@ -3083,7 +3083,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@modular-forms/solid@0.22.1(solid-js@1.8.22)(typescript@5.5.4)':
+  '@modular-forms/solid@0.23.0(solid-js@1.8.22)(typescript@5.5.4)':
     dependencies:
       solid-js: 1.8.22
       valibot: 0.41.0(typescript@5.5.4)
@@ -3693,7 +3693,7 @@ snapshots:
   autoprefixer@10.4.20(postcss@8.4.45):
     dependencies:
       browserslist: 4.23.3
-      caniuse-lite: 1.0.30001658
+      caniuse-lite: 1.0.30001659
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.0
@@ -3737,7 +3737,7 @@ snapshots:
 
   browserslist@4.23.3:
     dependencies:
-      caniuse-lite: 1.0.30001658
+      caniuse-lite: 1.0.30001659
       electron-to-chromium: 1.5.18
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.3)
@@ -3758,7 +3758,7 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
-  caniuse-lite@1.0.30001658: {}
+  caniuse-lite@1.0.30001659: {}
 
   chai@5.1.1:
     dependencies:
@@ -4700,7 +4700,7 @@ snapshots:
     dependencies:
       '@babel/parser': 7.25.6
       '@babel/types': 7.25.6
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   make-dir@4.0.0:
     dependencies:
@@ -4966,7 +4966,7 @@ snapshots:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.1.0
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
 
@@ -5160,7 +5160,7 @@ snapshots:
     dependencies:
       solid-js: 1.8.22
 
-  source-map-js@1.2.0: {}
+  source-map-js@1.2.1: {}
 
   source-map-support@0.5.21:
     dependencies:
