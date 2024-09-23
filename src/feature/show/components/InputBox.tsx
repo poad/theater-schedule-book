@@ -6,6 +6,7 @@ import { For, Show, createSignal } from 'solid-js';
 import utils from '@rnwonder/solid-date-picker/utilities';
 import { ErrorAlert } from '../../ui';
 import { Theater } from '../../../types';
+import '@rnwonder/solid-date-picker/dist/style.css';
 
 function InputBox(props: {
   theaters: Theater[];
