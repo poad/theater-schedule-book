@@ -29,6 +29,7 @@ export default tseslint.config(
   {
     files: ['src/**/*.{ts,tsx}'],
     ...importPlugin.flatConfigs.recommended,
+    ...importPlugin.flatConfigs.typescript,
     languageOptions: {
       parserOptions: {
         ecmaVersion: 'latest',
@@ -60,9 +61,9 @@ export default tseslint.config(
       '@stylistic/semi': 'error',
       '@stylistic/ts/indent': ['error', 2],
       '@stylistic/jsx/jsx-indent': ['error', 2],
-      "comma-dangle": ["error", "always-multiline"],
-      "quotes": ["error", "single"],
-      'semi': ["error", "always"],
+      'comma-dangle': ['error', 'always-multiline'],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
     }
   },
 );
