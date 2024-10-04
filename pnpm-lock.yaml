@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@modular-forms/solid':
-        specifier: ^0.23.0
-        version: 0.23.0(solid-js@1.9.1)(typescript@5.6.2)
+        specifier: ^0.24.0
+        version: 0.24.0(solid-js@1.9.1)
       '@rnwonder/solid-date-picker':
         specifier: ^1.4.1
         version: 1.4.1(solid-js@1.9.1)
@@ -458,10 +458,14 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@modular-forms/solid@0.23.0':
-    resolution: {integrity: sha512-6Nb0g01T275iszl96+JI/ozFZk9dD2TYxgFVTacVb9KXP/Yg4HgJnD94eMC70EYogbvcQU4O+XTi/wJhfNLPgg==}
+  '@modular-forms/solid@0.24.0':
+    resolution: {integrity: sha512-+wW5HvDnco0aff775HVJ8a33Tg0bwj3taR2Zc/ckGV2CjE7K8N6pukJMcu6ip2YChHrndhNZS2qXMf7xGqGtjQ==}
     peerDependencies:
       solid-js: ^1.3.1
+      valibot: ^1.0.0
+    peerDependenciesMeta:
+      valibot:
+        optional: true
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1030,8 +1034,8 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  caniuse-lite@1.0.30001666:
-    resolution: {integrity: sha512-gD14ICmoV5ZZM1OdzPWmpx+q4GyefaK06zi8hmfHV5xe4/2nOQX3+Dw5o+fSqOws2xVwL9j+anOPFwHzdEdV4g==}
+  caniuse-lite@1.0.30001667:
+    resolution: {integrity: sha512-7LTwJjcRkzKFmtqGsibMeuXmvFDfZq/nzIjnmgCGzKKRVzjD72selLDK1oPF/Oxzmt4fNcPvTDvGqSDG4tCALw==}
 
   chai@5.1.1:
     resolution: {integrity: sha512-pT1ZgP8rPNqUgieVaEY+ryQr6Q4HXNg8Ei9UnLUrjN4IA7dvQC5JB+/kxVcPNDHyBcc/26CXPkbNzq3qwrOEKA==}
@@ -1216,8 +1220,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  electron-to-chromium@1.5.31:
-    resolution: {integrity: sha512-QcDoBbQeYt0+3CWcK/rEbuHvwpbT/8SV9T3OSgs6cX1FlcUAkgrkqbg9zLnDrMM/rLamzQwal4LYFCiWk861Tg==}
+  electron-to-chromium@1.5.32:
+    resolution: {integrity: sha512-M+7ph0VGBQqqpTT2YrabjNKSQ2fEl9PVx6AK3N558gDH9NO8O6XN9SXXFWRo9u9PbEg/bWq+tjXQr+eXmxubCw==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -2509,11 +2513,11 @@ packages:
     resolution: {integrity: sha512-n1cw8k1k0x4pgA2+9XrOkFydTerNcJ1zWCO5Nn9scWHTD+5tp8dghT2x1uduQePZTZgd3Tupf+x9BxJjeJi77Q==}
     engines: {node: '>=14.0.0'}
 
-  tldts-core@6.1.49:
-    resolution: {integrity: sha512-ctRO/wzBasOCxAStJG/60Qe8/QpGmaVPsE8djdk0vioxN4uCOgKoveH71Qc2EOmVMIjVf0BjigI5p9ZDuLOygg==}
+  tldts-core@6.1.50:
+    resolution: {integrity: sha512-na2EcZqmdA2iV9zHV7OHQDxxdciEpxrjbkp+aHmZgnZKHzoElLajP59np5/4+sare9fQBfixgvXKx8ev1d7ytw==}
 
-  tldts@6.1.49:
-    resolution: {integrity: sha512-E5se9HuCyfwWvmc0JiXiocOw+Cm4tlJCKewdB5RKMH8MmtiTsQCc+yu5BBYB5ZN4lNbz8Xg65bqJ1odS9+RhIA==}
+  tldts@6.1.50:
+    resolution: {integrity: sha512-q9GOap6q3KCsLMdOjXhWU5jVZ8/1dIib898JBRLsN+tBhENpBDcAVQbE0epADOjw11FhQQy9AcbqKGBQPUfTQA==}
     hasBin: true
 
   to-fast-properties@2.0.0:
@@ -2605,14 +2609,6 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
-
-  valibot@0.42.1:
-    resolution: {integrity: sha512-3keXV29Ar5b//Hqi4MbSdV7lfVp6zuYLZuA9V1PvQUsXqogr+u5lvLPLk3A4f74VUXDnf/JfWMN6sB+koJ/FFw==}
-    peerDependencies:
-      typescript: '>=5'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   validate-html-nesting@1.2.2:
     resolution: {integrity: sha512-hGdgQozCsQJMyfK5urgFcWEqsSSrK63Awe0t/IMR0bZ0QMtnuaiHzThW81guu3qx9abLi99NEuiaN6P9gVYsNg==}
@@ -3109,12 +3105,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@modular-forms/solid@0.23.0(solid-js@1.9.1)(typescript@5.6.2)':
+  '@modular-forms/solid@0.24.0(solid-js@1.9.1)':
     dependencies:
       solid-js: 1.9.1
-      valibot: 0.42.1(typescript@5.6.2)
-    transitivePeerDependencies:
-      - typescript
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -3725,7 +3718,7 @@ snapshots:
   autoprefixer@10.4.20(postcss@8.4.47):
     dependencies:
       browserslist: 4.24.0
-      caniuse-lite: 1.0.30001666
+      caniuse-lite: 1.0.30001667
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.0
@@ -3781,8 +3774,8 @@ snapshots:
 
   browserslist@4.24.0:
     dependencies:
-      caniuse-lite: 1.0.30001666
-      electron-to-chromium: 1.5.31
+      caniuse-lite: 1.0.30001667
+      electron-to-chromium: 1.5.32
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
 
@@ -3802,7 +3795,7 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
-  caniuse-lite@1.0.30001666: {}
+  caniuse-lite@1.0.30001667: {}
 
   chai@5.1.1:
     dependencies:
@@ -3977,7 +3970,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  electron-to-chromium@1.5.31: {}
+  electron-to-chromium@1.5.32: {}
 
   emoji-regex@8.0.0: {}
 
@@ -5368,11 +5361,11 @@ snapshots:
 
   tinyspy@3.0.2: {}
 
-  tldts-core@6.1.49: {}
+  tldts-core@6.1.50: {}
 
-  tldts@6.1.49:
+  tldts@6.1.50:
     dependencies:
-      tldts-core: 6.1.49
+      tldts-core: 6.1.50
 
   to-fast-properties@2.0.0: {}
 
@@ -5384,7 +5377,7 @@ snapshots:
 
   tough-cookie@5.0.0:
     dependencies:
-      tldts: 6.1.49
+      tldts: 6.1.50
 
   tr46@0.0.3: {}
 
@@ -5476,10 +5469,6 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
-
-  valibot@0.42.1(typescript@5.6.2):
-    optionalDependencies:
-      typescript: 5.6.2
 
   validate-html-nesting@1.2.2: {}
 
