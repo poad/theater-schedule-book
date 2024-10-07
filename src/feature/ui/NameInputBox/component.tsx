@@ -1,6 +1,7 @@
 import { Button } from 'terracotta';
 import { Show, createSignal } from 'solid-js';
 import { reset, createForm, SubmitHandler } from '@modular-forms/solid';
+
 interface Inputs {
   name: string;
 }
