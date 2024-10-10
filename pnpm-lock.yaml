@@ -40,11 +40,11 @@ importers:
         specifier: ^9.12.0
         version: 9.12.0
       '@solidjs/router':
-        specifier: ^0.14.7
-        version: 0.14.7(solid-js@1.9.2)
+        specifier: ^0.14.8
+        version: 0.14.8(solid-js@1.9.2)
       '@solidjs/testing-library':
         specifier: ^0.8.10
-        version: 0.8.10(@solidjs/router@0.14.7(solid-js@1.9.2))(solid-js@1.9.2)
+        version: 0.8.10(@solidjs/router@0.14.8(solid-js@1.9.2))(solid-js@1.9.2)
       '@stylistic/eslint-plugin':
         specifier: ^2.9.0
         version: 2.9.0(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)
@@ -128,7 +128,7 @@ importers:
         version: 5.4.8(@types/node@22.7.5)(terser@5.34.1)
       vite-plugin-pages:
         specifier: ^0.32.3
-        version: 0.32.3(@solidjs/router@0.14.7(solid-js@1.9.2))(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
+        version: 0.32.3(@solidjs/router@0.14.8(solid-js@1.9.2))(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
       vite-plugin-solid:
         specifier: ^2.10.2
         version: 2.10.2(@testing-library/jest-dom@6.5.0)(solid-js@1.9.2)(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1))
@@ -591,8 +591,8 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  '@solidjs/router@0.14.7':
-    resolution: {integrity: sha512-agLf8AUz5XnW6+F64a4Iq+QQQobI5zGHQ/gUYd/WHSwcbnFpavbsiwRLob3YhWMXVX3sQyn4ekUN+uchMCRupw==}
+  '@solidjs/router@0.14.8':
+    resolution: {integrity: sha512-S+rD5Twp0820cM03wEIYtb7/4KN7Cfr3BP+qPIqb7IXO/SZ72tWqHEMQsmcjDbr4yVfpA+5Sq0Y+xcq09y1gQA==}
     peerDependencies:
       solid-js: ^1.8.6
 
@@ -1229,8 +1229,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  electron-to-chromium@1.5.33:
-    resolution: {integrity: sha512-+cYTcFB1QqD4j4LegwLfpCNxifb6dDFUAwk6RsLusCwIaZI6or2f+q8rs5tTB2YC53HhOlIbEaqHMAAC8IOIwA==}
+  electron-to-chromium@1.5.35:
+    resolution: {integrity: sha512-hOSRInrIDm0Brzp4IHW2F/VM+638qOL2CzE0DgpnGzKW27C95IqqeqgKz/hxHGnvPxvQGpHUGD5qRVC9EZY2+A==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -1496,8 +1496,8 @@ packages:
     resolution: {integrity: sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==}
     engines: {node: '>=14'}
 
-  form-data@4.0.0:
-    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+  form-data@4.0.1:
+    resolution: {integrity: sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==}
     engines: {node: '>= 6'}
 
   fraction.js@4.3.7:
@@ -3207,16 +3207,16 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@solidjs/router@0.14.7(solid-js@1.9.2)':
+  '@solidjs/router@0.14.8(solid-js@1.9.2)':
     dependencies:
       solid-js: 1.9.2
 
-  '@solidjs/testing-library@0.8.10(@solidjs/router@0.14.7(solid-js@1.9.2))(solid-js@1.9.2)':
+  '@solidjs/testing-library@0.8.10(@solidjs/router@0.14.8(solid-js@1.9.2))(solid-js@1.9.2)':
     dependencies:
       '@testing-library/dom': 10.4.0
       solid-js: 1.9.2
     optionalDependencies:
-      '@solidjs/router': 0.14.7(solid-js@1.9.2)
+      '@solidjs/router': 0.14.8(solid-js@1.9.2)
 
   '@stitches/core@1.2.8': {}
 
@@ -3787,7 +3787,7 @@ snapshots:
   browserslist@4.24.0:
     dependencies:
       caniuse-lite: 1.0.30001667
-      electron-to-chromium: 1.5.33
+      electron-to-chromium: 1.5.35
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
 
@@ -3982,7 +3982,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  electron-to-chromium@1.5.33: {}
+  electron-to-chromium@1.5.35: {}
 
   emoji-regex@8.0.0: {}
 
@@ -4343,7 +4343,7 @@ snapshots:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
 
-  form-data@4.0.0:
+  form-data@4.0.1:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -4645,7 +4645,7 @@ snapshots:
       cssstyle: 4.1.0
       data-urls: 5.0.0
       decimal.js: 10.4.3
-      form-data: 4.0.0
+      form-data: 4.0.1
       html-encoding-sniffer: 4.0.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.5
@@ -5497,7 +5497,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-pages@0.32.3(@solidjs/router@0.14.7(solid-js@1.9.2))(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)):
+  vite-plugin-pages@0.32.3(@solidjs/router@0.14.8(solid-js@1.9.2))(vite@5.4.8(@types/node@22.7.5)(terser@5.34.1)):
     dependencies:
       '@types/debug': 4.1.12
       debug: 4.3.7
@@ -5510,7 +5510,7 @@ snapshots:
       vite: 5.4.8(@types/node@22.7.5)(terser@5.34.1)
       yaml: 2.5.1
     optionalDependencies:
-      '@solidjs/router': 0.14.7(solid-js@1.9.2)
+      '@solidjs/router': 0.14.8(solid-js@1.9.2)
     transitivePeerDependencies:
       - supports-color
 
