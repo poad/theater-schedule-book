@@ -2489,11 +2489,11 @@ packages:
     resolution: {integrity: sha512-n1cw8k1k0x4pgA2+9XrOkFydTerNcJ1zWCO5Nn9scWHTD+5tp8dghT2x1uduQePZTZgd3Tupf+x9BxJjeJi77Q==}
     engines: {node: '>=14.0.0'}
 
-  tldts-core@6.1.54:
-    resolution: {integrity: sha512-5cc42+0G0EjYRDfIJHKraaT3I5kPm7j6or3Zh1T9sF+Ftj1T+isT4thicUyQQ1bwN7/xjHQIuY2fXCoXP8Haqg==}
+  tldts-core@6.1.55:
+    resolution: {integrity: sha512-BL+BuKHHaOpntE5BGI6naXjULU6aRlgaYdfDHR3T/hdbNTWkWUZ9yuc11wGnwgpvRwlyUiIK+QohYK3olaVU6Q==}
 
-  tldts@6.1.54:
-    resolution: {integrity: sha512-rDaL1t59gb/Lg0HPMUGdV1vAKLQcXwU74D26aMaYV4QW7mnMvShd1Vmkg3HYAPWx2JCTUmsrXt/Yl9eJ5UFBQw==}
+  tldts@6.1.55:
+    resolution: {integrity: sha512-HxQR/9roQ07Pwc8RyyrJMAxRz5/ssoF3qIPPUiIo3zUt6yMdmYZjM2OZIFMiZ3jHyz9jrGHEHuQZrUhoc1LkDw==}
     hasBin: true
 
   to-regex-range@5.0.1:
@@ -5308,11 +5308,11 @@ snapshots:
 
   tinyspy@3.0.2: {}
 
-  tldts-core@6.1.54: {}
+  tldts-core@6.1.55: {}
 
-  tldts@6.1.54:
+  tldts@6.1.55:
     dependencies:
-      tldts-core: 6.1.54
+      tldts-core: 6.1.55
 
   to-regex-range@5.0.1:
     dependencies:
@@ -5322,7 +5322,7 @@ snapshots:
 
   tough-cookie@5.0.0:
     dependencies:
-      tldts: 6.1.54
+      tldts: 6.1.55
 
   tr46@0.0.3: {}
 
