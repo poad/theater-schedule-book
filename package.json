@@ -54,7 +54,7 @@
     "eslint-plugin-promise": "^7.1.0",
     "eslint-plugin-solid": "^0.14.3",
     "jsdom": "^25.0.1",
-    "postcss": "^8.4.47",
+    "postcss": "^8.4.48",
     "postcss-loader": "^8.1.1",
     "rimraf": "^6.0.1",
     "solid-js": "^1.9.3",
