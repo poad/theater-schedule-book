@@ -52,7 +52,7 @@ jobs:
           command: |
             pnpm build
             pages project list
-            pages deploy ./dist --project-name=${{ github.event.repository.name }} --branch=${{ github.ref }}
+            pages deploy ./dist --project-name=${{ github.event.repository.name }} --branch=main
 
           # projectName: ${{ github.event.repository.name }}
           # directory: ./dist

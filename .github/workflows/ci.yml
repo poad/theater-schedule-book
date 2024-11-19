@@ -48,13 +48,26 @@ jobs:
         run: pnpm build
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 189f193d40c08d2618ee4b94de81d79e
-          projectName: ${{ github.event.repository.name }}
-          directory: ./dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: preview
+          packageManager: pnpm
+          command: |
+            pnpm build
+            pages project list
+            pages deploy ./dist --project-name=${{ github.event.repository.name }}
+
+          # projectName: ${{ github.event.repository.name }}
+          # directory: ./dist
+          # # Optional: Enable this if you want to have GitHub Deployments triggered
+          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # # Optional: Switch what branch you are publishing to.
+          # # By default this will be the branch which triggered this workflow
+          # branch: main
+
+          # Optional: Change the working directory
           workingDirectory: ./
+          # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
           wranglerVersion: '3'
+
