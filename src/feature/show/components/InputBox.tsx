@@ -40,7 +40,7 @@ function InputBox(props: {
     const showDate =
       year && month && day
         ? new Date(
-          `${('0000' + year).slice(-4)}-${('00' + month).slice(-2)}-${('00' + day).slice(-2)}T${('00' + hour()).slice(-2)}:${('00' + minute()).slice(-2)}:00+09:00`,
+          `${('0000' + year).slice(-4)}-${('00' + (month +1)).slice(-2)}-${('00' + day).slice(-2)}T${('00' + hour()).slice(-2)}:${('00' + minute()).slice(-2)}:00+09:00`,
         )
         : undefined;
 
