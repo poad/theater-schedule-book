@@ -14,12 +14,7 @@
     "coverage": "vitest run --coverage",
     "clean": "rimraf build dist",
     "lint": "eslint",
-    "lint-fix": "eslint --fix",
-    "prebuild": "pnpm lint-fix",
-    "predev": "pnpm lint-fix",
-    "prestart": "pnpm build",
-    "prelint": "pnpm clean",
-    "prelint-fix": "pnpm clean"
+    "lint-fix": "eslint --fix"
   },
   "dependencies": {
     "@modular-forms/solid": "^0.25.0",
