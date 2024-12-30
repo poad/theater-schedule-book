@@ -1,6 +1,5 @@
 // @ts-check
 
-// @ts-ignore
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import stylisticTs from '@stylistic/eslint-plugin-ts';
