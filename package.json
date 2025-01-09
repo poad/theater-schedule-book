@@ -21,7 +21,7 @@
     "@rnwonder/solid-date-picker": "^1.4.1",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.47.11",
+    "@supabase/supabase-js": "^2.47.12",
     "solid-icons": "^1.1.0",
     "terracotta": "^1.0.6"
   },
@@ -55,7 +55,7 @@
     "solid-js": "^1.9.4",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "typescript-eslint": "^8.19.1",
     "vite": "^6.0.7",
     "vite-plugin-pages": "^0.32.4",
