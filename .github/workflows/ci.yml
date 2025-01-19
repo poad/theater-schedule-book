@@ -44,7 +44,7 @@ jobs:
           echo "VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}" >> .env.local
 
       - name: lint
-        run: bun run --bun lint
+        run: bun run lint
 
       - name: Build
         run: bun run --bun build
