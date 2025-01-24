@@ -39,9 +39,9 @@
     "@tailwindcss/postcss": "^4.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^22.10.9",
-    "@vitest/coverage-v8": "^3.0.3",
-    "@vitest/ui": "^3.0.3",
+    "@types/node": "^22.10.10",
+    "@vitest/coverage-v8": "^3.0.4",
+    "@vitest/ui": "^3.0.4",
     "autoprefixer": "^10.4.20",
     "css-loader": "^7.1.2",
     "eslint": "^9.18.0",
@@ -62,7 +62,7 @@
     "vite": "^6.0.11",
     "vite-plugin-pages": "^0.32.4",
     "vite-plugin-solid": "^2.11.0",
-    "vitest": "^3.0.3"
+    "vitest": "^3.0.4"
   },
   "engines": {
     "npm": "use pnpm please!",
