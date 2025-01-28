@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  webpack@>=5.0.0-alpha.0 <5.94.0: '>=5.94.0'
+
 importers:
 
   .:
@@ -1259,7 +1262,7 @@ packages:
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       '@rspack/core': 0.x || 1.x
-      webpack: ^5.27.0
+      webpack: '>=5.94.0'
     peerDependenciesMeta:
       '@rspack/core':
         optional: true
@@ -2296,7 +2299,7 @@ packages:
     peerDependencies:
       '@rspack/core': 0.x || 1.x
       postcss: ^7.0.0 || ^8.0.1
-      webpack: ^5.0.0
+      webpack: '>=5.94.0'
     peerDependenciesMeta:
       '@rspack/core':
         optional: true
@@ -2586,7 +2589,7 @@ packages:
     resolution: {integrity: sha512-1V4WqhhZZgjVAVJyt7TdDPZoPBPNHbekX4fWnCJL1yQukhCeZhJySUL+gL9y6sNdN95uEOS83Y55SqHcP7MzLA==}
     engines: {node: '>= 18.12.0'}
     peerDependencies:
-      webpack: ^5.27.0
+      webpack: '>=5.94.0'
 
   style-to-object@1.0.8:
     resolution: {integrity: sha512-xT47I/Eo0rwJmaXC4oilDGDWLohVhR6o/xAQcPQN8q6QBuZVL8qMYL85kLmST5cPjAorwvqIA4qXTRQoYHaL6g==}
@@ -2626,7 +2629,7 @@ packages:
       '@swc/core': '*'
       esbuild: '*'
       uglify-js: '*'
-      webpack: ^5.1.0
+      webpack: '>=5.94.0'
     peerDependenciesMeta:
       '@swc/core':
         optional: true
