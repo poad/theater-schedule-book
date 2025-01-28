@@ -14,7 +14,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,8 +32,6 @@ jobs:
             - recursive: true
               args: [--no-frozen-lockfile]
 
-      - uses: oven-sh/setup-bun@v2
-
       - name: Prepare build
         env:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
@@ -44,7 +42,7 @@ jobs:
           echo "VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}" >> .env.local
 
       - name: Build
-        run: bun run --bun build
+        run: pnpm build
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
