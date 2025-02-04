@@ -32,7 +32,7 @@ function Main(props: { currentMonthOnly: boolean }) {
                     <td class="whitespace-nowrap px-6 py-4">
                       {new Date(show.show_date).toLocaleString()}
                     </td>
-                    <td class="whitespace-nowrap px-6 py-4 max-[440px]:block max-[956px]:hidden">
+                    <td class="whitespace-nowrap px-6 py-4 max-[440px]:block max-[767px]:hidden">
                       <a target="_blank" href={show.titles[0].url.toString()}>
                         link
                       </a>
