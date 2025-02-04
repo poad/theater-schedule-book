@@ -14,7 +14,7 @@ function Main(props: { currentMonthOnly: boolean }) {
               <tr>
                 <th>Name</th>
                 <th>Date</th>
-                <th>Official web site</th>
+                <th class="max-[440px]:block max-[956px]:hidden">Official web site</th>
               </tr>
             </thead>
             <tbody class="overflow-y-auto">
@@ -32,7 +32,7 @@ function Main(props: { currentMonthOnly: boolean }) {
                     <td class="whitespace-nowrap px-6 py-4">
                       {new Date(show.show_date).toLocaleString()}
                     </td>
-                    <td class="whitespace-nowrap px-6 py-4">
+                    <td class="whitespace-nowrap px-6 py-4 max-[440px]:block max-[956px]:hidden">
                       <a target="_blank" href={show.titles[0].url.toString()}>
                         link
                       </a>

@@ -2,7 +2,7 @@
 
 CUR=$(pwd)
 
-CURRENT=$(cd "$(dirname $0)" || exit;pwd)
+CURRENT=$(cd "$(dirname "$0")" || exit;pwd)
 echo "${CURRENT}"
 
 cd "${CURRENT}" || exit
@@ -12,9 +12,22 @@ if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
   exit $result
 fi
+
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
 echo ""
 pwd
-rm -rf node_modules && pnpm install && pnpm up && pnpm lint-fix && pnpm build
+corepack use pnpm@latest-10 && pnpm install && pnpm up && pnpm lint-fix && pnpm build
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+
+cd "${CURRENT}" || exit
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
