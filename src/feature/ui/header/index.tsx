@@ -25,7 +25,6 @@ function Menu() {
     >
       <>
         <div class="flex items-center gap-4">
-          Hey, {session?.user?.email}!
           <a target="_self" href="/schedules">
             All Schedules
           </a>
