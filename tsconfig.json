@@ -12,7 +12,6 @@
     "noEmit": true,
     "baseUrl": ".",
     "types": [
-      "vinxi/types/client",
       "vitest/globals",
       "@testing-library/jest-dom"
     ],
