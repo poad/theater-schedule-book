@@ -1,0 +1,10 @@
+packages:
+  - .
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - 'esbuild'
+
+enablePrePostScripts: true
+autoInstallPeers: true
+strictPeerDependencies: true
