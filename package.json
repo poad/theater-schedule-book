@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@modular-forms/solid": "^0.25.1",
-    "@rnwonder/solid-date-picker": "^1.4.3",
+    "@rnwonder/solid-date-picker": "^1.4.6",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
     "@supabase/supabase-js": "^2.50.0",
