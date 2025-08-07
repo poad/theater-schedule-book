@@ -50,7 +50,7 @@
     "postcss": "^8.5.6",
     "postcss-loader": "^8.1.1",
     "rimraf": "^6.0.1",
-    "solid-js": "^1.9.7",
+    "solid-js": "^1.9.8",
     "style-loader": "^4.0.0",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2",
