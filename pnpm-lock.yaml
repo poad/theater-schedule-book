@@ -711,8 +711,8 @@ packages:
   '@supabase/realtime-js@2.15.5':
     resolution: {integrity: sha512-/Rs5Vqu9jejRD8ZeuaWXebdkH+J7V6VySbCZ/zQM93Ta5y3mAmocjioa/nzlB6qvFmyylUgKVS1KpE212t30OA==}
 
-  '@supabase/storage-js@2.11.1':
-    resolution: {integrity: sha512-kaKCJZcZrHDCO9L76bEPzNv2caCStOigOUioHw7CvdEzvcSKjVuomRfN2Y9EqXmJH4tEHoBi3tCs/Ye2e3HwDw==}
+  '@supabase/storage-js@2.12.0':
+    resolution: {integrity: sha512-HdKq8jAARnZ/OokE0wml/KzLwJ1X/iX7GtfLvve1HHxxsB3Y0juk0+3dMKr0mKRpjiGzzgvHhF2hxt9ui17OUQ==}
 
   '@supabase/supabase-js@2.57.2':
     resolution: {integrity: sha512-MxaZqZKUPK1ExzOilgSZqCPCxVPjevUrh6bcWz1SrDZexFc9VJ2cJbVP1EG1hKQx/bfLdTUjIZMoIrYpYqAPYw==}
@@ -3513,7 +3513,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@supabase/storage-js@2.11.1':
+  '@supabase/storage-js@2.12.0':
     dependencies:
       '@supabase/node-fetch': 2.6.15
 
@@ -3524,7 +3524,7 @@ snapshots:
       '@supabase/node-fetch': 2.6.15
       '@supabase/postgrest-js': 1.21.3
       '@supabase/realtime-js': 2.15.5
-      '@supabase/storage-js': 2.11.1
+      '@supabase/storage-js': 2.12.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
