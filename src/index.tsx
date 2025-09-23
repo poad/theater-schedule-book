@@ -1,5 +1,6 @@
 import { render } from 'solid-js/web';
 import { Router } from '@solidjs/router';
+// eslint-disable-next-line import/no-unresolved
 import routes from '~solid-pages';
 import { Suspense } from 'solid-js';
 import { SupabaseSessionProvider } from './feature/supabase/';

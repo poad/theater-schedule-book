@@ -1,6 +1,5 @@
 import { Button } from 'terracotta';
-import { PickerValue } from '@rnwonder/solid-date-picker';
-import DatePicker from '@rnwonder/solid-date-picker';
+import DatePicker, { PickerValue } from '@rnwonder/solid-date-picker';
 import { For, Show, createSignal } from 'solid-js';
 import utils from '@rnwonder/solid-date-picker/utilities';
 import { ErrorAlert } from '../../ui';

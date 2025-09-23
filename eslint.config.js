@@ -1,11 +1,12 @@
 // @ts-check
 
+import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import tseslint from 'typescript-eslint';
+import { parser, configs } from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 
-import solid from 'eslint-plugin-solid';
+import solid from "eslint-plugin-solid/configs/typescript";
 
 import { includeIgnoreFile } from '@eslint/compat';
 import path from "node:path";
@@ -15,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, ".gitignore");
 
-export default tseslint.config(
+export default defineConfig(
   includeIgnoreFile(gitignorePath),
   {
     ignores: [
@@ -29,23 +30,26 @@ export default tseslint.config(
     ],
   },
   eslint.configs.recommended,
-  ...tseslint.configs.strict,
-  ...tseslint.configs.stylistic,
+  ...configs.strict,
+  ...configs.stylistic,
   {
     files: ['src/**/*.{ts,tsx}'],
-    ...importPlugin.flatConfigs.recommended,
-    ...importPlugin.flatConfigs.typescript,
+    ...solid,
+    extends: [
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+    ],
     languageOptions: {
+      parser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
+        project: './tsconfig.json',
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     plugins: {
       '@stylistic': stylistic,
-      '@stylistic/ts': stylistic,
-      '@stylistic/jsx': stylistic,
-      solid,
     },
     settings: {
       'import/parsers': {
@@ -63,11 +67,12 @@ export default tseslint.config(
       },
     },
     rules: {
-      '@stylistic/semi': 'error',
-      // '@stylistic/indent': ['error', 2],
-      'comma-dangle': ['error', 'always-multiline'],
-      quotes: ['error', 'single'],
-      semi: ['error', 'always'],
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/quotes': ['error', 'single'],
+      'import/no-named-as-default': 'off',
+      'import/export': 'off',
     }
   },
 );
