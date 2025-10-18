@@ -21,17 +21,17 @@
     "@rnwonder/solid-date-picker": "^1.5.0",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.75.0",
+    "@supabase/supabase-js": "^2.75.1",
     "solid-icons": "^1.1.0",
     "terracotta": "^1.0.6"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.0",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.37.0",
+    "@eslint/js": "^9.38.0",
     "@solidjs/router": "^0.15.3",
     "@solidjs/testing-library": "^0.8.10",
-    "@stylistic/eslint-plugin": "^5.4.0",
+    "@stylistic/eslint-plugin": "^5.5.0",
     "@tailwindcss/postcss": "^4.1.14",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
@@ -40,7 +40,7 @@
     "@vitest/ui": "^3.2.4",
     "autoprefixer": "^10.4.21",
     "css-loader": "^7.1.2",
-    "eslint": "^9.37.0",
+    "eslint": "^9.38.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-boundaries": "^5.1.0",
     "eslint-plugin-import": "^2.32.0",
@@ -66,5 +66,5 @@
     "yarn": "use pnpm please!",
     "pnpm": ">=9.0.0"
   },
-  "packageManager": "pnpm@10.18.2"
+  "packageManager": "pnpm@10.18.3"
 }
