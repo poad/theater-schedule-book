@@ -21,7 +21,7 @@
     "@rnwonder/solid-date-picker": "^1.5.0",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.76.0",
+    "@supabase/supabase-js": "^2.76.1",
     "solid-icons": "^1.1.0",
     "terracotta": "^1.0.6"
   },
@@ -47,7 +47,7 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-solid": "^0.14.5",
     "jsdom": "^27.0.1",
-    "pnpm": "^10.18.3",
+    "pnpm": "^10.19.0",
     "postcss": "^8.5.6",
     "postcss-loader": "^8.2.0",
     "rimraf": "^6.0.1",
@@ -59,7 +59,7 @@
     "typescript-eslint": "^8.46.2",
     "vite": "^7.1.11",
     "vite-plugin-pages": "^0.33.1",
-    "vite-plugin-solid": "^2.11.9",
+    "vite-plugin-solid": "^2.11.10",
     "vitest": "^3.2.4"
   },
   "engines": {
