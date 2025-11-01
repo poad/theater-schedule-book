@@ -32,7 +32,7 @@ function InputBox(props: {
     const showDate =
       selected
         ? new Date(
-          `${year}-${('00' + (month +1)).slice(-2)}-${('00' + day).slice(-2)}T${('00' + hour()).slice(-2)}:${('00' + minute()).slice(-2)}:00+09:00`,
+          `${year}-${('00' + (month + 1)).slice(-2)}-${('00' + day).slice(-2)}T${('00' + hour()).slice(-2)}:${('00' + minute()).slice(-2)}:00+09:00`,
         )
         : undefined;
 
@@ -60,34 +60,52 @@ function InputBox(props: {
     <>
       <div class="flex mb-4">
         <div class="grow-0 pr-2">
-          <input type='date'
-            on:change={(event) => {
-              setDate(() => event.target.valueAsDate);
-            }} />
+          <div class="flex-row">
+            <div>
+              <label for="date">Date</label>
+            </div>
+            <div>
+              <input
+                name='date'
+                type='date'
+                on:change={(event) => {
+                  setDate(() => event.target.valueAsDate);
+                }}
+                value={date()?.toISOString().slice(0, 10)}
+              />
+            </div>
+          </div>
         </div>
         <div class="grow-0">
-          <input
-            type="number"
-            min={0}
-            max={23}
-            placeholder="start hours"
-            on:change={(event) => {
-              const value = event.target.valueAsNumber;
-              setHour(() => (value > 23 ? 23 : value));
-            }}
-            value={hour()}
-          />
-          <input
-            type="number"
-            min={0}
-            max={59}
-            placeholder="start minute"
-            on:change={(event) => {
-              const value = event.target.valueAsNumber;
-              setMinute(() => (value > 59 ? 59 : value));
-            }}
-            value={minute()}
-          />
+          <div class="flex-row">
+            <div>
+              <label for="date">Time</label>
+            </div>
+            <div>
+              <input
+                type="number"
+                min={0}
+                max={23}
+                placeholder="start hours"
+                on:change={(event) => {
+                  const value = event.target.valueAsNumber;
+                  setHour(() => (value > 23 ? 23 : value));
+                }}
+                value={hour()}
+              />
+              <input
+                type="number"
+                min={0}
+                max={59}
+                placeholder="start minute"
+                on:change={(event) => {
+                  const value = event.target.valueAsNumber;
+                  setMinute(() => (value > 59 ? 59 : value));
+                }}
+                value={minute()}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <select
