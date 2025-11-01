@@ -3,15 +3,28 @@ import { useContext } from 'solid-js';
 import { Actor, Show, Theater, Title } from '../../types';
 import { SupabaseSessionContext, supabase } from '../supabase';
 
+interface AddTitleProps {
+  name: string;
+  year: number;
+  url?: string;
+  'on:success'?: (title: Title | null) => void;
+};
+
+interface AddShowProps {
+  titleId: string;
+  showDate: Date;
+  viewed: boolean;
+  canceled: boolean;
+  theaterId: string;
+  'on:success'?: () => void;
+};
+
+type Result = { error?: Error } | undefined;
+
 export function useMutation() {
   const session = useContext(SupabaseSessionContext);
 
-  const addTitle = async (props: {
-    name: string;
-    year: number;
-    url?: string;
-    onSuccess?: (title: Title | null) => void;
-  }): Promise<{ error?: Error } | undefined> => {
+  const addTitle = async (props: AddTitleProps): Promise<Result> => {
     const name = props.name;
     const year = props.year;
     const url = props.url;
@@ -34,19 +47,17 @@ export function useMutation() {
           if (error) {
             return { error: new Error(error.message) };
           }
-          props.onSuccess?.(data);
+          props['on:success']?.(data);
           return { data };
         },
       );
   };
 
-  const addTheater = async ({
-    name,
-    onSuccess,
-  }: {
+  const addTheater = async (props: {
     name: string;
-    onSuccess?: (theater: Theater | null) => void;
-  }): Promise<{ error?: Error } | undefined> => {
+    'on:success'?: (theater: Theater | null) => void;
+  }): Promise<Result> => {
+    const { name, 'on:success': onSuccess } = props;
     if (!session) {
       return { error: new Error('uninitialized') };
     }
@@ -73,14 +84,7 @@ export function useMutation() {
       );
   };
 
-  const addShow = async (props: {
-    titleId: string;
-    showDate: Date;
-    viewed: boolean;
-    canceled: boolean;
-    theaterId: string;
-    onSuccess?: () => void;
-  }): Promise<{ data?: Show; error?: Error } | undefined> => {
+  const addShow = async (props: AddShowProps): Promise<{ data?: Show; error?: Error } | undefined> => {
     if (!session) {
       return { error: new Error('uninitialized') };
     }
@@ -125,7 +129,7 @@ export function useMutation() {
                       return { error: new Error(error.message) };
                     }
 
-                    props.onSuccess?.();
+                    props['on:success']?.();
                   });
               });
           }
@@ -134,15 +138,16 @@ export function useMutation() {
       );
   };
 
-  const updateShowViewed = async ({
-    id,
-    status,
-    onSuccess,
-  }: {
+  const updateShowViewed = async (props: {
     id: string;
     status: boolean;
-    onSuccess?: () => void;
-  }): Promise<{ error?: Error }> => {
+    'on:success'?: () => void;
+  }): Promise<Result> => {
+    const {
+      id,
+      status,
+      'on:success': onSuccess,
+    } = props;
     if (!session) {
       return { error: new Error('uninitialized') };
     }
@@ -170,7 +175,7 @@ export function useMutation() {
     id: string;
     status: boolean;
     onSuccess?: () => void;
-  }): Promise<{ error?: Error }> => {
+  }): Promise<Result> => {
     if (!session) {
       return { error: new Error('uninitialized') };
     }
@@ -198,7 +203,7 @@ export function useMutation() {
     id: string;
     skipped: boolean;
     onSuccess?: () => void;
-  }): Promise<{ error?: Error }> => {
+  }): Promise<Result> => {
     if (!session) {
       return { error: new Error('uninitialized') };
     }
@@ -224,7 +229,7 @@ export function useMutation() {
   }: {
     name: string;
     onSuccess?: (actor: Actor | null) => void;
-  }): Promise<{ error?: Error } | undefined> => {
+  }): Promise<Result> => {
     if (!session) {
       return { error: new Error('uninitialized') };
     }
@@ -257,7 +262,7 @@ export function useMutation() {
   }: {
     id: string;
     onSuccess?: () => void;
-  }): Promise<{ error?: Error } | undefined> => {
+  }): Promise<Result> => {
     if (!session) {
       return { error: new Error('uninitialized') };
     }

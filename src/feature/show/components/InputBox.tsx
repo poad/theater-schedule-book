@@ -1,26 +1,18 @@
 import { Button } from 'terracotta';
-import DatePicker, { PickerValue } from '@rnwonder/solid-date-picker';
 import { For, Show, createSignal } from 'solid-js';
-import utils from '@rnwonder/solid-date-picker/utilities';
 import { ErrorAlert } from '../../ui';
 import { Theater } from '../../../types';
-import '@rnwonder/solid-date-picker/dist/style.css';
 
 function InputBox(props: {
   theaters: Theater[];
-  onClick: (data: {
+  'on:click': (data: {
     showDate?: Date;
     canceled: boolean;
     viewed: boolean;
     theater: Theater;
   }) => Promise<Error | undefined>;
 }) {
-  const [date, setDate] = createSignal<PickerValue>({
-    value: {
-      selectedDateObject: utils().getToday(),
-    },
-    label: 'Show date',
-  });
+  const [date, setDate] = createSignal<Date | null>(new Date());
 
   const [hour, setHour] = createSignal<number>(new Date().getHours());
   const [minute, setMinute] = createSignal<number>(new Date().getMinutes());
@@ -31,18 +23,20 @@ function InputBox(props: {
   const [error, setError] = createSignal<Error>();
 
   async function handleClick() {
-    const selected = date().value.selectedDateObject;
-    const year = selected?.year;
-    const month = selected?.month;
-    const day = selected?.day;
+    const selected = date();
+
+    const year = selected?.getFullYear();
+    const month = selected?.getMonth() || 0;
+    const day = selected?.getDate();
+
     const showDate =
-      year && month && day
+      selected
         ? new Date(
-          `${('0000' + year).slice(-4)}-${('00' + (month +1)).slice(-2)}-${('00' + day).slice(-2)}T${('00' + hour()).slice(-2)}:${('00' + minute()).slice(-2)}:00+09:00`,
+          `${year}-${('00' + (month +1)).slice(-2)}-${('00' + day).slice(-2)}T${('00' + hour()).slice(-2)}:${('00' + minute()).slice(-2)}:00+09:00`,
         )
         : undefined;
 
-    const error = await props.onClick({
+    const error = await props['on:click']({
       showDate,
       canceled: canceled(),
       viewed: viewed(),
@@ -51,10 +45,7 @@ function InputBox(props: {
     setError(error);
 
     if (!error) {
-      setDate(() => ({
-        value: { selectedDateObject: utils().getToday() },
-        label: 'Show date',
-      }));
+      setDate(() => new Date());
       const now = new Date();
       setHour(now.getHours());
       setMinute(now.getMinutes());
@@ -65,29 +56,14 @@ function InputBox(props: {
     setTheater(props.theaters.find((it) => it.id === id) ?? props.theaters[0]);
   }
 
-  const minimumDate = {
-    year: 2016,
-    month: 4,
-    day: 10,
-  };
-
-  const maximumDate = {
-    year: 9999,
-    month: 12,
-    day: 31,
-  };
-
   return (
     <>
       <div class="flex mb-4">
-        <div class="grow-0">
-          <DatePicker
-            value={date}
-            setValue={setDate}
-            minDate={minimumDate}
-            maxDate={maximumDate}
-            inputWrapperWidth={'fit-content'}
-          />
+        <div class="grow-0 pr-2">
+          <input type='date'
+            on:change={(event) => {
+              setDate(() => event.target.valueAsDate);
+            }} />
         </div>
         <div class="grow-0">
           <input
@@ -95,7 +71,7 @@ function InputBox(props: {
             min={0}
             max={23}
             placeholder="start hours"
-            onChange={(event) => {
+            on:change={(event) => {
               const value = event.target.valueAsNumber;
               setHour(() => (value > 23 ? 23 : value));
             }}
@@ -106,7 +82,7 @@ function InputBox(props: {
             min={0}
             max={59}
             placeholder="start minute"
-            onChange={(event) => {
+            on:change={(event) => {
               const value = event.target.valueAsNumber;
               setMinute(() => (value > 59 ? 59 : value));
             }}
@@ -115,7 +91,7 @@ function InputBox(props: {
         </div>
       </div>
       <select
-        onChange={(event) => handleSelectChange(event.target.value)}
+        on:change={(event) => handleSelectChange(event.target.value)}
         class="mb-4 w-full"
       >
         <For each={props.theaters}>
@@ -126,7 +102,7 @@ function InputBox(props: {
         <label class="mr-6">
           <input
             type="checkbox"
-            onChange={(event) => setCanceled(event.target.checked)}
+            on:change={(event) => setCanceled(event.target.checked)}
             class="mr-3"
           />
           Canceled
@@ -134,13 +110,13 @@ function InputBox(props: {
         <label>
           <input
             type="checkbox"
-            onChange={(event) => setViewed(event.target.checked)}
+            on:change={(event) => setViewed(event.target.checked)}
           />
           Viewed
         </label>
       </div>
       <Button
-        onClick={() => void handleClick()}
+        on:click={() => void handleClick()}
         class="bg-green-500 rounded text-white text-xs px-2.5 py-2"
       >
         Save

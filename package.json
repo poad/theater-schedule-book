@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@modular-forms/solid": "^0.25.1",
-    "@rnwonder/solid-date-picker": "^1.5.0",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
     "@supabase/supabase-js": "^2.78.0",
@@ -28,7 +27,7 @@
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.38.0",
+    "@eslint/js": "^9.39.0",
     "@solidjs/router": "^0.15.3",
     "@solidjs/testing-library": "^0.8.10",
     "@stylistic/eslint-plugin": "^5.5.0",
@@ -36,17 +35,17 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.9.2",
-    "@vitest/coverage-v8": "^4.0.5",
-    "@vitest/ui": "^4.0.5",
+    "@vitest/coverage-v8": "^4.0.6",
+    "@vitest/ui": "^4.0.6",
     "autoprefixer": "^10.4.21",
     "css-loader": "^7.1.2",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-boundaries": "^5.1.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-solid": "^0.14.5",
-    "jsdom": "^27.0.1",
+    "jsdom": "^27.1.0",
     "pnpm": "^10.20.0",
     "postcss": "^8.5.6",
     "postcss-loader": "^8.2.0",
@@ -60,12 +59,12 @@
     "vite": "^7.1.12",
     "vite-plugin-pages": "^0.33.1",
     "vite-plugin-solid": "^2.11.10",
-    "vitest": "^4.0.5"
+    "vitest": "^4.0.6"
   },
   "engines": {
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!",
     "pnpm": ">=9.0.0"
   },
-  "packageManager": "pnpm@10.18.3"
+  "packageManager": "pnpm@10.20.0"
 }

@@ -38,7 +38,7 @@ function Main() {
       name,
       year,
       url,
-      onSuccess: () => void navigate('/', { replace: true }),
+      'on:success': () => void navigate('/', { replace: true }),
     });
     if (result?.error) {
       setErrorMessage(result?.error.message);

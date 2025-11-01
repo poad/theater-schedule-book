@@ -73,6 +73,7 @@ export default defineConfig(
       '@stylistic/quotes': ['error', 'single'],
       'import/no-named-as-default': 'off',
       'import/export': 'off',
+      '@typescript-eslint/unified-signatures': 'off',
     }
   },
 );

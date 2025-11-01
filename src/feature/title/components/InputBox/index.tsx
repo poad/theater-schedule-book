@@ -83,8 +83,8 @@ export function InputBox(props: {
             placeholder="title begin year"
             pattern=".{4}"
             class="p-1 inline w-full relative"
-            onChange={(event) => setYear(event.target.valueAsNumber)}
-            min={2014}
+            on:change={(event) => setYear(event.target.valueAsNumber)}
+            min={2025}
             max={9999}
             value={year()}
           />

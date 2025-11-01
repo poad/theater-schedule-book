@@ -2,7 +2,9 @@ import { For, Show, createResource, useContext } from 'solid-js';
 import { useShows } from '../../show';
 import { SupabaseSessionContext } from '../../supabase';
 
-function Main(props: { currentMonthOnly: boolean }) {
+interface MainProps { currentMonthOnly: boolean };
+
+function Main(props: MainProps) {
   const [result] = createResource(useShows({futures: { today: new Date(), currentMonthOnly: props.currentMonthOnly }}));
 
   return (

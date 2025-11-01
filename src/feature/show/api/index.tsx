@@ -1,12 +1,14 @@
 import { supabase } from '../../supabase';
 import { ShowTitle } from '../../../types';
 
-export function useShows(props: {
+interface UseShowProps {
   futures?: {
     today: Date;
     currentMonthOnly: boolean;
   };
-}) {
+}
+
+export function useShows(props: UseShowProps) {
   const ac = new AbortController();
   const futures = props.futures;
 

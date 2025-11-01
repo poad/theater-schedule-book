@@ -57,7 +57,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
       viewed,
       canceled,
       theaterId: theater.id,
-      onSuccess: () => {
+      'on:success': () => {
         void props.refetch();
       },
     });
@@ -78,7 +78,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
     await updateShowViewed({
       id,
       status: true,
-      onSuccess: () => {
+      'on:success': () => {
         void props.refetch();
       },
     });
@@ -224,7 +224,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
             <div>
               <InputBox
                 theaters={theaters()?.data ?? []}
-                onClick={async (data: {
+                on:click={async (data: {
                   showDate?: Date;
                   theater: Theater;
                   viewed: boolean;
