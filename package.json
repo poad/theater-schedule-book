@@ -20,7 +20,7 @@
     "@modular-forms/solid": "^0.25.1",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.78.0",
+    "@supabase/supabase-js": "^2.79.0",
     "solid-icons": "^1.1.0",
     "terracotta": "^1.0.6"
   },
@@ -35,8 +35,8 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.10.0",
-    "@vitest/coverage-v8": "^4.0.6",
-    "@vitest/ui": "^4.0.6",
+    "@vitest/coverage-v8": "^4.0.7",
+    "@vitest/ui": "^4.0.7",
     "autoprefixer": "^10.4.21",
     "css-loader": "^7.1.2",
     "eslint": "^9.39.1",
@@ -59,7 +59,7 @@
     "vite": "^7.1.12",
     "vite-plugin-pages": "^0.33.1",
     "vite-plugin-solid": "^2.11.10",
-    "vitest": "^4.0.6"
+    "vitest": "^4.0.7"
   },
   "engines": {
     "npm": "use pnpm please!",
