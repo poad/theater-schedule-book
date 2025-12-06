@@ -10,7 +10,6 @@
     "allowJs": true,
     "strict": true,
     "noEmit": true,
-    "baseUrl": ".",
     "types": [
       "vitest/globals",
       "@testing-library/jest-dom"
