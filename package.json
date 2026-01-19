@@ -46,7 +46,7 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-solid": "^0.14.5",
     "jsdom": "^27.4.0",
-    "pnpm": "^10.28.0",
+    "pnpm": "^10.28.1",
     "postcss": "^8.5.6",
     "postcss-loader": "^8.2.0",
     "rimraf": "^6.1.2",
@@ -55,7 +55,7 @@
     "tailwindcss": "^4.1.18",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.0",
+    "typescript-eslint": "^8.53.1",
     "vite": "^7.3.1",
     "vite-plugin-pages": "^0.33.2",
     "vite-plugin-solid": "^2.11.10",
@@ -66,5 +66,5 @@
     "yarn": "use pnpm please!",
     "pnpm": ">=9.0.0"
   },
-  "packageManager": "pnpm@10.28.0"
+  "packageManager": "pnpm@10.28.1"
 }
