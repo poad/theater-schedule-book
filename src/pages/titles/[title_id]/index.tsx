@@ -3,7 +3,7 @@ import {
   RiSystemCheckFill,
   RiSystemCheckboxFill,
 } from 'solid-icons/ri';
-import { TbCalendarCancel } from 'solid-icons/tb';
+import { TbOutlineCalendarCancel } from 'solid-icons/tb';
 import { HiSolidUsers } from 'solid-icons/hi';
 import { ImEyeBlocked } from 'solid-icons/im';
 import { useParams } from '@solidjs/router';
@@ -169,7 +169,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                   !show.skipped
                                 }
                               >
-                                <TbCalendarCancel
+                                <TbOutlineCalendarCancel
                                   onClick={() =>
                                     void handleClickCanceled(show.id)
                                   }
