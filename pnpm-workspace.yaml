@@ -1,11 +1,18 @@
 packages:
   - .
 
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
-  - 'esbuild'
+autoInstallPeers: true
 
 enablePrePostScripts: true
-autoInstallPeers: true
-strictPeerDependencies: true
+
 legacyPeerDeps: true
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - esbuild
+
+overrides:
+  seroval@<1.4.1: '>=1.4.1'
+  seroval@<=1.4.0: '>=1.4.1'
+
+strictPeerDependencies: true
