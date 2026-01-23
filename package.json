@@ -35,8 +35,8 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^25.0.10",
-    "@vitest/coverage-v8": "^4.0.17",
-    "@vitest/ui": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/ui": "^4.0.18",
     "autoprefixer": "^10.4.23",
     "css-loader": "^7.1.2",
     "eslint": "^9.39.2",
@@ -59,7 +59,7 @@
     "vite": "^7.3.1",
     "vite-plugin-pages": "^0.33.2",
     "vite-plugin-solid": "^2.11.10",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   },
   "engines": {
     "npm": "use pnpm please!",
