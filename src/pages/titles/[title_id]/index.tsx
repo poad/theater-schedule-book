@@ -15,6 +15,7 @@ import { useTitle } from '../../../feature/title';
 import { useMutation } from '../../../feature/mutations';
 import { Tooltip, ErrorAlert, FadeLoader, ThroughableLine } from '../../../feature/ui';
 import { SupabaseSessionContext } from '../../../feature/supabase';
+import { DateView } from '../../../feature/date-view';
 
 function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
   const session = useContext(SupabaseSessionContext);
@@ -27,6 +28,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
   const updateShowSkipped = mutations.updateShowSkipped;
   const delShow = mutations.delShow;
   const [errorMessage, setErrorMessage] = createSignal<string>();
+  const currentTime = new Date().getTime();
 
   if (!session) {
     return <></>;
@@ -150,7 +152,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                             </td>
                             <td class="whitespace-nowrap px-3 py-4">
                               <ThroughableLine strikethrough={show.canceled}>
-                                {new Date(show.show_date).toLocaleString()}
+                                <DateView date={show.show_date} />
                                 <Tooltip text="Casts">
                                   <HiSolidUsers class="inline ml-2" />
                                 </Tooltip>
@@ -182,7 +184,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                   !show.canceled &&
                                   !show.viewed &&
                                   !show.skipped &&
-                                  new Date().getTime() >= show.show_date
+                                  currentTime >= show.show_date
                                 }
                               >
                                 <RiSystemCheckboxFill
@@ -198,7 +200,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                   !show.canceled &&
                                   !show.viewed &&
                                   !show.skipped &&
-                                  new Date().getTime() >= show.show_date
+                                  currentTime >= show.show_date
                                 }
                               >
                                 <ImEyeBlocked
@@ -243,7 +245,7 @@ export default function Shows() {
   const params = useParams();
   const [title, { refetch }] = createResource(
     useTitle({
-      id: params.title_id,
+      id: params.title_id ?? '',
     }),
   );
 

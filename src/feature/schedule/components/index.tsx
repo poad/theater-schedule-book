@@ -1,6 +1,7 @@
 import { For, Show, createResource, useContext } from 'solid-js';
 import { useShows } from '../../show';
 import { SupabaseSessionContext } from '../../supabase';
+import { DateView } from '../../../feature/date-view';
 
 interface MainProps { currentMonthOnly: boolean };
 
@@ -32,7 +33,7 @@ function Main(props: MainProps) {
                       </a>
                     </td>
                     <td class="whitespace-nowrap px-6 py-4">
-                      {new Date(show.show_date).toLocaleString()}
+                      <DateView date={show.show_date} />
                     </td>
                     <td class="whitespace-nowrap px-6 py-4 max-[440px]:block max-[767px]:hidden">
                       <a target="_blank" href={show.titles[0].url.toString()}>
