@@ -28,6 +28,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
   const updateShowSkipped = mutations.updateShowSkipped;
   const delShow = mutations.delShow;
   const [errorMessage, setErrorMessage] = createSignal<string>();
+  const currentTime = new Date().getTime();
 
   if (!session) {
     return <></>;
@@ -183,7 +184,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                   !show.canceled &&
                                   !show.viewed &&
                                   !show.skipped &&
-                                  new Date().getTime() >= show.show_date
+                                  currentTime >= show.show_date
                                 }
                               >
                                 <RiSystemCheckboxFill
@@ -199,7 +200,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                   !show.canceled &&
                                   !show.viewed &&
                                   !show.skipped &&
-                                  new Date().getTime() >= show.show_date
+                                  currentTime >= show.show_date
                                 }
                               >
                                 <ImEyeBlocked
