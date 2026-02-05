@@ -20,7 +20,7 @@
     "@modular-forms/solid": "^0.25.1",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.94.1",
+    "@supabase/supabase-js": "^2.95.0",
     "solid-icons": "^1.2.0",
     "terracotta": "^1.1.0"
   },
@@ -34,7 +34,7 @@
     "@tailwindcss/postcss": "^4.1.18",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^25.2.0",
+    "@types/node": "^25.2.1",
     "@vitest/coverage-v8": "^4.0.18",
     "@vitest/ui": "^4.0.18",
     "autoprefixer": "^10.4.24",
