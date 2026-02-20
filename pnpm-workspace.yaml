@@ -7,17 +7,20 @@ enablePrePostScripts: true
 
 legacyPeerDeps: true
 
-strictPeerDependencies: false
-
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
 
 overrides:
-  '@eslint/js': ^9
+  '@eslint/eslintrc>ajv': ^6.12.4
+  '@eslint/js': '>=10'
   '@stylistic/eslint-plugin': '>=5.0.0'
-  eslint: ^9
-  seroval@<1.4.1: '>=1.4.1'
-  seroval@<=1.4.0: '>=1.4.1'
+  ajv@<8.18.0: '>=8.18.0'
+  eslint: '>=10'
+  eslint>ajv: ^6.12.4
+  minimatch@<10.2.1: '>=10.2.1'
+  webpack: '>=5.104.1'
   webpack@>=5.49.0 <5.104.0: '>=5.104.0'
   webpack@>=5.49.0 <=5.104.0: '>=5.104.1'
+
+strictPeerDependencies: false
