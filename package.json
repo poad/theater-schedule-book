@@ -34,9 +34,9 @@
     "@tailwindcss/postcss": "^4.2.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^25.4.0",
-    "@vitest/coverage-v8": "^4.0.18",
-    "@vitest/ui": "^4.0.18",
+    "@types/node": "^25.5.0",
+    "@vitest/coverage-v8": "^4.1.0",
+    "@vitest/ui": "^4.1.0",
     "autoprefixer": "^10.4.27",
     "eslint": "^10.0.3",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -57,12 +57,12 @@
     "vite": "^7.3.1",
     "vite-plugin-pages": "^0.33.3",
     "vite-plugin-solid": "^2.11.10",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
   },
   "engines": {
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!",
     "pnpm": ">=9.0.0"
   },
-  "packageManager": "pnpm@10.32.0"
+  "packageManager": "pnpm@10.32.1"
 }
