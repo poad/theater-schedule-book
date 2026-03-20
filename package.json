@@ -20,7 +20,7 @@
     "@modular-forms/solid": "^0.25.1",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.99.2",
+    "@supabase/supabase-js": "^2.99.3",
     "solid-icons": "^1.2.0",
     "terracotta": "^1.1.0"
   },
@@ -45,7 +45,7 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-solid": "^0.14.5",
     "jiti": "^2.6.1",
-    "jsdom": "^29.0.0",
+    "jsdom": "^29.0.1",
     "pnpm": "^10.32.1",
     "postcss": "^8.5.8",
     "rimraf": "^6.1.3",
