@@ -31,5 +31,3 @@ overrides:
   vite: '>=8.0.5'
 
 trustPolicy: no-downgrade
-trustPolicyExclude:
-  - 'vite@6.4.1'
