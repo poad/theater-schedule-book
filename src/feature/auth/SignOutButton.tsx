@@ -1,7 +1,7 @@
-import { Button } from 'terracotta';
-import { Show, createSignal } from 'solid-js';
 import { ErrorAlert } from '../ui';
 import { supabase } from '../supabase';
+import { Button } from 'terracotta';
+import { Show, createSignal } from 'solid-js';
 
 export function SignOutButton() {
   const [errors, setErrors] = createSignal<Error>();

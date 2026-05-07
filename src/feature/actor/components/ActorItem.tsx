@@ -1,6 +1,6 @@
+import { Actor } from '../../../types';
 import { RiDesignEdit2Line, RiSystemDeleteBin2Line } from 'solid-icons/ri';
 import { Show } from 'solid-js';
-import { Actor } from '../../../types';
 
 interface ActorItemProps {
   actor: Actor;

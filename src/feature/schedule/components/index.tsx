@@ -1,7 +1,7 @@
-import { For, Show, createResource, useContext } from 'solid-js';
 import { useShows } from '../../show';
 import { SupabaseSessionContext } from '../../supabase';
 import { DateView } from '../../../feature/date-view';
+import { For, Show, createResource, useContext } from 'solid-js';
 
 interface MainProps { currentMonthOnly: boolean };
 

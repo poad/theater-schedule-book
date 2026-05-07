@@ -1,6 +1,6 @@
-import { For, Show, createResource, useContext } from 'solid-js';
 import { fetchTitles } from '../api';
 import { SupabaseSessionContext } from '../../supabase';
+import { For, Show, createResource, useContext } from 'solid-js';
 
 function Main() {
   const [result] = createResource(fetchTitles);

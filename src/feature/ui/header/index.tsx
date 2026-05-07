@@ -1,8 +1,8 @@
+import { SignOutButton } from '../../auth';
+import { supabase, SupabaseSessionContext } from '../../supabase';
 import { Auth } from '@supabase/auth-ui-solid';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Show, useContext } from 'solid-js';
-import { SignOutButton } from '../../auth';
-import { supabase, SupabaseSessionContext } from '../../supabase';
 
 function Menu() {
   const session = useContext(SupabaseSessionContext);

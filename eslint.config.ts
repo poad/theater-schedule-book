@@ -1,10 +1,9 @@
-// @ts-check
-
 import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import { parser, configs } from 'typescript-eslint';
-import importPlugin from 'eslint-plugin-import';
+import { importX, createNodeResolver } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 
 import solid from "eslint-plugin-solid/configs/typescript";
 
@@ -35,10 +34,6 @@ export default defineConfig(
   {
     files: ['src/**/*.{ts,tsx}'],
     ...solid,
-    extends: [
-      importPlugin.flatConfigs.recommended,
-      importPlugin.flatConfigs.typescript,
-    ],
     languageOptions: {
       parser,
       ecmaVersion: 'latest',
@@ -49,31 +44,43 @@ export default defineConfig(
       },
     },
     plugins: {
+      'import-x': importX,
       '@stylistic': stylistic,
     },
+    extends: [
+      'import-x/flat/recommended',
+    ],
     settings: {
-      'import/parsers': {
-        espree: ['.js', '.cjs', '.mjs'],
-        '@typescript-eslint/parser': ['.ts'],
-      },
-      'import/internal-regex': '^~/',
-      'import/resolver': {
-        node: {
-          extensions: ['.ts', '.tsx'],
-        },
-        typescript: {
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
           alwaysTryTypes: true,
-        },
-      },
+        }),
+        createNodeResolver(),
+      ],
     },
     rules: {
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/quotes': ['error', 'single'],
-      'import/no-named-as-default': 'off',
-      'import/export': 'off',
       '@typescript-eslint/unified-signatures': 'off',
+
+      'import-x/order': [
+        'error',
+        {
+          'groups': [
+            // Imports of builtins are first
+            'builtin',
+            // Then sibling and parent imports. They can be mingled together
+            ['sibling', 'parent'],
+            // Then index file imports
+            'index',
+            // Then any arcane TypeScript imports
+            'object',
+            // Then the omitted imports: internal, external, type, unknown
+          ],
+        },
+      ],
     }
   },
 );

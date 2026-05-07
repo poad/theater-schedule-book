@@ -1,8 +1,8 @@
-import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 import { fetchActors, ActorItem } from '../../feature/actor';
 import { FadeLoader, NameInputBox as InputBox, ErrorAlert } from '../../feature/ui';
 import { useMutation } from '../../feature/mutations';
 import { SupabaseSessionContext } from '../../feature/supabase';
+import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 
 export default function Index() {
   const session = useContext(SupabaseSessionContext);

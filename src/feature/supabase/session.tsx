@@ -1,6 +1,6 @@
+import { supabase } from './client';
 import { Show, JSX, createContext, createEffect, createSignal } from 'solid-js';
 import { AuthSession } from '@supabase/supabase-js';
-import { supabase } from './client';
 
 export const SupabaseSessionContext = createContext<AuthSession>();
 

@@ -1,6 +1,6 @@
+import { Theater } from '../../../types';
 import { RiDesignEdit2Line, RiSystemDeleteBin2Line } from 'solid-icons/ri';
 import { Show } from 'solid-js';
-import { Theater } from '../../../types';
 
 export function TheaterItem(props: {
   theater: Theater;
