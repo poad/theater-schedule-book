@@ -1,13 +1,3 @@
-import {
-  RiSystemDeleteBin2Line,
-  RiSystemCheckFill,
-  RiSystemCheckboxFill,
-} from 'solid-icons/ri';
-import { TbOutlineCalendarCancel } from 'solid-icons/tb';
-import { HiSolidUsers } from 'solid-icons/hi';
-import { ImEyeBlocked } from 'solid-icons/im';
-import { useParams } from '@solidjs/router';
-import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 import { Show as ShowData, Theater } from '../../../types';
 import InputBox from '../../../feature/show';
 import { fetchTheaters } from '../../../feature/theater';
@@ -16,6 +6,16 @@ import { useMutation } from '../../../feature/mutations';
 import { Tooltip, ErrorAlert, FadeLoader, ThroughableLine } from '../../../feature/ui';
 import { SupabaseSessionContext } from '../../../feature/supabase';
 import { DateView } from '../../../feature/date-view';
+import { For, Show, createResource, createSignal, useContext } from 'solid-js';
+import { useParams } from '@solidjs/router';
+import { ImEyeBlocked } from 'solid-icons/im';
+import { HiSolidUsers } from 'solid-icons/hi';
+import { TbOutlineCalendarCancel } from 'solid-icons/tb';
+import {
+  RiSystemDeleteBin2Line,
+  RiSystemCheckFill,
+  RiSystemCheckboxFill,
+} from 'solid-icons/ri';
 
 function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
   const session = useContext(SupabaseSessionContext);

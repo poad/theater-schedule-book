@@ -1,7 +1,7 @@
-import { PostgrestError } from '@supabase/supabase-js';
-import { useContext } from 'solid-js';
 import { Actor, Show, Theater, Title } from '../../types';
 import { SupabaseSessionContext, supabase } from '../supabase';
+import { PostgrestError } from '@supabase/supabase-js';
+import { useContext } from 'solid-js';
 
 interface AddTitleProps {
   name: string;
