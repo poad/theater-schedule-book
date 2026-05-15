@@ -34,7 +34,7 @@
     "@tailwindcss/postcss": "^4.2.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.6.2",
     "@vitest/coverage-v8": "^4.1.5",
     "@vitest/ui": "^4.1.5",
     "autoprefixer": "^10.5.0",
@@ -58,7 +58,7 @@
     "vite-plugin-pages": "^0.33.3",
     "vite-plugin-solid": "^2.11.12",
     "vitest": "^4.1.5",
-    "wrangler": "^4.88.0"
+    "wrangler": "^4.90.0"
   },
   "engines": {
     "npm": "use pnpm please!",
