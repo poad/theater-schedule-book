@@ -11,8 +11,12 @@ blockExoticSubdeps: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 
+minimumReleaseAgeExclude:
+  - ws@8.20.1
+
 overrides:
   chokidar: '>=5'
   semver: '>=7'
+  ws@>=8.0.0 <8.20.1: ^8.20.1
 
 trustPolicy: no-downgrade
