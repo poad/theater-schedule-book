@@ -58,7 +58,7 @@
     "vite-plugin-pages": "^0.33.3",
     "vite-plugin-solid": "^2.11.12",
     "vitest": "^4.1.6",
-    "wrangler": "^4.90.0"
+    "wrangler": "^4.90.1"
   },
   "engines": {
     "npm": "use pnpm please!",
