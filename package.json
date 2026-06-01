@@ -20,7 +20,7 @@
     "@modular-forms/solid": "^0.25.1",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.106.1",
+    "@supabase/supabase-js": "^2.106.2",
     "solid-icons": "^1.2.0",
     "terracotta": "^1.1.0"
   },
@@ -58,7 +58,7 @@
     "vite-plugin-pages": "^0.33.3",
     "vite-plugin-solid": "^2.11.12",
     "vitest": "^4.1.7",
-    "wrangler": "^4.93.1"
+    "wrangler": "^4.94.0"
   },
   "engines": {
     "npm": "use pnpm please!",
