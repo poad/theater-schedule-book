@@ -12,7 +12,7 @@ blockExoticSubdeps: true
 minimumReleaseAge: 10080 # 7 days in minutes
 
 minimumReleaseAgeExclude:
-  - ws@8.20.1
+  - pnpm@11.5.3
 
 overrides:
   chokidar: '>=5'
