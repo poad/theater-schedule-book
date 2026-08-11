@@ -1,4 +1,4 @@
-import { defineConfig } from 'eslint/config';
+import { defineConfig, includeIgnoreFile } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import { parser, configs } from 'typescript-eslint';
@@ -7,7 +7,6 @@ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescrip
 
 import solid from "eslint-plugin-solid/configs/typescript";
 
-import { includeIgnoreFile } from '@eslint/compat';
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -28,9 +27,8 @@ export default defineConfig(
       'dist',
     ],
   },
-  eslint.configs.recommended,
-  ...configs.strict,
-  ...configs.stylistic,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   {
     files: ['src/**/*.{ts,tsx}'],
     ...solid,
@@ -44,11 +42,12 @@ export default defineConfig(
       },
     },
     plugins: {
-      'import-x': importX,
       '@stylistic': stylistic,
     },
     extends: [
-      'import-x/flat/recommended',
+      eslint.configs.recommended,
+      configs.strict,
+      configs.stylistic,
     ],
     settings: {
       'import-x/resolver-next': [
