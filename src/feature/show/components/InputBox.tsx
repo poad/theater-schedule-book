@@ -3,7 +3,7 @@ import { Theater } from '../../../types';
 import { Button } from 'terracotta';
 import { For, Show, createSignal } from 'solid-js';
 
-function InputBox(props: {
+export function InputBox(props: {
   theaters: Theater[];
   'on:click': (data: {
     showDate?: Date;
