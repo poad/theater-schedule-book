@@ -1,5 +1,2 @@
-export * from './components';
-export * from './api';
-
-import Components from './components';
-export default Components;
+export * from './api/index.jsx';
+export * from './components/index.js';

@@ -1,5 +1,5 @@
 import { Show as ShowData, Theater } from '../../../types';
-import InputBox from '../../../feature/show';
+import { InputBox } from '../../../feature/show';
 import { fetchTheaters } from '../../../feature/theater';
 import { useTitle } from '../../../feature/title';
 import { useMutation } from '../../../feature/mutations';
