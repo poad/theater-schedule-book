@@ -12,7 +12,8 @@ blockExoticSubdeps: true
 minimumReleaseAge: 10080 # 7 days in minutes
 
 minimumReleaseAgeExclude:
-  - pnpm@11.22.0
+  - pnpm@11.23.0
+  - eslint-plugin-solid@0.16.0
 
 overrides:
   chokidar: '>=5'
