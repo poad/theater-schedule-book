@@ -57,12 +57,12 @@
     "vite-plugin-pages": "^0.33.3",
     "vite-plugin-solid": "^2.11.14",
     "vitest": "^4.1.11",
-    "wrangler": "^4.127.0"
+    "wrangler": "^4.127.1"
   },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "~12.3.3",
+      "version": "~12.3.4",
       "onFail": "download"
     },
     "runtime": {
@@ -70,5 +70,11 @@
       "version": "^24.20.0",
       "onFail": "download"
     }
+  },
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=11",
+    "npm": "echo Please use pnpm!",
+    "yarn": "echo Please use pnpm!"
   }
 }
