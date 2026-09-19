@@ -9,9 +9,8 @@ interface MainProps {
 }
 
 function Main(props: MainProps) {
-  const [result] = createResource(
-    () => props.currentMonthOnly,
-    (currentMonthOnly) => useShows({ futures: { today: new Date(), currentMonthOnly } })(),
+  const [result] = createResource(() =>
+    useShows({ futures: { today: new Date(), currentMonthOnly: props.currentMonthOnly } })(),
   );
 
   return (

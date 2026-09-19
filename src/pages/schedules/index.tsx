@@ -14,7 +14,7 @@ export default function Index() {
         </div>
       </nav>
 
-      <Schedules currentMonthOnly={false} />
+      <Schedules />
     </div>
   );
 }
