@@ -18,36 +18,26 @@ function Main(props: MainProps) {
     <div class="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 h-[calc(100vh-theme(space.48))]">
-          <table class="min-w-full text-left text-sm font-light relative border-collapse">
-            <thead class="border-b top-0 font-medium dark:border-neutral-500 sticky bg-white">
-              <tr>
-                <th>Name</th>
-                <th>Date</th>
-                <th class="max-[440px]:block max-[956px]:hidden">Official web site</th>
-              </tr>
-            </thead>
-            <tbody class="overflow-y-auto">
-              <For each={result()?.data}>
-                {(show) => (
-                  <tr class="border-b dark:border-neutral-500">
-                    <td class="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4">
-                      <a href={`/titles/${show.titles[0].id}`} class="text-current">
-                        {show.titles[0].name}
-                      </a>
-                    </td>
-                    <td class="whitespace-nowrap px-6 py-4">
+          <ul>
+            <For each={result()?.data}>
+              {(show) => (
+                <li class="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4">
+                  <a href={`/titles/${show.titles[0].id}`} class="text-current block">
+                    {show.titles[0].name}
+                  </a>
+
+                  <div class="flex ml-3">
+                    <div class="grow-2 pr-6">
                       <DateView date={show.show_date} />
-                    </td>
-                    <td class="whitespace-nowrap px-6 py-4 max-[440px]:block max-[767px]:hidden">
-                      <a target="_blank" href={show.titles[0].url.toString()}>
-                        link
-                      </a>
-                    </td>
-                  </tr>
-                )}
-              </For>
-            </tbody>
-          </table>
+                    </div>
+                    <a target="_blank" class="block" href={show.titles[0].url.toString()}>
+                      link
+                    </a>
+                  </div>
+                </li>
+              )}
+            </For>
+          </ul>
         </div>
       </div>
     </div>
