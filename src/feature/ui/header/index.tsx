@@ -1,7 +1,8 @@
 import { SignOutButton } from '../../auth';
 import { supabase, SupabaseSessionContext } from '../../supabase';
-import { Auth } from '@supabase/auth-ui-solid';
+
 import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { Auth } from '@supabase/auth-ui-solid';
 import { Show, useContext } from 'solid-js';
 
 function Menu() {
@@ -15,9 +16,7 @@ function Menu() {
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           onlyThirdPartyProviders
-          redirectTo={
-            typeof window !== 'undefined' ? window.location.origin : undefined
-          }
+          redirectTo={typeof window !== 'undefined' ? window.location.origin : undefined}
           providers={['azure']}
           providerScopes={{ azure: 'email offline_access' }}
         />

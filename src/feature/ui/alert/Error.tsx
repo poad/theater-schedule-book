@@ -1,10 +1,7 @@
-import { JSX } from 'solid-js';
 import { RiSystemCloseCircleLine } from 'solid-icons/ri';
+import { JSX } from 'solid-js';
 
-export function ErrorAlert(props: {
-  title: string;
-  children?: JSX.Element;
-}) {
+export function ErrorAlert(props: { title: string; children?: JSX.Element }) {
   return (
     <>
       <div class="mt-8 flex bg-red-600/10 text-red-500 p-4 rounded-md">

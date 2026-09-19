@@ -1,8 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "import"
-  ],
+  "plugins": ["import"],
   "categories": {
     "correctness": "off"
   },
@@ -10,27 +8,10 @@
     "builtin": true
   },
   "settings": {
-    "import-x/extensions": [
-      ".ts",
-      ".tsx",
-      ".cts",
-      ".mts",
-      ".js",
-      ".jsx",
-      ".cjs",
-      ".mjs"
-    ],
-    "import-x/external-module-folders": [
-      "node_modules",
-      "node_modules/@types"
-    ],
+    "import-x/extensions": [".ts", ".tsx", ".cts", ".mts", ".js", ".jsx", ".cjs", ".mjs"],
+    "import-x/external-module-folders": ["node_modules", "node_modules/@types"],
     "import-x/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx",
-        ".cts",
-        ".mts"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx", ".cts", ".mts"]
     },
     "import-x/resolver": {
       "typescript": true
@@ -76,9 +57,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "src/**/*.{ts,tsx}"
-      ],
+      "files": ["src/**/*.{ts,tsx}"],
       "rules": {
         "constructor-super": "error",
         "for-direction": "error",
@@ -201,12 +180,8 @@
         "solid/no-react-specific-props": "warn",
         "solid/self-closing-comp": "warn"
       },
-      "plugins": [
-        "typescript"
-      ],
-      "jsPlugins": [
-        "eslint-plugin-solid"
-      ],
+      "plugins": ["typescript"],
+      "jsPlugins": ["eslint-plugin-solid"],
       "env": {
         "es2026": true
       }

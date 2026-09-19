@@ -1,8 +1,11 @@
 import { supabase } from './client';
-import { type Accessor, JSX, createContext, createEffect, createSignal } from 'solid-js';
-import { AuthSession } from '@supabase/supabase-js';
 
-export const SupabaseSessionContext = createContext<Accessor<AuthSession | undefined>>(() => undefined);
+import { AuthSession } from '@supabase/supabase-js';
+import { type Accessor, JSX, createContext, createEffect, createSignal } from 'solid-js';
+
+export const SupabaseSessionContext = createContext<Accessor<AuthSession | undefined>>(
+  () => undefined,
+);
 
 export function SupabaseSessionProvider(props: { children: JSX.Element }) {
   const [session, setSession] = createSignal<AuthSession>();

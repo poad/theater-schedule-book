@@ -1,5 +1,6 @@
-import { fetchTitles } from '../api';
 import { SupabaseSessionContext } from '../../supabase';
+import { fetchTitles } from '../api';
+
 import { For, Show, createResource, useContext } from 'solid-js';
 
 function Main() {
@@ -20,26 +21,12 @@ function Main() {
             <tbody class="overflow-y-auto">
               <For each={result()?.data}>
                 {(title) => (
-                  <tr
-                    class="border-b dark:border-neutral-500"
-                  >
-                    <td
-                      class="whitespace-nowrap px-6 py-4"
-                    >
-                      <a
-                        href={`/titles/${title.id}`}
-                      >
-                        {title.name}
-                      </a>
+                  <tr class="border-b dark:border-neutral-500">
+                    <td class="whitespace-nowrap px-6 py-4">
+                      <a href={`/titles/${title.id}`}>{title.name}</a>
                     </td>
-                    <td
-                      class="whitespace-nowrap px-6 py-4"
-                    >
-                      {title.year}
-                    </td>
-                    <td
-                      class="whitespace-nowrap px-6 py-4"
-                    >
+                    <td class="whitespace-nowrap px-6 py-4">{title.year}</td>
+                    <td class="whitespace-nowrap px-6 py-4">
                       <a target="_blank" href={title.url.toString()}>
                         link
                       </a>

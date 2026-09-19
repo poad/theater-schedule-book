@@ -1,21 +1,18 @@
-import { Show as ShowData, Theater } from '../../../types';
+import { DateView } from '../../../feature/date-view';
+import { useMutation } from '../../../feature/mutations';
 import { InputBox } from '../../../feature/show';
+import { SupabaseSessionContext } from '../../../feature/supabase';
 import { fetchTheaters } from '../../../feature/theater';
 import { useTitle } from '../../../feature/title';
-import { useMutation } from '../../../feature/mutations';
 import { Tooltip, ErrorAlert, FadeLoader, ThroughableLine } from '../../../feature/ui';
-import { SupabaseSessionContext } from '../../../feature/supabase';
-import { DateView } from '../../../feature/date-view';
-import { For, Show, createResource, createSignal, useContext } from 'solid-js';
+import { Show as ShowData, Theater } from '../../../types';
+
 import { useParams } from '@solidjs/router';
-import { ImEyeBlocked } from 'solid-icons/im';
 import { HiSolidUsers } from 'solid-icons/hi';
+import { ImEyeBlocked } from 'solid-icons/im';
+import { RiSystemDeleteBin2Line, RiSystemCheckFill, RiSystemCheckboxFill } from 'solid-icons/ri';
 import { TbOutlineCalendarCancel } from 'solid-icons/tb';
-import {
-  RiSystemDeleteBin2Line,
-  RiSystemCheckFill,
-  RiSystemCheckboxFill,
-} from 'solid-icons/ri';
+import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 
 function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
   const session = useContext(SupabaseSessionContext);
@@ -105,11 +102,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
     <Show when={session()} fallback={<></>}>
       <Show
         when={!theaters()?.error}
-        fallback={
-          <ErrorAlert title="fetch error">
-            {theaters()?.error?.message}
-          </ErrorAlert>
-        }
+        fallback={<ErrorAlert title="fetch error">{theaters()?.error?.message}</ErrorAlert>}
       >
         <Show
           when={!errorMessage()}
@@ -137,11 +130,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                         </tr>
                       </thead>
                       <tbody>
-                        <For
-                          each={props.shows?.sort(
-                            (a, b) => a.show_date - b.show_date,
-                          )}
-                        >
+                        <For each={props.shows?.sort((a, b) => a.show_date - b.show_date)}>
                           {(show) => (
                             <tr class="border-b dark:border-neutral-500">
                               <td class="whitespace-nowrap px-6 py-4">
@@ -161,17 +150,9 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                 </ThroughableLine>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
-                                <Show
-                                  when={
-                                    !show.canceled &&
-                                    !show.viewed &&
-                                    !show.skipped
-                                  }
-                                >
+                                <Show when={!show.canceled && !show.viewed && !show.skipped}>
                                   <TbOutlineCalendarCancel
-                                    onClick={() =>
-                                      void handleClickCanceled(show.id)
-                                    }
+                                    onClick={() => void handleClickCanceled(show.id)}
                                   />
                                 </Show>
                               </td>
@@ -185,9 +166,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                   }
                                 >
                                   <RiSystemCheckboxFill
-                                    onClick={() =>
-                                      void handleClickViewed(show.id)
-                                    }
+                                    onClick={() => void handleClickViewed(show.id)}
                                   />
                                 </Show>
                               </td>
@@ -200,11 +179,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                     currentTime >= show.show_date
                                   }
                                 >
-                                  <ImEyeBlocked
-                                    onClick={() =>
-                                      void handleClickSkipped(show.id)
-                                    }
-                                  />
+                                  <ImEyeBlocked onClick={() => void handleClickSkipped(show.id)} />
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -271,11 +246,7 @@ export default function Shows() {
               </div>
             </nav>
 
-            <Main
-              id={params.title_id as string}
-              shows={title()?.data?.shows}
-              refetch={refetch}
-            />
+            <Main id={params.title_id as string} shows={title()?.data?.shows} refetch={refetch} />
           </div>
         </Show>
       }

@@ -1,9 +1,10 @@
 import { SupabaseSessionProvider } from './feature/supabase/';
-import { render } from 'solid-js/web';
+
 import { Router } from '@solidjs/router';
+import { Suspense } from 'solid-js';
+import { render } from 'solid-js/web';
 // eslint-disable-next-line import-x/no-unresolved
 import routes from '~solid-pages';
-import { Suspense } from 'solid-js';
 import './index.css';
 
 const root = document.getElementById('root');

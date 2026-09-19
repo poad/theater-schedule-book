@@ -1,4 +1,5 @@
 import { Theater } from '../../../types';
+
 import { RiDesignEdit2Line, RiSystemDeleteBin2Line } from 'solid-icons/ri';
 import { Show } from 'solid-js';
 
@@ -20,10 +21,7 @@ export function TheaterItem(props: {
       <span>
         {props.theater.name}
         <Show when={props.onUpdate}>
-          <RiDesignEdit2Line
-            style={{ display: 'inline' }}
-            onClick={() => handleEditClick()}
-          />
+          <RiDesignEdit2Line style={{ display: 'inline' }} onClick={() => handleEditClick()} />
         </Show>
         <Show when={props.onDelete}>
           <RiSystemDeleteBin2Line

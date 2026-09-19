@@ -1,7 +1,8 @@
-import { fetchTitles, InputBox } from '../../feature/title';
 import { useMutation } from '../../feature/mutations';
-import { FadeLoader, ErrorAlert } from '../../feature/ui';
 import { SupabaseSessionContext } from '../../feature/supabase';
+import { fetchTitles, InputBox } from '../../feature/title';
+import { FadeLoader, ErrorAlert } from '../../feature/ui';
+
 import { useNavigate } from '@solidjs/router';
 import { Show, createResource, createSignal, useContext } from 'solid-js';
 
@@ -57,15 +58,11 @@ function Main() {
       >
         <Show
           when={!titles()?.error}
-          fallback={
-            <ErrorAlert title="fetch error">{titles()?.error?.message}</ErrorAlert>
-          }
+          fallback={<ErrorAlert title="fetch error">{titles()?.error?.message}</ErrorAlert>}
         >
           <Show
             when={!errorMessage()}
-            fallback={
-              <ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>
-            }
+            fallback={<ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>}
           >
             <div class="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
               <div>
@@ -74,11 +71,9 @@ function Main() {
                   placeholderName="name of title to add"
                   labelUrl="Title URL"
                   placeholderUrl="URL of title to add"
-                  onClick={(data: {
-                    name: string;
-                    year?: number;
-                    url?: string;
-                  }) => handleClick(data)}
+                  onClick={(data: { name: string; year?: number; url?: string }) =>
+                    handleClick(data)
+                  }
                 />
               </div>
             </div>

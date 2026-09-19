@@ -1,7 +1,8 @@
-import { ErrorAlert } from '../../ui';
 import { Theater } from '../../../types';
-import { Button } from 'terracotta';
+import { ErrorAlert } from '../../ui';
+
 import { For, Show, createMemo, createSignal } from 'solid-js';
+import { Button } from 'terracotta';
 
 export function InputBox(props: {
   theaters: Theater[];
@@ -18,7 +19,9 @@ export function InputBox(props: {
   const [minute, setMinute] = createSignal<number>(new Date().getMinutes());
 
   const [selectedTheaterId, setSelectedTheaterId] = createSignal<string>();
-  const theater = createMemo(() => props.theaters.find((it) => it.id === selectedTheaterId()) ?? props.theaters[0]);
+  const theater = createMemo(
+    () => props.theaters.find((it) => it.id === selectedTheaterId()) ?? props.theaters[0],
+  );
   const [canceled, setCanceled] = createSignal<boolean>(false);
   const [viewed, setViewed] = createSignal<boolean>(false);
   const [error, setError] = createSignal<Error>();
@@ -30,12 +33,11 @@ export function InputBox(props: {
     const month = selected?.getMonth() || 0;
     const day = selected?.getDate();
 
-    const showDate =
-      selected
-        ? new Date(
+    const showDate = selected
+      ? new Date(
           `${year}-${('00' + (month + 1)).slice(-2)}-${('00' + day).slice(-2)}T${('00' + hour()).slice(-2)}:${('00' + minute()).slice(-2)}:00+09:00`,
         )
-        : undefined;
+      : undefined;
 
     const error = await props['on:click']({
       showDate,
@@ -67,8 +69,8 @@ export function InputBox(props: {
             </div>
             <div>
               <input
-                name='date'
-                type='date'
+                name="date"
+                type="date"
                 on:change={(event) => {
                   setDate(() => event.target.valueAsDate);
                 }}
@@ -109,13 +111,8 @@ export function InputBox(props: {
           </div>
         </div>
       </div>
-      <select
-        on:change={(event) => handleSelectChange(event.target.value)}
-        class="mb-4 w-full"
-      >
-        <For each={props.theaters}>
-          {(item) => <option value={item.id}>{item.name}</option>}
-        </For>
+      <select on:change={(event) => handleSelectChange(event.target.value)} class="mb-4 w-full">
+        <For each={props.theaters}>{(item) => <option value={item.id}>{item.name}</option>}</For>
       </select>
       <div class="flex mb-4">
         <label class="mr-6">
@@ -127,10 +124,7 @@ export function InputBox(props: {
           Canceled
         </label>
         <label>
-          <input
-            type="checkbox"
-            on:change={(event) => setViewed(event.target.checked)}
-          />
+          <input type="checkbox" on:change={(event) => setViewed(event.target.checked)} />
           Viewed
         </label>
       </div>

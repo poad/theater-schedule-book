@@ -1,9 +1,12 @@
+import { DateView } from '../../../feature/date-view';
 import { useShows } from '../../show';
 import { SupabaseSessionContext } from '../../supabase';
-import { DateView } from '../../../feature/date-view';
+
 import { For, Show, createResource, useContext } from 'solid-js';
 
-interface MainProps { currentMonthOnly: boolean };
+interface MainProps {
+  currentMonthOnly: boolean;
+}
 
 function Main(props: MainProps) {
   const [result] = createResource(
@@ -28,10 +31,7 @@ function Main(props: MainProps) {
                 {(show) => (
                   <tr class="border-b dark:border-neutral-500">
                     <td class="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4">
-                      <a
-                        href={`/titles/${show.titles[0].id}`}
-                        class="text-current"
-                      >
+                      <a href={`/titles/${show.titles[0].id}`} class="text-current">
                         {show.titles[0].name}
                       </a>
                     </td>

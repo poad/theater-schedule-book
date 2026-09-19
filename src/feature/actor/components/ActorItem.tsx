@@ -1,4 +1,5 @@
 import { Actor } from '../../../types';
+
 import { RiDesignEdit2Line, RiSystemDeleteBin2Line } from 'solid-icons/ri';
 import { Show } from 'solid-js';
 
@@ -22,10 +23,7 @@ export function ActorItem(props: ActorItemProps) {
       <span>
         {props.actor.name}
         <Show when={props['on:delete']}>
-          <RiDesignEdit2Line
-            style={{ display: 'inline' }}
-            on:click={() => handleEditClick()}
-          />
+          <RiDesignEdit2Line style={{ display: 'inline' }} on:click={() => handleEditClick()} />
         </Show>
         <Show when={props['on:delete']}>
           <RiSystemDeleteBin2Line

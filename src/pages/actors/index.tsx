@@ -1,7 +1,8 @@
 import { fetchActors, ActorItem } from '../../feature/actor';
-import { FadeLoader, NameInputBox as InputBox, ErrorAlert } from '../../feature/ui';
 import { useMutation } from '../../feature/mutations';
 import { SupabaseSessionContext } from '../../feature/supabase';
+import { FadeLoader, NameInputBox as InputBox, ErrorAlert } from '../../feature/ui';
+
 import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 
 export default function Index() {
@@ -30,15 +31,11 @@ export default function Index() {
     <Show when={session()}>
       <Show
         when={!actors()?.error}
-        fallback={
-          <ErrorAlert title="fetch error">{actors()?.error?.message}</ErrorAlert>
-        }
+        fallback={<ErrorAlert title="fetch error">{actors()?.error?.message}</ErrorAlert>}
       >
         <Show
           when={!errorMessage()}
-          fallback={
-            <ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>
-          }
+          fallback={<ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>}
         >
           <Show
             when={actors()}
@@ -70,9 +67,7 @@ export default function Index() {
                 </div>
                 <div class="h-[calc(100vh-theme(space.60))] overflow-scroll">
                   <ul>
-                    <For each={actors()?.data}>
-                      {(actor) => <ActorItem actor={actor} />}
-                    </For>
+                    <For each={actors()?.data}>{(actor) => <ActorItem actor={actor} />}</For>
                   </ul>
                 </div>
               </div>

@@ -1,6 +1,6 @@
-import { Button } from 'terracotta';
-import { Show, createSignal } from 'solid-js';
 import { reset, createForm, SubmitHandler } from '@modular-forms/solid';
+import { Show, createSignal } from 'solid-js';
+import { Button } from 'terracotta';
 
 interface Inputs {
   name: string;
@@ -12,9 +12,7 @@ export function NameInputBox(props: {
   onClick: (value: string) => Promise<Error | undefined>;
 }) {
   const [error, setError] = createSignal<Error>();
-  const [
-    form, { Form, Field },
-  ] = createForm<Inputs>();
+  const [form, { Form, Field }] = createForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const name = data.name ?? '';
@@ -34,18 +32,22 @@ export function NameInputBox(props: {
         </label>
         <div class="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
           <Field name="name" type="string">
-            {(field, inputProps) => (<>
-              <input
-                id={field.name}
-                type="text"
-                {...inputProps}
-                placeholder={props.placeholder}
-                pattern=".{2,}"
-                class="p-1 inline w-full relative"
-                value={field.value ?? ''}
-                required
-              />
-              <Show when={field.error}><div class="text-red-500">{field.error}</div></Show></>
+            {(field, inputProps) => (
+              <>
+                <input
+                  id={field.name}
+                  type="text"
+                  {...inputProps}
+                  placeholder={props.placeholder}
+                  pattern=".{2,}"
+                  class="p-1 inline w-full relative"
+                  value={field.value ?? ''}
+                  required
+                />
+                <Show when={field.error}>
+                  <div class="text-red-500">{field.error}</div>
+                </Show>
+              </>
             )}
           </Field>
           <Button

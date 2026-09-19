@@ -1,7 +1,8 @@
-import { fetchTheaters, TheaterItem } from '../../feature/theater';
 import { useMutation } from '../../feature/mutations';
-import { ErrorAlert, NameInputBox as InputBox, FadeLoader } from '../../feature/ui';
 import { SupabaseSessionContext } from '../../feature/supabase';
+import { fetchTheaters, TheaterItem } from '../../feature/theater';
+import { ErrorAlert, NameInputBox as InputBox, FadeLoader } from '../../feature/ui';
+
 import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 
 export default function Index() {
@@ -35,9 +36,7 @@ export default function Index() {
       >
         <Show
           when={!errorMessage()}
-          fallback={
-            <ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>
-          }
+          fallback={<ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>}
         >
           <Show
             when={theaters}

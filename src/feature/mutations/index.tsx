@@ -1,5 +1,6 @@
 import { Actor, Show, Theater, Title } from '../../types';
 import { SupabaseSessionContext, supabase } from '../supabase';
+
 import { PostgrestError } from '@supabase/supabase-js';
 import { useContext } from 'solid-js';
 
@@ -8,7 +9,7 @@ interface AddTitleProps {
   year: number;
   url?: string;
   'on:success'?: (title: Title | null) => void;
-};
+}
 
 interface AddShowProps {
   titleId: string;
@@ -17,14 +18,19 @@ interface AddShowProps {
   canceled: boolean;
   theaterId: string;
   'on:success'?: () => void;
-};
+}
 
 type Result = { error?: Error } | undefined;
 
 export function useMutation() {
   const session = useContext(SupabaseSessionContext);
 
-  const addTitle = async ({ name, year, url, 'on:success': onSuccess }: AddTitleProps): Promise<Result> => {
+  const addTitle = async ({
+    name,
+    year,
+    url,
+    'on:success': onSuccess,
+  }: AddTitleProps): Promise<Result> => {
     if (!session()) {
       return { error: new Error('uninitialized') };
     }
@@ -33,21 +39,13 @@ export function useMutation() {
       .insert([{ name, year, url }])
       .select()
       .single<Title>()
-      .then(
-        ({
-          data,
-          error,
-        }: {
-          data: Title | null;
-          error: PostgrestError | null;
-        }) => {
-          if (error) {
-            return { error: new Error(error.message) };
-          }
-          onSuccess?.(data);
-          return { data };
-        },
-      );
+      .then(({ data, error }: { data: Title | null; error: PostgrestError | null }) => {
+        if (error) {
+          return { error: new Error(error.message) };
+        }
+        onSuccess?.(data);
+        return { data };
+      });
   };
 
   const addTheater = async ({
@@ -65,25 +63,24 @@ export function useMutation() {
       .insert([{ name }])
       .select()
       .single<Theater>()
-      .then(
-        ({
-          data,
-          error,
-        }: {
-          data: Theater | null;
-          error: PostgrestError | null;
-        }) => {
-          if (error) {
-            return { error: new Error(error.message) };
-          }
+      .then(({ data, error }: { data: Theater | null; error: PostgrestError | null }) => {
+        if (error) {
+          return { error: new Error(error.message) };
+        }
 
-          onSuccess?.(data);
-          return {};
-        },
-      );
+        onSuccess?.(data);
+        return {};
+      });
   };
 
-  const addShow = async ({ titleId, showDate, viewed, canceled, theaterId, 'on:success': onSuccess }: AddShowProps): Promise<{ data?: Show; error?: Error } | undefined> => {
+  const addShow = async ({
+    titleId,
+    showDate,
+    viewed,
+    canceled,
+    theaterId,
+    'on:success': onSuccess,
+  }: AddShowProps): Promise<{ data?: Show; error?: Error } | undefined> => {
     if (!session()) {
       return { error: new Error('uninitialized') };
     }
@@ -100,13 +97,7 @@ export function useMutation() {
       .select()
       .single<Show>()
       .then(
-        async ({
-          data: newEntity,
-          error,
-        }: {
-          data: Show | null;
-          error: PostgrestError | null;
-        }) => {
+        async ({ data: newEntity, error }: { data: Show | null; error: PostgrestError | null }) => {
           if (error) {
             return { error: new Error(error.message) };
           }
@@ -114,7 +105,7 @@ export function useMutation() {
           if (newEntity) {
             await supabase
               .from('shows_theater')
-                .insert([{ show_id: newEntity.id, theater_id: theaterId }])
+              .insert([{ show_id: newEntity.id, theater_id: theaterId }])
               .then(async ({ error }: { error: PostgrestError | null }) => {
                 if (error) {
                   return { error: new Error(error.message) };
@@ -236,22 +227,14 @@ export function useMutation() {
       .insert([{ name }])
       .select()
       .single<Actor>()
-      .then(
-        ({
-          data,
-          error,
-        }: {
-          data: Actor | null;
-          error: PostgrestError | null;
-        }) => {
-          if (error) {
-            return { error: new Error(error.message) };
-          }
+      .then(({ data, error }: { data: Actor | null; error: PostgrestError | null }) => {
+        if (error) {
+          return { error: new Error(error.message) };
+        }
 
-          onSuccess?.(data);
-          return {};
-        },
-      );
+        onSuccess?.(data);
+        return {};
+      });
   };
 
   const delShow = async ({
