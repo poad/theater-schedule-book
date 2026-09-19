@@ -2,5 +2,5 @@ import { Actor } from '../../../types';
 import { supabase } from '../../supabase';
 
 export async function fetchActors() {
-  return supabase.from('actors').select('id, name').returns<Actor[]>();
+  return supabase.from('actors').select('id, name').overrideTypes<Actor[], { merge: false }>();
 }

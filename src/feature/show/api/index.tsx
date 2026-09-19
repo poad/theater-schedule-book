@@ -27,6 +27,6 @@ export function useShows({ futures }: UseShowProps) {
           ).setHours(23, 59, 59, 999),
         )
       : select;
-    return withConditions?.order('show_date').returns<ShowTitle[]>();
+    return withConditions?.order('show_date').overrideTypes<ShowTitle[], { merge: false }>();
   };
 }
