@@ -6,9 +6,13 @@ interface UseShowProps {
     today: Date;
     currentMonthOnly: boolean;
   };
+  month?: {
+    year: number;
+    month: number;
+  };
 }
 
-export function useShows({ futures }: UseShowProps) {
+export function useShows({ futures, month }: UseShowProps) {
   const ac = new AbortController();
 
   return async function fetchData() {
@@ -27,6 +31,11 @@ export function useShows({ futures }: UseShowProps) {
           ).setHours(23, 59, 59, 999),
         )
       : select;
-    return withConditions?.order('show_date').overrideTypes<ShowTitle[], { merge: false }>();
+    const withMonth = month
+      ? withConditions
+          ?.gte('show_date', new Date(month.year, month.month, 1).getTime())
+          .lt('show_date', new Date(month.year, month.month + 1, 1).getTime())
+      : withConditions;
+    return withMonth?.order('show_date').overrideTypes<ShowTitle[], { merge: false }>();
   };
 }
