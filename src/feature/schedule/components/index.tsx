@@ -21,7 +21,7 @@ function Main(props: MainProps) {
           <ul>
             <For each={result()?.data}>
               {(show) => (
-                <li class="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4">
+                <li class="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4 bg-gray-200 hover:bg-yellow-200">
                   <a href={`/titles/${show.titles[0].id}`} class="text-current block">
                     {show.titles[0].name}
                   </a>
