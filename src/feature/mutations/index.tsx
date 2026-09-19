@@ -24,11 +24,8 @@ type Result = { error?: Error } | undefined;
 export function useMutation() {
   const session = useContext(SupabaseSessionContext);
 
-  const addTitle = async (props: AddTitleProps): Promise<Result> => {
-    const name = props.name;
-    const year = props.year;
-    const url = props.url;
-    if (!session) {
+  const addTitle = async ({ name, year, url, 'on:success': onSuccess }: AddTitleProps): Promise<Result> => {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
     return await supabase
@@ -47,18 +44,20 @@ export function useMutation() {
           if (error) {
             return { error: new Error(error.message) };
           }
-          props['on:success']?.(data);
+          onSuccess?.(data);
           return { data };
         },
       );
   };
 
-  const addTheater = async (props: {
+  const addTheater = async ({
+    name,
+    'on:success': onSuccess,
+  }: {
     name: string;
     'on:success'?: (theater: Theater | null) => void;
   }): Promise<Result> => {
-    const { name, 'on:success': onSuccess } = props;
-    if (!session) {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
     return await supabase
@@ -84,8 +83,8 @@ export function useMutation() {
       );
   };
 
-  const addShow = async (props: AddShowProps): Promise<{ data?: Show; error?: Error } | undefined> => {
-    if (!session) {
+  const addShow = async ({ titleId, showDate, viewed, canceled, theaterId, 'on:success': onSuccess }: AddShowProps): Promise<{ data?: Show; error?: Error } | undefined> => {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
 
@@ -93,9 +92,9 @@ export function useMutation() {
       ?.from('shows')
       .insert([
         {
-          show_date: props.showDate.getTime(),
-          viewed: props.viewed,
-          canceled: props.canceled,
+          show_date: showDate.getTime(),
+          viewed: viewed,
+          canceled: canceled,
         },
       ])
       .select()
@@ -115,7 +114,7 @@ export function useMutation() {
           if (newEntity) {
             await supabase
               .from('shows_theater')
-              .insert([{ show_id: newEntity.id, theater_id: props.theaterId }])
+                .insert([{ show_id: newEntity.id, theater_id: theaterId }])
               .then(async ({ error }: { error: PostgrestError | null }) => {
                 if (error) {
                   return { error: new Error(error.message) };
@@ -123,13 +122,13 @@ export function useMutation() {
 
                 await supabase
                   .from('titles_shows')
-                  .insert([{ title_id: props.titleId, show_id: newEntity.id }])
+                  .insert([{ title_id: titleId, show_id: newEntity.id }])
                   .then(({ error }: { error: PostgrestError | null }) => {
                     if (error) {
                       return { error: new Error(error.message) };
                     }
 
-                    props['on:success']?.();
+                    onSuccess?.();
                   });
               });
           }
@@ -138,17 +137,16 @@ export function useMutation() {
       );
   };
 
-  const updateShowViewed = async (props: {
+  const updateShowViewed = async ({
+    id,
+    status,
+    'on:success': onSuccess,
+  }: {
     id: string;
     status: boolean;
     'on:success'?: () => void;
   }): Promise<Result> => {
-    const {
-      id,
-      status,
-      'on:success': onSuccess,
-    } = props;
-    if (!session) {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
 
@@ -176,7 +174,7 @@ export function useMutation() {
     status: boolean;
     onSuccess?: () => void;
   }): Promise<Result> => {
-    if (!session) {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
 
@@ -204,7 +202,7 @@ export function useMutation() {
     skipped: boolean;
     onSuccess?: () => void;
   }): Promise<Result> => {
-    if (!session) {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
 
@@ -230,7 +228,7 @@ export function useMutation() {
     name: string;
     onSuccess?: (actor: Actor | null) => void;
   }): Promise<Result> => {
-    if (!session) {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
     return supabase
@@ -263,7 +261,7 @@ export function useMutation() {
     id: string;
     onSuccess?: () => void;
   }): Promise<Result> => {
-    if (!session) {
+    if (!session()) {
       return { error: new Error('uninitialized') };
     }
 

@@ -9,7 +9,7 @@ function Menu() {
 
   return (
     <Show
-      when={session}
+      when={session()}
       fallback={
         <Auth
           supabaseClient={supabase}

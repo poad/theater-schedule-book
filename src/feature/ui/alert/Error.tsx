@@ -1,10 +1,7 @@
 import { JSX } from 'solid-js';
 import { RiSystemCloseCircleLine } from 'solid-icons/ri';
 
-export function ErrorAlert({
-  title,
-  children,
-}: {
+export function ErrorAlert(props: {
   title: string;
   children?: JSX.Element;
 }) {
@@ -23,8 +20,8 @@ export function ErrorAlert({
           />
         </div>
         <div class="ml-3">
-          <h3 class="font-medium text-sm">{title}</h3>
-          <div class="pt-2 text-sm">{children}</div>
+          <h3 class="font-medium text-sm">{props.title}</h3>
+          <div class="pt-2 text-sm">{props.children}</div>
         </div>
       </div>
     </>

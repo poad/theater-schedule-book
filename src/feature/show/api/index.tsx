@@ -8,9 +8,8 @@ interface UseShowProps {
   };
 }
 
-export function useShows(props: UseShowProps) {
+export function useShows({ futures }: UseShowProps) {
   const ac = new AbortController();
-  const futures = props.futures;
 
   return async function fetchData() {
     const select = supabase.from('shows')

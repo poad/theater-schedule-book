@@ -6,7 +6,10 @@ import { For, Show, createResource, useContext } from 'solid-js';
 interface MainProps { currentMonthOnly: boolean };
 
 function Main(props: MainProps) {
-  const [result] = createResource(useShows({futures: { today: new Date(), currentMonthOnly: props.currentMonthOnly }}));
+  const [result] = createResource(
+    () => props.currentMonthOnly,
+    (currentMonthOnly) => useShows({ futures: { today: new Date(), currentMonthOnly } })(),
+  );
 
   return (
     <div class="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
@@ -54,7 +57,7 @@ function Main(props: MainProps) {
 export function Schedules(props: { currentMonthOnly?: boolean }) {
   const session = useContext(SupabaseSessionContext);
   return (
-    <Show when={session}>
+    <Show when={session()}>
       <Main currentMonthOnly={props.currentMonthOnly ?? false} />
     </Show>
   );

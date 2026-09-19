@@ -27,7 +27,7 @@ export default function Index() {
   }
 
   return (
-    <Show when={session}>
+    <Show when={session()}>
       <Show
         when={!actors()?.error}
         fallback={
@@ -65,7 +65,7 @@ export default function Index() {
                   <InputBox
                     label="Actor name"
                     placeholder="name of actor to add"
-                    onClick={async (name: string) => await handleClick(name)}
+                    onClick={(name: string) => handleClick(name)}
                   />
                 </div>
                 <div class="h-[calc(100vh-theme(space.60))] overflow-scroll">

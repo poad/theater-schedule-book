@@ -22,13 +22,13 @@ export default function Index() {
 
     const result = await addTheater({
       name,
-      onSuccess: () => void refetch(),
+      'on:success': () => void refetch(),
     });
     setErrorMessage(result?.error?.message);
   }
 
   return (
-    <Show when={session}>
+    <Show when={session()}>
       <Show
         when={!theaters()?.error}
         fallback={<ErrorAlert title="fetch error">{theaters()?.error?.message}</ErrorAlert>}
@@ -64,7 +64,7 @@ export default function Index() {
                   <InputBox
                     label="Teater name"
                     placeholder="name of theater to add"
-                    onClick={async (name: string) => await handleClick(name)}
+                    onClick={(name: string) => handleClick(name)}
                   />
                 </div>
                 <div class="h-[calc(100vh-theme(space.72))] lg:h-[calc(100vh-theme(space.80))] overflow-scroll">

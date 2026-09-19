@@ -59,7 +59,7 @@ export function Titles() {
   const session = useContext(SupabaseSessionContext);
 
   return (
-    <Show when={session}>
+    <Show when={session()}>
       <Main />
     </Show>
   );

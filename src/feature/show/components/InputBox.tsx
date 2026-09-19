@@ -1,7 +1,7 @@
 import { ErrorAlert } from '../../ui';
 import { Theater } from '../../../types';
 import { Button } from 'terracotta';
-import { For, Show, createSignal } from 'solid-js';
+import { For, Show, createMemo, createSignal } from 'solid-js';
 
 export function InputBox(props: {
   theaters: Theater[];
@@ -17,7 +17,8 @@ export function InputBox(props: {
   const [hour, setHour] = createSignal<number>(new Date().getHours());
   const [minute, setMinute] = createSignal<number>(new Date().getMinutes());
 
-  const [theater, setTheater] = createSignal(props.theaters[0]);
+  const [selectedTheaterId, setSelectedTheaterId] = createSignal<string>();
+  const theater = createMemo(() => props.theaters.find((it) => it.id === selectedTheaterId()) ?? props.theaters[0]);
   const [canceled, setCanceled] = createSignal<boolean>(false);
   const [viewed, setViewed] = createSignal<boolean>(false);
   const [error, setError] = createSignal<Error>();
@@ -53,7 +54,7 @@ export function InputBox(props: {
   }
 
   function handleSelectChange(id: string) {
-    setTheater(props.theaters.find((it) => it.id === id) ?? props.theaters[0]);
+    setSelectedTheaterId(id);
   }
 
   return (

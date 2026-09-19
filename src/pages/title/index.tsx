@@ -46,7 +46,7 @@ function Main() {
   }
 
   return (
-    <Show when={session}>
+    <Show when={session()}>
       <Show
         when={loading}
         fallback={
@@ -74,11 +74,11 @@ function Main() {
                   placeholderName="name of title to add"
                   labelUrl="Title URL"
                   placeholderUrl="URL of title to add"
-                  onClick={async (data: {
+                  onClick={(data: {
                     name: string;
                     year?: number;
                     url?: string;
-                  }) => await handleClick(data)}
+                  }) => handleClick(data)}
                 />
               </div>
             </div>
