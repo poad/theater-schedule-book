@@ -4,14 +4,12 @@ import { InputBox } from '../../../feature/show';
 import { SupabaseSessionContext } from '../../../feature/supabase';
 import { fetchTheaters } from '../../../feature/theater';
 import { useTitle } from '../../../feature/title';
-import { Tooltip, ErrorAlert, FadeLoader, ThroughableLine } from '../../../feature/ui';
+import { ErrorAlert, FadeLoader, ThroughableLine, Tooltip } from '../../../feature/ui';
+import { CancelButton, ViewedButton, SkippedButton } from '../../../feature/ui/Buttons';
 import { Show as ShowData, Theater } from '../../../types';
 
 import { useParams } from '@solidjs/router';
-import { HiSolidUsers } from 'solid-icons/hi';
-import { ImEyeBlocked } from 'solid-icons/im';
-import { RiSystemDeleteBin2Line, RiSystemCheckFill, RiSystemCheckboxFill } from 'solid-icons/ri';
-import { TbOutlineCalendarCancel } from 'solid-icons/tb';
+import { RiSystemDeleteBin2Line, RiSystemCheckFill } from 'solid-icons/ri';
 import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 
 function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
@@ -139,9 +137,6 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                               <td class="whitespace-nowrap px-3 py-4">
                                 <ThroughableLine strikethrough={show.canceled}>
                                   <DateView date={show.show_date} />
-                                  <Tooltip text="Casts">
-                                    <HiSolidUsers class="inline ml-2" />
-                                  </Tooltip>
                                 </ThroughableLine>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -151,9 +146,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
                                 <Show when={!show.canceled && !show.viewed && !show.skipped}>
-                                  <TbOutlineCalendarCancel
-                                    onClick={() => void handleClickCanceled(show.id)}
-                                  />
+                                  <CancelButton onClick={() => void handleClickCanceled(show.id)} />
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -165,9 +158,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                     currentTime >= show.show_date
                                   }
                                 >
-                                  <RiSystemCheckboxFill
-                                    onClick={() => void handleClickViewed(show.id)}
-                                  />
+                                  <ViewedButton onClick={() => void handleClickViewed(show.id)} />
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -179,13 +170,15 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                     currentTime >= show.show_date
                                   }
                                 >
-                                  <ImEyeBlocked onClick={() => void handleClickSkipped(show.id)} />
+                                  <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
-                                <RiSystemDeleteBin2Line
-                                  onClick={() => void handleDelete(show.id)}
-                                />
+                                <Tooltip text="削除">
+                                  <RiSystemDeleteBin2Line
+                                    onClick={() => void handleDelete(show.id)}
+                                  />
+                                </Tooltip>
                               </td>
                             </tr>
                           )}

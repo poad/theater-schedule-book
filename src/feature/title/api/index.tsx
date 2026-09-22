@@ -16,5 +16,6 @@ export async function fetchTitles() {
     .from('titles')
     .select()
     .order('year', { ascending: true })
+    .order('month', { ascending: true })
     .overrideTypes<Title[], { merge: false }>();
 }

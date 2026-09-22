@@ -1,6 +1,9 @@
 name: Deploy solid.js site to Cloudflare Pages
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches: ['main']
 
@@ -13,7 +16,13 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      deployments: write
+
+    if: ${{ (github.event.pull_request && github.event.pull_request.draft == true) || !github.event.pull_request }}
+    runs-on: ubuntu-26.04-arm
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -40,6 +49,7 @@ jobs:
         run: pnpm build
 
       - name: Publish to Cloudflare Pages
+        id: deploy
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -47,7 +57,7 @@ jobs:
           packageManager: pnpm
           command: |
             pages project list
-            pages deploy ./dist --project-name=${{ github.event.repository.name }} --branch=main
+            pages deploy ./dist --project-name=${{ github.event.repository.name }} --branch=${DEPLOY_BRANCH:-main}
 
           # projectName: ${{ github.event.repository.name }}
           # directory: ./dist
@@ -59,3 +69,18 @@ jobs:
 
           # Optional: Change the working directory
           workingDirectory: ./
+        env:
+          DEPLOY_BRANCH: ${{ github.head_ref }}
+
+      - name: Write deployment URL to summary
+        run: |
+          {
+            echo '## Deployment'
+            echo ''
+            if [ -n "${{ steps.deploy.outputs.deployment-url }}" ]; then
+              echo "- Deployment: ${{ steps.deploy.outputs.deployment-url }}"
+            fi
+            if [ -n "${{ steps.deploy.outputs.pages-deployment-alias-url }}" ]; then
+              echo "- Alias: ${{ steps.deploy.outputs.pages-deployment-alias-url }}"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
