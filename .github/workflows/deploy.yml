@@ -16,8 +16,13 @@ permissions:
 
 jobs:
   deploy:
+    permissions:
+      contents: read
+      id-token: write
+      deployments: write
+
     if: ${{ github.event.pull_request.draft || github.event_name != 'pull_request' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04-arm
     timeout-minutes: 10
     steps:
       - name: Checkout
