@@ -4,11 +4,10 @@ import { InputBox } from '../../../feature/show';
 import { SupabaseSessionContext } from '../../../feature/supabase';
 import { fetchTheaters } from '../../../feature/theater';
 import { useTitle } from '../../../feature/title';
-import { Tooltip, ErrorAlert, FadeLoader, ThroughableLine } from '../../../feature/ui';
+import { ErrorAlert, FadeLoader, ThroughableLine, Tooltip } from '../../../feature/ui';
 import { Show as ShowData, Theater } from '../../../types';
 
 import { useParams } from '@solidjs/router';
-import { HiSolidUsers } from 'solid-icons/hi';
 import { ImEyeBlocked } from 'solid-icons/im';
 import { RiSystemDeleteBin2Line, RiSystemCheckFill, RiSystemCheckboxFill } from 'solid-icons/ri';
 import { TbOutlineCalendarCancel } from 'solid-icons/tb';
@@ -139,9 +138,6 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                               <td class="whitespace-nowrap px-3 py-4">
                                 <ThroughableLine strikethrough={show.canceled}>
                                   <DateView date={show.show_date} />
-                                  <Tooltip text="Casts">
-                                    <HiSolidUsers class="inline ml-2" />
-                                  </Tooltip>
                                 </ThroughableLine>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -151,9 +147,11 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
                                 <Show when={!show.canceled && !show.viewed && !show.skipped}>
-                                  <TbOutlineCalendarCancel
-                                    onClick={() => void handleClickCanceled(show.id)}
-                                  />
+                                  <Tooltip text="中止">
+                                    <TbOutlineCalendarCancel
+                                      onClick={() => void handleClickCanceled(show.id)}
+                                    />
+                                  </Tooltip>
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -165,9 +163,11 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                     currentTime >= show.show_date
                                   }
                                 >
-                                  <RiSystemCheckboxFill
-                                    onClick={() => void handleClickViewed(show.id)}
-                                  />
+                                  <Tooltip text="観劇した">
+                                    <RiSystemCheckboxFill
+                                      onClick={() => void handleClickViewed(show.id)}
+                                    />
+                                  </Tooltip>
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -179,13 +179,19 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                     currentTime >= show.show_date
                                   }
                                 >
-                                  <ImEyeBlocked onClick={() => void handleClickSkipped(show.id)} />
+                                  <Tooltip text="上演したが行けなかった">
+                                    <ImEyeBlocked
+                                      onClick={() => void handleClickSkipped(show.id)}
+                                    />
+                                  </Tooltip>
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
-                                <RiSystemDeleteBin2Line
-                                  onClick={() => void handleDelete(show.id)}
-                                />
+                                <Tooltip text="削除">
+                                  <RiSystemDeleteBin2Line
+                                    onClick={() => void handleDelete(show.id)}
+                                  />
+                                </Tooltip>
                               </td>
                             </tr>
                           )}

@@ -10,6 +10,32 @@ interface MainProps {
   month?: number;
 }
 
+function isToday(timestamp: number): boolean {
+  const now = new Date();
+  const target = new Date(timestamp);
+  return (
+    now.getFullYear() === target.getFullYear() &&
+    now.getMonth() === target.getMonth() &&
+    now.getDate() === target.getDate()
+  );
+}
+
+function isBeforeToday(timestamp: number): boolean {
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+  return timestamp < startOfToday.getTime();
+}
+
+function getBackground(timestamp: number): string {
+  if (isToday(timestamp)) {
+    return 'bg-yellow-200/50';
+  }
+  if (isBeforeToday(timestamp)) {
+    return 'bg-gray-500/50';
+  }
+  return 'bg-gray-200/50';
+}
+
 function Main(props: MainProps) {
   const [result] = createResource(
     () => ({
@@ -37,7 +63,9 @@ function Main(props: MainProps) {
             <ul>
               <For each={result()?.data}>
                 {(show) => (
-                  <li class="whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4 my-3 bg-gray-200/50 hover:bg-yellow-200/50">
+                  <li
+                    class={`whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4 my-3 ${getBackground(show.show_date)} hover:bg-yellow-200/50`}
+                  >
                     <a href={`/titles/${show.titles[0].id}`} class="text-current block">
                       {show.titles[0].name}
                     </a>
