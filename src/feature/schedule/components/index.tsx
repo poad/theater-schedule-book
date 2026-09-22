@@ -1,4 +1,5 @@
 import { DateView } from '../../../feature/date-view';
+import { ShowTitle } from '../../../types';
 import { useMutation } from '../../mutations';
 import { useShows } from '../../show';
 import { SupabaseSessionContext } from '../../supabase';
@@ -36,6 +37,28 @@ function getBackground(timestamp: number): string {
     return 'bg-gray-500/50';
   }
   return 'bg-gray-200/50';
+}
+
+function hasActions(show: ShowTitle): boolean {
+  return !show.canceled && !show.viewed && !show.skipped;
+}
+
+function DateAndLink(props: { show: ShowTitle }) {
+  return (
+    <>
+      <span class="grow-2 pr-6">
+        <DateView date={props.show.show_date} />
+      </span>
+      <a
+        target="_blank"
+        class="block"
+        href={props.show.titles[0].url.toString()}
+        onClick={(e) => e.stopPropagation()}
+      >
+        link
+      </a>
+    </>
+  );
 }
 
 function Main(props: MainProps) {
@@ -108,42 +131,40 @@ function Main(props: MainProps) {
                       {show.titles[0].name}
                     </a>
 
-                    <div class="flex ml-3">
-                      <div class="grow-2 pr-6">
-                        <DateView date={show.show_date} />
-                      </div>
-                      <a target="_blank" class="block" href={show.titles[0].url.toString()}>
-                        link
-                      </a>
-                    </div>
-                    <details>
-                      <summary />
-                      <div class="flex gap-4 ml-3 py-2">
-                        <Show when={!show.canceled && !show.viewed && !show.skipped}>
-                          <CancelButton onClick={() => void handleClickCanceled(show.id)} />
-                        </Show>
-                        <Show
-                          when={
-                            !show.canceled &&
-                            !show.viewed &&
-                            !show.skipped &&
-                            currentTime >= show.show_date
-                          }
-                        >
-                          <ViewedButton onClick={() => void handleClickViewed(show.id)} />
-                        </Show>
-                        <Show
-                          when={
-                            !show.canceled &&
-                            !show.viewed &&
-                            !show.skipped &&
-                            currentTime >= show.show_date
-                          }
-                        >
-                          <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
-                        </Show>
-                      </div>
-                    </details>
+                    <Show
+                      when={hasActions(show)}
+                      fallback={
+                        <div class="flex items-center gap-2 ml-3">
+                          <span aria-hidden="true" class="inline-block invisible">
+                            ▶
+                          </span>
+                          <DateAndLink show={show} />
+                        </div>
+                      }
+                    >
+                      <details class="group ml-3">
+                        <summary class="flex cursor-pointer items-center gap-2 [&::marker]:hidden [&::-webkit-details-marker]:hidden">
+                          <span
+                            aria-hidden="true"
+                            class="inline-block transition-transform group-open:rotate-90"
+                          >
+                            ▶
+                          </span>
+                          <DateAndLink show={show} />
+                        </summary>
+                        <div class="flex gap-4 py-2">
+                          <Show when={hasActions(show)}>
+                            <CancelButton onClick={() => void handleClickCanceled(show.id)} />
+                          </Show>
+                          <Show when={hasActions(show) && currentTime >= show.show_date}>
+                            <ViewedButton onClick={() => void handleClickViewed(show.id)} />
+                          </Show>
+                          <Show when={hasActions(show) && currentTime >= show.show_date}>
+                            <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
+                          </Show>
+                        </div>
+                      </details>
+                    </Show>
                   </li>
                 )}
               </For>
