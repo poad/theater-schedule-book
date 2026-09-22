@@ -171,7 +171,7 @@ export function useMutation() {
 
     await supabase
       ?.from('shows')
-      .update({ viewed: status })
+      .update({ canceled: status })
       .match({ id })
       .select()
       .maybeSingle()

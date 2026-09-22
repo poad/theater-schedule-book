@@ -1,6 +1,8 @@
 import { DateView } from '../../../feature/date-view';
+import { useMutation } from '../../mutations';
 import { useShows } from '../../show';
 import { SupabaseSessionContext } from '../../supabase';
+import { CancelButton, SkippedButton, ViewedButton } from '../../ui/Buttons';
 
 import { For, Show, createResource, useContext } from 'solid-js';
 
@@ -37,7 +39,13 @@ function getBackground(timestamp: number): string {
 }
 
 function Main(props: MainProps) {
-  const [result] = createResource(
+  const mutations = useMutation();
+  const updateShowViewed = mutations.updateShowViewed;
+  const updateShowCanceled = mutations.updateShowCanceled;
+  const updateShowSkipped = mutations.updateShowSkipped;
+  const currentTime = new Date().getTime();
+
+  const [result, { refetch }] = createResource(
     () => ({
       monthMode: props.year !== undefined && props.month !== undefined,
       year: props.year ?? new Date().getFullYear(),
@@ -51,6 +59,36 @@ function Main(props: MainProps) {
           : { futures: { today: new Date(), currentMonthOnly: filter.currentMonthOnly } },
       )(),
   );
+
+  async function handleClickCanceled(id: string) {
+    await updateShowCanceled({
+      id,
+      status: true,
+      onSuccess: () => {
+        void refetch();
+      },
+    });
+  }
+
+  async function handleClickViewed(id: string) {
+    await updateShowViewed({
+      id,
+      status: true,
+      'on:success': () => {
+        void refetch();
+      },
+    });
+  }
+
+  async function handleClickSkipped(id: string) {
+    await updateShowSkipped({
+      id,
+      skipped: true,
+      onSuccess: () => {
+        void refetch();
+      },
+    });
+  }
 
   return (
     <div class="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
@@ -78,6 +116,34 @@ function Main(props: MainProps) {
                         link
                       </a>
                     </div>
+                    <details>
+                      <summary />
+                      <div class="flex gap-4 ml-3 py-2">
+                        <Show when={!show.canceled && !show.viewed && !show.skipped}>
+                          <CancelButton onClick={() => void handleClickCanceled(show.id)} />
+                        </Show>
+                        <Show
+                          when={
+                            !show.canceled &&
+                            !show.viewed &&
+                            !show.skipped &&
+                            currentTime >= show.show_date
+                          }
+                        >
+                          <ViewedButton onClick={() => void handleClickViewed(show.id)} />
+                        </Show>
+                        <Show
+                          when={
+                            !show.canceled &&
+                            !show.viewed &&
+                            !show.skipped &&
+                            currentTime >= show.show_date
+                          }
+                        >
+                          <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
+                        </Show>
+                      </div>
+                    </details>
                   </li>
                 )}
               </For>

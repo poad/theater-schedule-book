@@ -5,12 +5,11 @@ import { SupabaseSessionContext } from '../../../feature/supabase';
 import { fetchTheaters } from '../../../feature/theater';
 import { useTitle } from '../../../feature/title';
 import { ErrorAlert, FadeLoader, ThroughableLine, Tooltip } from '../../../feature/ui';
+import { CancelButton, ViewedButton, SkippedButton } from '../../../feature/ui/Buttons';
 import { Show as ShowData, Theater } from '../../../types';
 
 import { useParams } from '@solidjs/router';
-import { ImEyeBlocked } from 'solid-icons/im';
-import { RiSystemDeleteBin2Line, RiSystemCheckFill, RiSystemCheckboxFill } from 'solid-icons/ri';
-import { TbOutlineCalendarCancel } from 'solid-icons/tb';
+import { RiSystemDeleteBin2Line, RiSystemCheckFill } from 'solid-icons/ri';
 import { For, Show, createResource, createSignal, useContext } from 'solid-js';
 
 function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
@@ -147,11 +146,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
                                 <Show when={!show.canceled && !show.viewed && !show.skipped}>
-                                  <Tooltip text="中止">
-                                    <TbOutlineCalendarCancel
-                                      onClick={() => void handleClickCanceled(show.id)}
-                                    />
-                                  </Tooltip>
+                                  <CancelButton onClick={() => void handleClickCanceled(show.id)} />
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -163,11 +158,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                     currentTime >= show.show_date
                                   }
                                 >
-                                  <Tooltip text="観劇した">
-                                    <RiSystemCheckboxFill
-                                      onClick={() => void handleClickViewed(show.id)}
-                                    />
-                                  </Tooltip>
+                                  <ViewedButton onClick={() => void handleClickViewed(show.id)} />
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
@@ -179,11 +170,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
                                     currentTime >= show.show_date
                                   }
                                 >
-                                  <Tooltip text="上演したが行けなかった">
-                                    <ImEyeBlocked
-                                      onClick={() => void handleClickSkipped(show.id)}
-                                    />
-                                  </Tooltip>
+                                  <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
                                 </Show>
                               </td>
                               <td class="whitespace-nowrap px-3 py-4">
