@@ -57,7 +57,7 @@ jobs:
           packageManager: pnpm
           command: |
             pages project list
-            pages deploy ./dist --project-name=${{ github.event.repository.name }} --branch=${DEPLOY_BRANCH:-main}
+            pages deploy ./dist --project-name=${{ github.event.repository.name }} --branch=${{ github.head_ref || github.ref_name }}
 
           # projectName: ${{ github.event.repository.name }}
           # directory: ./dist
@@ -69,8 +69,6 @@ jobs:
 
           # Optional: Change the working directory
           workingDirectory: ./
-        env:
-          DEPLOY_BRANCH: ${{ github.head_ref }}
 
       - name: Write deployment URL to summary
         run: |
