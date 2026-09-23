@@ -31,12 +31,12 @@ function isBeforeToday(timestamp: number): boolean {
 
 function getBackground(timestamp: number): string {
   if (isToday(timestamp)) {
-    return 'bg-yellow-200/50';
+    return 'bg-yellow-100/50';
   }
   if (isBeforeToday(timestamp)) {
-    return 'bg-gray-500/50';
+    return 'bg-gray-200/50';
   }
-  return 'bg-gray-200/50';
+  return 'bg-green-100/50';
 }
 
 function hasActions(show: ShowTitle): boolean {

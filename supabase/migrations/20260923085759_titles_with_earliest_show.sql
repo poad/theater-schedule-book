@@ -5,13 +5,6 @@
 create or replace view titles_with_earliest_show
 with (security_invoker = true) as
 select
-  distinct(base.id),
-  base.name,
-  base.year,
-  base.url,
-  base.user_id
-from
-(select
   t.id,
   t.name,
   t.year,
@@ -21,11 +14,9 @@ from
 from titles t
 left join titles_shows ts on ts.title_id = t.id
 left join shows s on s.id = ts.show_id
-group by t.id, s.show_date
+group by t.id, t.name, t.year, t.url, t.user_id
 order by
   t.year,
-  earliest_show_date) as base
-order by
-  base.year;
+  earliest_show_date;
 
 grant select on titles_with_earliest_show to authenticated;
