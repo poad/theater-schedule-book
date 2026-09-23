@@ -13,9 +13,8 @@ export function useTitle(props: { id: string }) {
 
 export async function fetchTitles() {
   return supabase
-    .from('titles')
+    .from('titles_with_earliest_show')
     .select()
     .order('year', { ascending: true })
-    .order('month', { ascending: true })
     .overrideTypes<Title[], { merge: false }>();
 }

@@ -135,9 +135,7 @@ function Main(props: MainProps) {
                       when={hasActions(show)}
                       fallback={
                         <div class="flex items-center gap-2 ml-3">
-                          <span aria-hidden="true" class="inline-block invisible">
-                            ▶
-                          </span>
+                          <span aria-hidden="true" class="inline-block w-4" />
                           <DateAndLink show={show} />
                         </div>
                       }
