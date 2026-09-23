@@ -116,7 +116,8 @@ function Main(props: MainProps) {
   return (
     <div class="w-11/12 animate-in opacity-0 px-3 pt-16 lg:pt-24 text-foreground">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 h-[calc(100vh-theme(space.48))]">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          {' '}
           <Show
             when={result.loading || (result()?.data?.length ?? 0) > 0}
             fallback={<p class="px-6 py-4">この月の公演はありません</p>}
