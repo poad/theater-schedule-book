@@ -14,7 +14,7 @@ engineStrict: true
 minimumReleaseAge: 10080 # 7 days in minutes
 
 minimumReleaseAgeExclude:
-  - pnpm@12.6.0
+  - pnpm@12.8.1
   - eslint-plugin-solid@0.16.0 || 0.16.1
   - terracotta@1.2.4
 
@@ -22,5 +22,6 @@ overrides:
   chokidar: '>=5'
   semver: '>=7'
   sharp@<0.35.4: ^0.35.4
+  undici@>=7.28.0 <7.29.1: ^7.29.1
 
 trustPolicy: no-downgrade
