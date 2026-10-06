@@ -14,28 +14,16 @@ engineStrict: true
 minimumReleaseAge: 10080 # 7 days in minutes
 
 minimumReleaseAgeExclude:
-  - pnpm@12.9.0
-  - eslint-plugin-solid@0.16.0 || 0.16.1
-  - terracotta@1.2.4
-  - '@pnpm/exe.android-arm64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.android-x64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.darwin-arm64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.darwin-x64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.freebsd-x64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.linux-arm64-musl@12.8.2 || 12.9.0'
-  - '@pnpm/exe.linux-arm64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.linux-ppc64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.linux-riscv64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.linux-s390x@12.8.2 || 12.9.0'
-  - '@pnpm/exe.linux-x64-musl@12.8.2 || 12.9.0'
-  - '@pnpm/exe.linux-x64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.win32-arm64@12.8.2 || 12.9.0'
-  - '@pnpm/exe.win32-x64@12.8.2 || 12.9.0'
+  - pnpm@12.19.1
+  - source-map-js@1.2.2
 
 overrides:
   chokidar: '>=5'
   semver: '>=7'
+  seroval@<=1.6.2: ^1.6.3
   sharp@<0.35.4: ^0.35.4
+  sharp@<0.35.5: ^0.35.5
+  source-map-js@>=1.0.0 <1.2.2: ^1.2.2
   undici@>=7.28.0 <7.29.1: ^7.29.1
 
 trustPolicy: no-downgrade
