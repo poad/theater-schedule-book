@@ -1,5 +1,5 @@
+import type { JSX } from '@solidjs/web';
 import { RiSystemCloseCircleLine } from 'solid-icons/ri';
-import { JSX } from 'solid-js';
 
 export function ErrorAlert(props: { title: string; children?: JSX.Element }) {
   return (

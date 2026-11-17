@@ -5,31 +5,35 @@ import { Show } from 'solid-js';
 
 interface ActorItemProps {
   actor: Actor;
-  'on:delete'?: (actor: Actor) => void;
-  'on:update'?: (actor: Actor) => void;
+  onDelete?: (actor: Actor) => void;
+  onUpdate?: (actor: Actor) => void;
 }
 
 export function ActorItem(props: ActorItemProps) {
   function handleDeleteClick(): void {
-    props['on:delete']?.(props.actor);
+    props.onDelete?.(props.actor);
   }
 
   function handleEditClick(): void {
-    props['on:delete']?.(props.actor);
+    props.onUpdate?.(props.actor);
   }
 
   return (
     <li class="m-1 ml-3">
       <span>
         {props.actor.name}
-        <Show when={props['on:delete']}>
-          <RiDesignEdit2Line style={{ display: 'inline' }} on:click={() => handleEditClick()} />
+        <Show when={props.onDelete}>
+          <span onClick={() => handleEditClick()} style={{ display: 'inline', cursor: 'pointer' }}>
+            <RiDesignEdit2Line style={{ display: 'inline' }} />
+          </span>
         </Show>
-        <Show when={props['on:delete']}>
-          <RiSystemDeleteBin2Line
-            style={{ display: 'inline' }}
-            on:click={() => handleDeleteClick()}
-          />
+        <Show when={props.onDelete}>
+          <span
+            onClick={() => handleDeleteClick()}
+            style={{ display: 'inline', cursor: 'pointer' }}
+          >
+            <RiSystemDeleteBin2Line style={{ display: 'inline' }} />
+          </span>
         </Show>
       </span>
     </li>

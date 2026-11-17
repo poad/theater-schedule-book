@@ -5,7 +5,7 @@ import { useShows } from '../../show';
 import { SupabaseSessionContext } from '../../supabase';
 import { CancelButton, SkippedButton, ViewedButton } from '../../ui/Buttons';
 
-import { For, Show, createResource, useContext } from 'solid-js';
+import { For, Show, createMemo, useContext, refresh, Loading, Errored } from 'solid-js';
 
 interface MainProps {
   currentMonthOnly: boolean;
@@ -68,27 +68,26 @@ function Main(props: MainProps) {
   const updateShowSkipped = mutations.updateShowSkipped;
   const currentTime = new Date().getTime();
 
-  const [result, { refetch }] = createResource(
-    () => ({
+  const result = createMemo(() => {
+    const filter = {
       monthMode: props.year !== undefined && props.month !== undefined,
       year: props.year ?? new Date().getFullYear(),
       month: props.month ?? new Date().getMonth(),
       currentMonthOnly: props.currentMonthOnly,
-    }),
-    (filter) =>
-      useShows(
-        filter.monthMode
-          ? { month: { year: filter.year, month: filter.month } }
-          : { futures: { today: new Date(), currentMonthOnly: filter.currentMonthOnly } },
-      )(),
-  );
+    };
+    return useShows(
+      filter.monthMode
+        ? { month: { year: filter.year, month: filter.month } }
+        : { futures: { today: new Date(), currentMonthOnly: filter.currentMonthOnly } },
+    )();
+  });
 
   async function handleClickCanceled(id: string) {
     await updateShowCanceled({
       id,
       status: true,
       onSuccess: () => {
-        void refetch();
+        void refresh(result);
       },
     });
   }
@@ -97,8 +96,8 @@ function Main(props: MainProps) {
     await updateShowViewed({
       id,
       status: true,
-      'on:success': () => {
-        void refetch();
+      onSuccess: () => {
+        void refresh(result);
       },
     });
   }
@@ -108,7 +107,7 @@ function Main(props: MainProps) {
       id,
       skipped: true,
       onSuccess: () => {
-        void refetch();
+        void refresh(result);
       },
     });
   }
@@ -118,57 +117,63 @@ function Main(props: MainProps) {
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
           {' '}
-          <Show
-            when={result.loading || (result()?.data?.length ?? 0) > 0}
-            fallback={<p class="px-6 py-4">この月の公演はありません</p>}
+          <Errored
+            fallback={(err) => <p class="px-6 py-4 text-red-500">{(err() as Error).message}</p>}
           >
-            <ul>
-              <For each={result()?.data}>
-                {(show) => (
-                  <li
-                    class={`whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4 my-3 ${getBackground(show.show_date)} hover:bg-yellow-200/50`}
-                  >
-                    <a href={`/titles/${show.titles[0].id}`} class="text-current block">
-                      {show.titles[0].name}
-                    </a>
+            <Loading fallback={<p class="px-6 py-4">この月の公演はありません</p>}>
+              <Show
+                when={((result() as unknown as { data: ShowTitle[] })?.data?.length ?? 0) > 0}
+                fallback={<p class="px-6 py-4">この月の公演はありません</p>}
+              >
+                <ul>
+                  <For each={(result() as unknown as { data: ShowTitle[] })?.data}>
+                    {(show) => (
+                      <li
+                        class={`whitespace-nowrap sm:whitespace-normal sm:w-1/3 px-6 py-4 my-3 ${getBackground(show.show_date)} hover:bg-yellow-200/50`}
+                      >
+                        <a href={`/titles/${show.titles[0].id}`} class="text-current block">
+                          {show.titles[0].name}
+                        </a>
 
-                    <Show
-                      when={hasActions(show)}
-                      fallback={
-                        <div class="flex items-center gap-2 ml-3">
-                          <span aria-hidden="true" class="inline-block w-4" />
-                          <DateAndLink show={show} />
-                        </div>
-                      }
-                    >
-                      <details class="group ml-3">
-                        <summary class="flex cursor-pointer items-center gap-2 [&::marker]:hidden [&::-webkit-details-marker]:hidden">
-                          <span
-                            aria-hidden="true"
-                            class="inline-block transition-transform group-open:rotate-90"
-                          >
-                            ▶
-                          </span>
-                          <DateAndLink show={show} />
-                        </summary>
-                        <div class="flex gap-4 py-2">
-                          <Show when={hasActions(show)}>
-                            <CancelButton onClick={() => void handleClickCanceled(show.id)} />
-                          </Show>
-                          <Show when={hasActions(show) && currentTime >= show.show_date}>
-                            <ViewedButton onClick={() => void handleClickViewed(show.id)} />
-                          </Show>
-                          <Show when={hasActions(show) && currentTime >= show.show_date}>
-                            <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
-                          </Show>
-                        </div>
-                      </details>
-                    </Show>
-                  </li>
-                )}
-              </For>
-            </ul>
-          </Show>
+                        <Show
+                          when={hasActions(show)}
+                          fallback={
+                            <div class="flex items-center gap-2 ml-3">
+                              <span aria-hidden="true" class="inline-block w-4" />
+                              <DateAndLink show={show} />
+                            </div>
+                          }
+                        >
+                          <details class="group ml-3">
+                            <summary class="flex cursor-pointer items-center gap-2 [&::marker]:hidden [&::-webkit-details-marker]:hidden">
+                              <span
+                                aria-hidden="true"
+                                class="inline-block transition-transform group-open:rotate-90"
+                              >
+                                ▶
+                              </span>
+                              <DateAndLink show={show} />
+                            </summary>
+                            <div class="flex gap-4 py-2">
+                              <Show when={hasActions(show)}>
+                                <CancelButton onClick={() => void handleClickCanceled(show.id)} />
+                              </Show>
+                              <Show when={hasActions(show) && currentTime >= show.show_date}>
+                                <ViewedButton onClick={() => void handleClickViewed(show.id)} />
+                              </Show>
+                              <Show when={hasActions(show) && currentTime >= show.show_date}>
+                                <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
+                              </Show>
+                            </div>
+                          </details>
+                        </Show>
+                      </li>
+                    )}
+                  </For>
+                </ul>
+              </Show>
+            </Loading>
+          </Errored>
         </div>
       </div>
     </div>

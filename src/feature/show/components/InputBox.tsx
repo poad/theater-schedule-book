@@ -6,7 +6,7 @@ import { Button } from 'terracotta';
 
 export function InputBox(props: {
   theaters: Theater[];
-  'on:click': (data: {
+  onClick: (data: {
     showDate?: Date;
     canceled: boolean;
     viewed: boolean;
@@ -39,7 +39,7 @@ export function InputBox(props: {
         )
       : undefined;
 
-    const error = await props['on:click']({
+    const error = await props.onClick({
       showDate,
       canceled: canceled(),
       viewed: viewed(),
@@ -71,7 +71,7 @@ export function InputBox(props: {
               <input
                 name="date"
                 type="date"
-                on:change={(event) => {
+                onChange={(event) => {
                   setDate(() => event.target.valueAsDate);
                 }}
                 value={date()?.toISOString().slice(0, 10)}
@@ -90,7 +90,7 @@ export function InputBox(props: {
                 min={0}
                 max={23}
                 placeholder="start hours"
-                on:change={(event) => {
+                onChange={(event) => {
                   const value = event.target.valueAsNumber;
                   setHour(() => (value > 23 ? 23 : value));
                 }}
@@ -101,7 +101,7 @@ export function InputBox(props: {
                 min={0}
                 max={59}
                 placeholder="start minute"
-                on:change={(event) => {
+                onChange={(event) => {
                   const value = event.target.valueAsNumber;
                   setMinute(() => (value > 59 ? 59 : value));
                 }}
@@ -111,25 +111,25 @@ export function InputBox(props: {
           </div>
         </div>
       </div>
-      <select on:change={(event) => handleSelectChange(event.target.value)} class="mb-4 w-full">
+      <select onChange={(event) => handleSelectChange(event.target.value)} class="mb-4 w-full">
         <For each={props.theaters}>{(item) => <option value={item.id}>{item.name}</option>}</For>
       </select>
       <div class="flex mb-4">
         <label class="mr-6">
           <input
             type="checkbox"
-            on:change={(event) => setCanceled(event.target.checked)}
+            onChange={(event) => setCanceled(event.target.checked)}
             class="mr-3"
           />
           Canceled
         </label>
         <label>
-          <input type="checkbox" on:change={(event) => setViewed(event.target.checked)} />
+          <input type="checkbox" onChange={(event) => setViewed(event.target.checked)} />
           Viewed
         </label>
       </div>
       <Button
-        on:click={() => void handleClick()}
+        onClick={() => void handleClick()}
         class="bg-green-500 rounded text-white text-xs px-2.5 py-2"
       >
         Save

@@ -1,10 +1,5 @@
-import { reset, createForm, SubmitHandler } from '@modular-forms/solid';
 import { Show, createSignal } from 'solid-js';
 import { Button } from 'terracotta';
-
-interface Inputs {
-  name: string;
-}
 
 export function NameInputBox(props: {
   label: string;
@@ -12,44 +7,36 @@ export function NameInputBox(props: {
   onClick: (value: string) => Promise<Error | undefined>;
 }) {
   const [error, setError] = createSignal<Error>();
-  const [form, { Form, Field }] = createForm<Inputs>();
+  const [name, setName] = createSignal('');
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const name = data.name ?? '';
-    const error = await props.onClick(name);
-    if (error) {
-      setError(error);
+  async function onSubmit(event: SubmitEvent) {
+    event.preventDefault();
+    const result = await props.onClick(name());
+    if (result) {
+      setError(result);
       return;
     }
-    reset(form);
-  };
+    setName('');
+  }
 
   return (
-    <Form onSubmit={onSubmit} action="">
+    <form onSubmit={onSubmit} action="">
       <div>
         <label class="name" for="name">
           <div>{props.label}</div>
         </label>
         <div class="border border-gray-400 w-[calc(90vw)] rounded p-0.5 flex items-center justify-center">
-          <Field name="name" type="string">
-            {(field, inputProps) => (
-              <>
-                <input
-                  id={field.name}
-                  type="text"
-                  {...inputProps}
-                  placeholder={props.placeholder}
-                  pattern=".{2,}"
-                  class="p-1 inline w-full relative"
-                  value={field.value ?? ''}
-                  required
-                />
-                <Show when={field.error}>
-                  <div class="text-red-500">{field.error}</div>
-                </Show>
-              </>
-            )}
-          </Field>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder={props.placeholder}
+            pattern=".{2,}"
+            class="p-1 inline w-full relative"
+            value={name()}
+            onInput={(event) => setName(event.currentTarget.value)}
+            required
+          />
           <Button
             type="submit"
             class="mr-auto bg-green-500 rounded text-white text-xs px-2.5 py-2 inline-block"
@@ -61,7 +48,7 @@ export function NameInputBox(props: {
           <span class="text-red-500">{error()?.message}</span>
         </Show>
       </div>
-    </Form>
+    </form>
   );
 }
 
