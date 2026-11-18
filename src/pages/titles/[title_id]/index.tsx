@@ -6,16 +6,25 @@ import { fetchTheaters } from '../../../feature/theater';
 import { useTitle } from '../../../feature/title';
 import { ErrorAlert, FadeLoader, ThroughableLine, Tooltip } from '../../../feature/ui';
 import { CancelButton, ViewedButton, SkippedButton } from '../../../feature/ui/Buttons';
-import { Show as ShowData, Theater } from '../../../types';
+import { Show as ShowData, Theater, Title } from '../../../types';
 
 import { useParams } from '@solidjs/router';
 import { RiSystemDeleteBin2Line, RiSystemCheckFill } from 'solid-icons/ri';
-import { For, Show, createResource, createSignal, useContext } from 'solid-js';
+import {
+  For,
+  Show,
+  createMemo,
+  createSignal,
+  useContext,
+  refresh,
+  Loading,
+  Errored,
+} from 'solid-js';
 
 function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
   const session = useContext(SupabaseSessionContext);
 
-  const [theaters] = createResource(fetchTheaters);
+  const theaters = createMemo(() => fetchTheaters());
   const mutations = useMutation();
   const addShow = mutations.addShow;
   const updateShowViewed = mutations.updateShowViewed;
@@ -50,7 +59,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
       viewed,
       canceled,
       theaterId: theater.id,
-      'on:success': () => {
+      onSuccess: () => {
         void props.refetch();
       },
     });
@@ -71,7 +80,7 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
     await updateShowViewed({
       id,
       status: true,
-      'on:success': () => {
+      onSuccess: () => {
         void props.refetch();
       },
     });
@@ -98,134 +107,147 @@ function Main(props: { id: string; shows?: ShowData[]; refetch: () => void }) {
 
   return (
     <Show when={session()} fallback={<></>}>
-      <Show
-        when={!theaters()?.error}
-        fallback={<ErrorAlert title="fetch error">{theaters()?.error?.message}</ErrorAlert>}
+      <Errored
+        fallback={(err) => <ErrorAlert title="fetch error">{(err() as Error).message}</ErrorAlert>}
       >
         <Show
           when={!errorMessage()}
           fallback={<ErrorAlert title="fetch error">{errorMessage()}</ErrorAlert>}
         >
-          <Show
-            when={theaters()}
+          <Loading
             fallback={
               <div class="h-screen w-screen flex justify-center items-center">
                 <FadeLoader />
               </div>
             }
           >
-            <div class="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
-              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 mb-8">
-                  <div class="overflow-hidden">
-                    <table class="min-w-full text-left text-sm font-light border-collapse">
-                      <thead class="border-b font-medium dark:border-neutral-500">
-                        <tr>
-                          <th>Viewed</th>
-                          <th>Date</th>
-                          <th>Theater</th>
-                          <th colSpan={4} />
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <For each={props.shows?.sort((a, b) => a.show_date - b.show_date)}>
-                          {(show) => (
-                            <tr class="border-b dark:border-neutral-500">
-                              <td class="whitespace-nowrap px-6 py-4">
-                                {show.viewed ? <RiSystemCheckFill /> : <></>}
-                              </td>
-                              <td class="whitespace-nowrap px-3 py-4">
-                                <ThroughableLine strikethrough={show.canceled}>
-                                  <DateView date={show.show_date} />
-                                </ThroughableLine>
-                              </td>
-                              <td class="whitespace-nowrap px-3 py-4">
-                                <ThroughableLine strikethrough={show.canceled}>
-                                  {show.theaters[0].name}
-                                </ThroughableLine>
-                              </td>
-                              <td class="whitespace-nowrap px-3 py-4">
-                                <Show when={!show.canceled && !show.viewed && !show.skipped}>
-                                  <CancelButton onClick={() => void handleClickCanceled(show.id)} />
-                                </Show>
-                              </td>
-                              <td class="whitespace-nowrap px-3 py-4">
-                                <Show
-                                  when={
-                                    !show.canceled &&
-                                    !show.viewed &&
-                                    !show.skipped &&
-                                    currentTime >= show.show_date
-                                  }
-                                >
-                                  <ViewedButton onClick={() => void handleClickViewed(show.id)} />
-                                </Show>
-                              </td>
-                              <td class="whitespace-nowrap px-3 py-4">
-                                <Show
-                                  when={
-                                    !show.canceled &&
-                                    !show.viewed &&
-                                    !show.skipped &&
-                                    currentTime >= show.show_date
-                                  }
-                                >
-                                  <SkippedButton onClick={() => void handleClickSkipped(show.id)} />
-                                </Show>
-                              </td>
-                              <td class="whitespace-nowrap px-3 py-4">
-                                <Tooltip text="削除">
-                                  <RiSystemDeleteBin2Line
-                                    onClick={() => void handleDelete(show.id)}
-                                  />
-                                </Tooltip>
-                              </td>
-                            </tr>
-                          )}
-                        </For>
-                      </tbody>
-                    </table>
+            <Show
+              when={!theaters()?.error}
+              fallback={<ErrorAlert title="fetch error">{theaters()?.error?.message}</ErrorAlert>}
+            >
+              <div class="w-11/12 animate-in gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 mb-8">
+                    <div class="overflow-hidden">
+                      <table class="min-w-full text-left text-sm font-light border-collapse">
+                        <thead class="border-b font-medium dark:border-neutral-500">
+                          <tr>
+                            <th>Viewed</th>
+                            <th>Date</th>
+                            <th>Theater</th>
+                            <th colspan={4} />
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <For
+                            each={props.shows?.sort(
+                              (a: ShowData, b: ShowData) => a.show_date - b.show_date,
+                            )}
+                          >
+                            {(show: ShowData) => (
+                              <tr class="border-b dark:border-neutral-500">
+                                <td class="whitespace-nowrap px-6 py-4">
+                                  {show.viewed ? <RiSystemCheckFill /> : <></>}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4">
+                                  <ThroughableLine strikethrough={show.canceled}>
+                                    <DateView date={show.show_date} />
+                                  </ThroughableLine>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4">
+                                  <ThroughableLine strikethrough={show.canceled}>
+                                    {show.theaters[0].name}
+                                  </ThroughableLine>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4">
+                                  <Show when={!show.canceled && !show.viewed && !show.skipped}>
+                                    <CancelButton
+                                      onClick={() => void handleClickCanceled(show.id)}
+                                    />
+                                  </Show>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4">
+                                  <Show
+                                    when={
+                                      !show.canceled &&
+                                      !show.viewed &&
+                                      !show.skipped &&
+                                      currentTime >= show.show_date
+                                    }
+                                  >
+                                    <ViewedButton onClick={() => void handleClickViewed(show.id)} />
+                                  </Show>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4">
+                                  <Show
+                                    when={
+                                      !show.canceled &&
+                                      !show.viewed &&
+                                      !show.skipped &&
+                                      currentTime >= show.show_date
+                                    }
+                                  >
+                                    <SkippedButton
+                                      onClick={() => void handleClickSkipped(show.id)}
+                                    />
+                                  </Show>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4">
+                                  <Tooltip text="削除">
+                                    <span
+                                      onClick={() => void handleDelete(show.id)}
+                                      style={{ cursor: 'pointer' }}
+                                    >
+                                      <RiSystemDeleteBin2Line />
+                                    </span>
+                                  </Tooltip>
+                                </td>
+                              </tr>
+                            )}
+                          </For>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
+                <div>
+                  <InputBox
+                    theaters={(theaters() as unknown as { data: Theater[] })?.data ?? []}
+                    onClick={(data: {
+                      showDate?: Date;
+                      theater: Theater;
+                      viewed: boolean;
+                      canceled: boolean;
+                    }) => handleClick(data)}
+                  />
+                </div>
               </div>
-              <div>
-                <InputBox
-                  theaters={theaters()?.data ?? []}
-                  on:click={(data: {
-                    showDate?: Date;
-                    theater: Theater;
-                    viewed: boolean;
-                    canceled: boolean;
-                  }) => handleClick(data)}
-                />
-              </div>
-            </div>
-          </Show>
+            </Show>
+          </Loading>
         </Show>
-      </Show>
+      </Errored>
     </Show>
   );
 }
 
 export default function Shows() {
   const params = useParams();
-  const [title, { refetch }] = createResource(
-    useTitle({
-      id: params.title_id ?? '',
-    }),
-  );
+  const title = createMemo(() => useTitle({ id: params.title_id ?? '' })());
 
   return (
-    <Show
-      when={title()?.error}
-      fallback={
+    <Errored
+      fallback={(err) => <ErrorAlert title="fetch error">{(err() as Error).message}</ErrorAlert>}
+    >
+      <Loading
+        fallback={
+          <div class="h-screen w-screen flex justify-center items-center">
+            <FadeLoader />
+          </div>
+        }
+      >
         <Show
-          when={!title.loading}
-          fallback={
-            <div class="h-screen w-screen flex justify-center items-center">
-              <FadeLoader />
-            </div>
-          }
+          when={!title()?.error}
+          fallback={<ErrorAlert title="fetch error">{title()?.error?.message}</ErrorAlert>}
         >
           <div class="w-full flex flex-col items-center">
             <nav class="w-full flex justify-center border-b border-b-foreground/10 h-16">
@@ -239,12 +261,14 @@ export default function Shows() {
               </div>
             </nav>
 
-            <Main id={params.title_id as string} shows={title()?.data?.shows} refetch={refetch} />
+            <Main
+              id={params.title_id as string}
+              shows={(title() as unknown as { data: Title })?.data?.shows}
+              refetch={() => refresh(title)}
+            />
           </div>
         </Show>
-      }
-    >
-      <ErrorAlert title="fetch error">{title()?.error?.message}</ErrorAlert>
-    </Show>
+      </Loading>
+    </Errored>
   );
 }

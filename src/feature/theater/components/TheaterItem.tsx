@@ -21,13 +21,17 @@ export function TheaterItem(props: {
       <span>
         {props.theater.name}
         <Show when={props.onUpdate}>
-          <RiDesignEdit2Line style={{ display: 'inline' }} onClick={() => handleEditClick()} />
+          <span onClick={() => handleEditClick()} style={{ display: 'inline', cursor: 'pointer' }}>
+            <RiDesignEdit2Line style={{ display: 'inline' }} />
+          </span>
         </Show>
         <Show when={props.onDelete}>
-          <RiSystemDeleteBin2Line
-            style={{ display: 'inline' }}
+          <span
             onClick={() => handleDeleteClick()}
-          />
+            style={{ display: 'inline', cursor: 'pointer' }}
+          >
+            <RiSystemDeleteBin2Line style={{ display: 'inline' }} />
+          </span>
         </Show>
       </span>
     </li>

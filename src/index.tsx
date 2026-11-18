@@ -1,11 +1,13 @@
 import { SupabaseSessionProvider } from './feature/supabase/';
 
-import { Router } from '@solidjs/router';
-import { Suspense } from 'solid-js';
-import { render } from 'solid-js/web';
+import { createRouter } from '@solidjs/router';
+import { render } from '@solidjs/web';
+import { Loading } from 'solid-js';
 // eslint-disable-next-line import-x/no-unresolved
 import routes from '~solid-pages';
 import './index.css';
+
+const Router = createRouter({ routes });
 
 const root = document.getElementById('root');
 
@@ -18,9 +20,9 @@ if ((import.meta.env.DEV && !(root instanceof HTMLElement)) || !root) {
 render(
   () => (
     <SupabaseSessionProvider>
-      <Suspense>
-        <Router>{routes}</Router>
-      </Suspense>
+      <Loading fallback={<div>読み込み中...</div>}>
+        <Router />
+      </Loading>
     </SupabaseSessionProvider>
   ),
   root,

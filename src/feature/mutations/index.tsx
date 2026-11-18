@@ -8,7 +8,7 @@ interface AddTitleProps {
   name: string;
   year: number;
   url?: string;
-  'on:success'?: (title: Title | null) => void;
+  onSuccess?: (title: Title | null) => void;
 }
 
 interface AddShowProps {
@@ -17,7 +17,7 @@ interface AddShowProps {
   viewed: boolean;
   canceled: boolean;
   theaterId: string;
-  'on:success'?: () => void;
+  onSuccess?: () => void;
 }
 
 type Result = { error?: Error } | undefined;
@@ -25,12 +25,7 @@ type Result = { error?: Error } | undefined;
 export function useMutation() {
   const session = useContext(SupabaseSessionContext);
 
-  const addTitle = async ({
-    name,
-    year,
-    url,
-    'on:success': onSuccess,
-  }: AddTitleProps): Promise<Result> => {
+  const addTitle = async ({ name, year, url, onSuccess }: AddTitleProps): Promise<Result> => {
     if (!session()) {
       return { error: new Error('uninitialized') };
     }
@@ -50,10 +45,10 @@ export function useMutation() {
 
   const addTheater = async ({
     name,
-    'on:success': onSuccess,
+    onSuccess,
   }: {
     name: string;
-    'on:success'?: (theater: Theater | null) => void;
+    onSuccess?: (theater: Theater | null) => void;
   }): Promise<Result> => {
     if (!session()) {
       return { error: new Error('uninitialized') };
@@ -79,7 +74,7 @@ export function useMutation() {
     viewed,
     canceled,
     theaterId,
-    'on:success': onSuccess,
+    onSuccess,
   }: AddShowProps): Promise<{ data?: Show; error?: Error } | undefined> => {
     if (!session()) {
       return { error: new Error('uninitialized') };
@@ -131,11 +126,11 @@ export function useMutation() {
   const updateShowViewed = async ({
     id,
     status,
-    'on:success': onSuccess,
+    onSuccess,
   }: {
     id: string;
     status: boolean;
-    'on:success'?: () => void;
+    onSuccess?: () => void;
   }): Promise<Result> => {
     if (!session()) {
       return { error: new Error('uninitialized') };
