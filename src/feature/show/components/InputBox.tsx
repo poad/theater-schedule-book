@@ -2,7 +2,7 @@ import { Theater } from '../../../types';
 import { ErrorAlert } from '../../ui';
 
 import { For, Show, createMemo, createSignal } from 'solid-js';
-import { Button } from 'terracotta';
+import { Button } from 'terracotta/button';
 
 export function InputBox(props: {
   theaters: Theater[];

@@ -1,5 +1,5 @@
 import { Show, createSignal } from 'solid-js';
-import { Button } from 'terracotta';
+import { Button } from 'terracotta/button';
 
 export function InputBox(props: {
   labelName: string;
