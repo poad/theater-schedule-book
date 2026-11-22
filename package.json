@@ -40,7 +40,7 @@
     "jsdom": "^31.0.1",
     "oxfmt": "^0.78.0",
     "oxlint": "^1.93.0",
-    "postcss": "^8.5.32",
+    "postcss": "^8.5.33",
     "rimraf": "^6.1.4",
     "solid-js": "^2.0.3",
     "tailwindcss": "^4.3.5",
@@ -54,7 +54,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.21.0",
+      "version": "12.23.0",
       "onFail": "download"
     },
     "runtime": {
