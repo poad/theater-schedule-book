@@ -25,9 +25,9 @@
     "terracotta": "^2.0.0"
   },
   "devDependencies": {
-    "@solidjs/router": "^2.0.0",
+    "@solidjs/router": "^2.0.1",
     "@solidjs/testing-library": "^0.8.10",
-    "@solidjs/vite-plugin": "3.0.1",
+    "@solidjs/vite-plugin": "^3.0.1",
     "@tailwindcss/postcss": "^4.3.5",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/user-event": "^14.6.12",
@@ -36,7 +36,7 @@
     "@vitest/ui": "^5.1.1",
     "autoprefixer": "^10.6.2",
     "esbuild": "^0.28.2",
-    "eslint-plugin-solid": "^0.20.0",
+    "eslint-plugin-solid": "^0.20.1",
     "jsdom": "^31.0.1",
     "oxfmt": "^0.79.0",
     "oxlint": "^1.94.0",

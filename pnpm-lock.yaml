@@ -212,13 +212,13 @@ importers:
         version: 2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)
     devDependencies:
       '@solidjs/router':
-        specifier: ^2.0.0
-        version: 2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)
+        specifier: ^2.0.1
+        version: 2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)
       '@solidjs/testing-library':
         specifier: ^0.8.10
-        version: 0.8.10(@solidjs/router@2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(solid-js@2.0.4)
+        version: 0.8.10(@solidjs/router@2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(solid-js@2.0.4)
       '@solidjs/vite-plugin':
-        specifier: 3.0.1
+        specifier: ^3.0.1
         version: 3.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.1.1))(solid-js@2.0.4)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
       '@tailwindcss/postcss':
         specifier: ^4.3.5
@@ -245,8 +245,8 @@ importers:
         specifier: ^0.28.2
         version: 0.28.2
       eslint-plugin-solid:
-        specifier: ^0.20.0
-        version: 0.20.0
+        specifier: ^0.20.1
+        version: 0.20.1
       jsdom:
         specifier: ^31.0.1
         version: 31.0.1
@@ -282,7 +282,7 @@ importers:
         version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
       vite-plugin-pages:
         specifier: ^0.33.3
-        version: 0.33.3(@solidjs/router@2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(supports-color@10.2.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+        version: 0.33.3(@solidjs/router@2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(supports-color@10.2.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
       vitest:
         specifier: ^5.1.1
         version: 5.1.1(@types/node@26.6.6)(@vitest/coverage-v8@5.1.1)(@vitest/ui@5.1.1)(jsdom@31.0.1)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
@@ -1161,8 +1161,8 @@ packages:
   '@solidjs/compiler@2.0.0':
     resolution: {integrity: sha512-Spgqz1+eojQ2pDl4yajnajIjX/kSusjTK/6mC6Fm7sAZ3YBI0yP4/epRR1hV08TU3YAH4xLBmZ6wjb1zC134Sw==}
 
-  '@solidjs/router@2.0.0':
-    resolution: {integrity: sha512-Zpa9djVKDigR1PYd6K32OFN3N90wymPk2yIWhV+Sdrz/aRPpMIIohI5dsAqwx5WIjQ3lBlECZHGBEzaPdcmpCA==}
+  '@solidjs/router@2.0.1':
+    resolution: {integrity: sha512-XFmb2A08mcvSnhKoM4x16Kt6olZMlnDUlzHA3w8nX3gpxPxOs40YP07rH2uNuTliTU7lavkcKIlpQzWzRi4yDw==}
     peerDependencies:
       '@solidjs/web': ^2.0.0
       filesystem-routing: '>=0.4.0'
@@ -1676,8 +1676,8 @@ packages:
   dom-accessibility-api@0.6.3:
     resolution: {integrity: sha512-7ZgogeTnjuHbo+ct10G9Ffp0mif17idi0IyWNVA/wcwcm7NPOD/WEHVP3n7n3MhXqxoIYm8d6MuZohYWIZ4T3w==}
 
-  electron-to-chromium@1.5.489:
-    resolution: {integrity: sha512-1cF87WItryk9lj5wg5SLsNegUihdkcHuOfrANPpO02y/d2krm1Oc3GjA9KBwlT5o145FTa1bbjdLc7pZnvtnYQ==}
+  electron-to-chromium@1.5.490:
+    resolution: {integrity: sha512-I0dPyEsiaYAlbGJlr0SdRRGSWk9BpOz8AIo/4f93A6bAGuN3YafmT71rpss72SA05isaAkcAOYcW0F0H48om4Q==}
 
   enhanced-resolve@5.27.0:
     resolution: {integrity: sha512-Do6BB2xzlcc/odFg+XEYyneAx4T/WfywO71yw9ePS2tVfRsf7JVR4mUeELadIeHzixkzbG5DpluiEFPi2WGfYQ==}
@@ -1706,8 +1706,8 @@ packages:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
     engines: {node: '>=6'}
 
-  eslint-plugin-solid@0.20.0:
-    resolution: {integrity: sha512-+cA9Yz+ON+Sr3sfl2RJePrPDXZmIAleS3D6W5rRuP/BKRqnt2DcSXi2YMFi52oClWGoOfBl29FdtLere7qoJUQ==}
+  eslint-plugin-solid@0.20.1:
+    resolution: {integrity: sha512-HPBVDgkGCOqXpfMQUyMP273AXo/VUwm/hqvTWWovVSJKPBzrKhq7w04Yn0PtTgj9g+7ZdlcAAJ9dwgBGeJQ4Gg==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
@@ -3130,19 +3130,19 @@ snapshots:
       '@solidjs/compiler-wasm32-wasi': 2.0.0
       '@solidjs/compiler-win32-x64-msvc': 2.0.0
 
-  '@solidjs/router@2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)':
+  '@solidjs/router@2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)':
     dependencies:
       '@solidjs/web': 2.0.4(solid-js@2.0.4)
       solid-js: 2.0.4
 
   '@solidjs/signals@2.0.4': {}
 
-  '@solidjs/testing-library@0.8.10(@solidjs/router@2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(solid-js@2.0.4)':
+  '@solidjs/testing-library@0.8.10(@solidjs/router@2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(solid-js@2.0.4)':
     dependencies:
       '@testing-library/dom': 10.4.2
       solid-js: 2.0.4
     optionalDependencies:
-      '@solidjs/router': 2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)
+      '@solidjs/router': 2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)
 
   '@solidjs/vite-plugin@3.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.1.1))(solid-js@2.0.4)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
@@ -3499,7 +3499,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.11.38
       caniuse-lite: 1.0.30001826
-      electron-to-chromium: 1.5.489
+      electron-to-chromium: 1.5.490
       node-releases: 2.0.65
       update-browserslist-db: 1.4.0(browserslist@4.29.6)
 
@@ -3542,7 +3542,7 @@ snapshots:
 
   dom-accessibility-api@0.6.3: {}
 
-  electron-to-chromium@1.5.489: {}
+  electron-to-chromium@1.5.490: {}
 
   enhanced-resolve@5.27.0:
     dependencies:
@@ -3588,7 +3588,7 @@ snapshots:
 
   escalade@3.2.0: {}
 
-  eslint-plugin-solid@0.20.0:
+  eslint-plugin-solid@0.20.1:
     dependencies:
       eslint-visitor-keys: 3.4.3
       estraverse: 5.3.0
@@ -4164,7 +4164,7 @@ snapshots:
 
   validate-html-nesting@1.2.4: {}
 
-  vite-plugin-pages@0.33.3(@solidjs/router@2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(supports-color@10.2.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
+  vite-plugin-pages@0.33.3(@solidjs/router@2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4))(supports-color@10.2.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:
       '@types/debug': 4.1.13
       debug: 4.4.3(supports-color@10.2.2)
@@ -4178,7 +4178,7 @@ snapshots:
       vite: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
       yaml: 2.9.1
     optionalDependencies:
-      '@solidjs/router': 2.0.0(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)
+      '@solidjs/router': 2.0.1(@solidjs/web@2.0.4(solid-js@2.0.4))(solid-js@2.0.4)
     transitivePeerDependencies:
       - supports-color
 
