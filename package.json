@@ -20,7 +20,7 @@
     "@solidjs/web": "^2.0.4",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/auth-ui-solid": "^0.3.8",
-    "@supabase/supabase-js": "^2.119.0",
+    "@supabase/supabase-js": "^2.119.2",
     "solid-icons": "^2.0.0",
     "terracotta": "^2.0.0"
   },
@@ -29,8 +29,8 @@
     "@solidjs/testing-library": "^0.8.10",
     "@solidjs/vite-plugin": "^3.0.1",
     "@tailwindcss/postcss": "^4.3.5",
-    "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/user-event": "^14.6.12",
+    "@testing-library/jest-dom": "^8.0.0",
+    "@testing-library/user-event": "^14.6.13",
     "@types/node": "^26.6.6",
     "@vitest/coverage-v8": "^5.1.1",
     "@vitest/ui": "^5.1.1",
@@ -49,7 +49,7 @@
     "vite": "^8.3.8",
     "vite-plugin-pages": "^0.33.3",
     "vitest": "^5.1.1",
-    "wrangler": "^4.164.0"
+    "wrangler": "^4.165.0"
   },
   "devEngines": {
     "packageManager": {
